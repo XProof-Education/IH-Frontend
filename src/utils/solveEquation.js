@@ -77,20 +77,34 @@ const stepToOccurrences = (step) => {
 }
 
 const colorChangedElems = (step1, step2, color = 'red') => {
+    let step1Occurrences = stepToOccurrences(step1);
+    let step2Occurrences = stepToOccurrences(step2);
+
     const coloredStep1 = step1.map((side, sideIndex) => {
-      return side.map((term, termIndex) => {
-        if (!step2[sideIndex].includes(term)) {
-          return `\\textcolor{${color}}{${term}}`;
-        }
-        return term;
-      });
+        return side.map((term, termIndex) => {
+            if (!step2[sideIndex].includes(term)) {
+                return `\\textcolor{${color}}{${term}}`;
+            } else if (step1Occurrences[sideIndex][term] !== step2Occurrences[sideIndex][term] && (step1Occurrences[sideIndex][term] === 0 || step2Occurrences[sideIndex][term] === 0 )) {
+                return `\\textcolor{${color}}{${term}}`;
+            }
+            step1Occurrences[term] -= 1;
+            step2Occurrences[term] -= 1;
+            return term;
+        });
     });
+
+    step1Occurrences = stepToOccurrences(step1);
+    step2Occurrences = stepToOccurrences(step2);
   
     const coloredStep2 = step2.map((side, sideIndex) => {
       return side.map((term, termIndex) => {
         if (!step1[sideIndex].includes(term)) {
           return `\\textcolor{${color}}{${term}}`;
+        } else if (step1Occurrences[sideIndex][term] !== step2Occurrences[sideIndex][term] && (step1Occurrences[sideIndex][term] === 0 || step2Occurrences[sideIndex][term] === 0 )) {
+            return `\\textcolor{${color}}{${term}}`;
         }
+        step1Occurrences[sideIndex][term]--;
+        step2Occurrences[sideIndex][term]--;
         return term;
       });
     });
@@ -133,13 +147,11 @@ const solveEquation = (latexEquation) => {
 // console.log(latexToStep('-9 x-3 x+9+10=-\\frac{-10(-7 x-7+3+8 x)-7 x}{21}-\\frac{-8 \\cdot (3-6 x)+7 \\cdot (x-7)-8 x}{2}+\\frac{5 x-1}{2}-\\frac{-x-3 x}{2}-\\frac{-8 x-10}{10}'));
 // console.log(latexToStep('3(x^{\\frac{2}{3}}-5)=7-3 x+5 \\cdot (4 x-1)'));
 
-const out = stepToOccurrences([ [ '+2x', '\\textcolor{red}{-21}', '+2x' ], [ '+5' ] ]);
-console.log(out)
+// const out = stepToOccurrences([ [ '+2x', '\\textcolor{red}{-21}', '+2x' ], [ '+5' ] ]);
+// console.log(out)
 
-
-
-// const eq1= '2x-7(3+2x)=5';
-// const eq2 = '2x-21+2x=5';
-// const step1 = latexToStep(eq1);
-// const step2 = latexToStep(eq2);
-// console.log(colorChangedElems(step1,step2))
+const eq1= '6 x-9+\\frac{-1 x+1}{5}-2 x+7 x+9 x+\\frac{x-2 x+2}{6}=1+4';
+const eq2 = '\\frac{6 x-9-1 x+1-2 x+7 x+9 x+x-2 x+2}{11}=1+4';
+const step1 = latexToStep(eq1);
+const step2 = latexToStep(eq2);
+console.log(colorChangedElems(step1,step2))
