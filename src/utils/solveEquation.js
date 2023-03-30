@@ -1,11 +1,52 @@
 const nerdamer = require("nerdamer/all.min")
 
-const latexToRegular = (expression) => {
+const latexToEquation = (expression) => {
     return nerdamer.convertFromLaTeX(expression).toString();
 }
 
-const regularToLatex = (expression) => {
+const equationToLatex = (expression) => {
     return nerdamer.convertToLaTeX(expression).toString();
+}
+
+const latexToStep = (equation) => {
+    const [leftSide, rightSide] = equation.split('=');
+
+    // Function to split a side into an array of terms
+    const splitTerms = (side) => {
+        let terms = [];
+        let currentTerm = '';
+        let depth = 0;
+        let inFraction = false;
+
+        for (const char of side) {
+        if (char === '(') {
+            depth++;
+        } else if (char === ')') {
+            depth--;
+        } else if (char === '\\' && side.slice(side.indexOf(char)).startsWith('\\frac{')) {
+            inFraction = true;
+        } else if (inFraction && char === '}') {
+            inFraction = false;
+        }
+
+        currentTerm += char;
+
+        if ((char === '+' || char === '-') && depth === 0 && !inFraction && currentTerm.length > 1) {
+            terms.push(currentTerm.slice(0, -1));
+            currentTerm = char;
+        }
+        }
+
+        terms.push(currentTerm);
+
+        return terms.filter(term => term !== '');
+    };
+
+    // Split left and right sides into arrays of terms
+    const leftTerms = splitTerms(leftSide);
+    const rightTerms = splitTerms(rightSide);
+
+    return [leftTerms, rightTerms];
 }
 
 const extractVariables = (expression) => {
@@ -21,10 +62,10 @@ const extractVariables = (expression) => {
     return null;
 }
 
-export default function solveEquation(latexEquation) {
+const solveEquation = (latexEquation) => {
     // Input: Latex expression
     // Output: Array with equation's solutions
-    const eq = latexToRegular(latexEquation);
+    const eq = latexToEquation(latexEquation);
     console.log('Equation: ',eq)
     const variables = extractVariables(eq);
     if (variables.length > 1) {
@@ -36,3 +77,9 @@ export default function solveEquation(latexEquation) {
     }
     return null;
 }
+
+// For testing
+// console.log(latexToStep('2x - 3y + 4 = 5x + 6y - 7'));
+// console.log(latexToStep('\\frac{-10}{11}-\\frac{-1}{11}=-\\frac{x-7 \\cdot (5+5 x)}{11}+\\frac{2}{11}-\\frac{-4}{11}'));
+// console.log(latexToStep('-9 x-3 x+9+10=-\\frac{-10(-7 x-7+3+8 x)-7 x}{21}-\\frac{-8 \\cdot (3-6 x)+7 \\cdot (x-7)-8 x}{2}+\\frac{5 x-1}{2}-\\frac{-x-3 x}{2}-\\frac{-8 x-10}{10}'));
+// console.log(latexToStep('3(x^{\\frac{2}{3}}-5)=7-3 x+5 \\cdot (4 x-1)'));
