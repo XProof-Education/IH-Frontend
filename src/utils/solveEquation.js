@@ -9,35 +9,43 @@ const equationToLatex = (expression) => {
 }
 
 const latexToStep = (equation) => {
+    // Input: Latex equation
+    // Output: Equation in step format. IMPORTANT --> Adds + sign to elems that have no sign (i.e. 3x=9 => +3x=+9)
     const [leftSide, rightSide] = equation.split('=');
 
     // Function to split a side into an array of terms
     const splitTerms = (side) => {
-        let terms = [];
+        const nonPositiveChars = ['-', '(', '\\', '+'];
+        let termsRaw = [];
         let currentTerm = '';
         let depth = 0;
         let inFraction = false;
 
         for (const char of side) {
-        if (char === '(') {
-            depth++;
-        } else if (char === ')') {
-            depth--;
-        } else if (char === '\\' && side.slice(side.indexOf(char)).startsWith('\\frac{')) {
-            inFraction = true;
-        } else if (inFraction && char === '}') {
-            inFraction = false;
+            if (char === '(') {
+                depth++;
+            } else if (char === ')') {
+                depth--;
+            } else if (char === '\\' && side.slice(side.indexOf(char)).startsWith('\\frac{')) {
+                inFraction = true;
+            } else if (inFraction && char === '}') {
+                inFraction = false;
+            }
+
+            currentTerm += char;
+
+            if ((char === '+' || char === '-') && depth === 0 && !inFraction && currentTerm.length > 1) {
+                termsRaw.push(currentTerm.slice(0, -1));
+                currentTerm = char;
+            }
+        }
+        if (!nonPositiveChars.includes(currentTerm[0])) {
+            currentTerm = '+' + currentTerm;
         }
 
-        currentTerm += char;
-
-        if ((char === '+' || char === '-') && depth === 0 && !inFraction && currentTerm.length > 1) {
-            terms.push(currentTerm.slice(0, -1));
-            currentTerm = char;
-        }
-        }
-
-        terms.push(currentTerm);
+        termsRaw.push(currentTerm);
+        // Add + sign to elems that did not have it 
+        const terms = termsRaw.map(elem => nonPositiveChars.includes(elem[0]) ? elem : '+' + elem);
 
         return terms.filter(term => term !== '');
     };
@@ -48,6 +56,28 @@ const latexToStep = (equation) => {
 
     return [leftTerms, rightTerms];
 }
+
+const colorChangedElems = (step1, step2, color = 'red') => {
+    const coloredStep1 = step1.map((side, sideIndex) => {
+      return side.map((term, termIndex) => {
+        if (!step2[sideIndex].includes(term)) {
+          return `\\textcolor{${color}}{${term}}`;
+        }
+        return term;
+      });
+    });
+  
+    const coloredStep2 = step2.map((side, sideIndex) => {
+      return side.map((term, termIndex) => {
+        if (!step1[sideIndex].includes(term)) {
+          return `\\textcolor{${color}}{${term}}`;
+        }
+        return term;
+      });
+    });
+  
+    return [coloredStep1, coloredStep2];
+  }
 
 const extractVariables = (expression) => {
     // Match all single-letter alphabetical characters that are not preceded or followed by another letter
@@ -83,3 +113,9 @@ const solveEquation = (latexEquation) => {
 // console.log(latexToStep('\\frac{-10}{11}-\\frac{-1}{11}=-\\frac{x-7 \\cdot (5+5 x)}{11}+\\frac{2}{11}-\\frac{-4}{11}'));
 // console.log(latexToStep('-9 x-3 x+9+10=-\\frac{-10(-7 x-7+3+8 x)-7 x}{21}-\\frac{-8 \\cdot (3-6 x)+7 \\cdot (x-7)-8 x}{2}+\\frac{5 x-1}{2}-\\frac{-x-3 x}{2}-\\frac{-8 x-10}{10}'));
 // console.log(latexToStep('3(x^{\\frac{2}{3}}-5)=7-3 x+5 \\cdot (4 x-1)'));
+
+const eq1= '2x-7(3+2x)=5';
+const eq2 = '2x-21+2x=5';
+const step1 = latexToStep(eq1);
+const step2 = latexToStep(eq2);
+console.log(colorChangedElems(step1,step2))
