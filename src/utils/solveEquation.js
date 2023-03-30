@@ -57,6 +57,25 @@ const latexToStep = (equation) => {
     return [leftTerms, rightTerms];
 }
 
+const stepToElemsUnique = (step) => {
+    return step.map(side => new Set(side));
+}
+
+const findAllOccurrences = (arr, val) => {
+    return arr.filter((elem) => elem === val).length;
+}
+
+const stepToOccurrences = (step) => {
+    const stepUniques = stepToElemsUnique(step);
+    return stepUniques.map((side, sideIdx) => {
+        let sideOccurrences = {};
+        for (let elem of side) {
+            sideOccurrences[elem] = findAllOccurrences(step[sideIdx], elem);
+        }
+        return sideOccurrences;
+    });
+}
+
 const colorChangedElems = (step1, step2, color = 'red') => {
     const coloredStep1 = step1.map((side, sideIndex) => {
       return side.map((term, termIndex) => {
@@ -114,8 +133,13 @@ const solveEquation = (latexEquation) => {
 // console.log(latexToStep('-9 x-3 x+9+10=-\\frac{-10(-7 x-7+3+8 x)-7 x}{21}-\\frac{-8 \\cdot (3-6 x)+7 \\cdot (x-7)-8 x}{2}+\\frac{5 x-1}{2}-\\frac{-x-3 x}{2}-\\frac{-8 x-10}{10}'));
 // console.log(latexToStep('3(x^{\\frac{2}{3}}-5)=7-3 x+5 \\cdot (4 x-1)'));
 
-const eq1= '2x-7(3+2x)=5';
-const eq2 = '2x-21+2x=5';
-const step1 = latexToStep(eq1);
-const step2 = latexToStep(eq2);
-console.log(colorChangedElems(step1,step2))
+const out = stepToOccurrences([ [ '+2x', '\\textcolor{red}{-21}', '+2x' ], [ '+5' ] ]);
+console.log(out)
+
+
+
+// const eq1= '2x-7(3+2x)=5';
+// const eq2 = '2x-21+2x=5';
+// const step1 = latexToStep(eq1);
+// const step2 = latexToStep(eq2);
+// console.log(colorChangedElems(step1,step2))
