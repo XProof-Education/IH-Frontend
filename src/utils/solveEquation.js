@@ -8,6 +8,10 @@ const equationToLatex = (expression) => {
     return nerdamer.convertToLaTeX(expression).toString();
 }
 
+const stepToLatex = (step) => {
+    return step.map((side, sideIndex) => side.join('')).join('=');
+}
+
 const latexToStep = (equation) => {
     // Input: Latex equation
     // Output: Equation in step format. IMPORTANT --> Adds + sign to elems that have no sign (i.e. 3x=9 => +3x=+9)
@@ -109,7 +113,7 @@ const colorChangedElems = (step1, step2, color = 'red') => {
       });
     });
   
-    return [coloredStep1, coloredStep2];
+    return [stepToLatex(coloredStep1), stepToLatex(coloredStep2)];
   }
 
 const extractVariables = (expression) => {
