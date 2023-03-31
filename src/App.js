@@ -1,6 +1,6 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import { Toaster } from 'react-hot-toast';
+// import { Toaster } from 'react-hot-toast';
 import Home from './views/Home';
 import ErrorPage from './views/ErrorPage';
 import NotFound from './views/NotFound';
@@ -17,13 +17,12 @@ import Feedback from './views/cameraViews/Feedback';
 function App() {
   return (
     <div className="App">
-      <Toaster/>
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/edit-profile" element={<EditProfile />} />
+        <Route path="/profile" element={<IsPrivate><Profile /></IsPrivate>} />
+        <Route path="/edit-profile" element={<IsPrivate><EditProfile /></IsPrivate>} />
         <Route path="/private" element={<IsPrivate><PrivateView /></IsPrivate>} />
         <Route path="/error" element={<ErrorPage />} />
         <Route path='/camera' element={<Camera />} />
