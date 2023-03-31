@@ -3,7 +3,7 @@ import axios from 'axios';
 class UserService {
   constructor() {
     this.api = axios.create({
-      baseURL: `${process.env.REACT_APP_BACKEND_URL}/user`
+      baseURL: `${process.env.REACT_APP_BACKEND_URL}/api/v1/user`
     });
 
     this.api.interceptors.request.use(config => {

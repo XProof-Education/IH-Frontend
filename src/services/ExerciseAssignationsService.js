@@ -3,7 +3,7 @@ import axios from 'axios';
 class ExerciseAssignationsService {
   constructor() {
     this.api = axios.create({
-      baseURL: `${process.env.REACT_APP_BACKEND_URL}/exerciseAssignation`
+      baseURL: `${process.env.REACT_APP_BACKEND_URL}/api/v1/exerciseAssignation`
     });
 
     this.api.interceptors.request.use(config => {
