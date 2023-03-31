@@ -1,11 +1,11 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import loadPhotos from '../../utils/camera/loadPhoto';
 import deletePhoto from '../../utils/camera/deletePhoto';
 import takePhoto from '../../utils/camera/takePhoto';
 
 function Camera() {
+    console.log('Rendering camera');
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
 
@@ -13,7 +13,6 @@ function Camera() {
         try {
             const photosInStorage = await loadPhotos();
             Promise.all(photosInStorage.map(async (elem) => await deletePhoto(elem)));
-            setLoading(false);
         } catch (error) {
             console.error(error);
         }
@@ -24,7 +23,6 @@ function Camera() {
             await takePhoto();
             const photosInStorage = await loadPhotos();
             if (photosInStorage.length !== 0) {
-                // Call to mathpix
                 navigate('/camera/result');
             } else {
                 handleTakePhoto();
@@ -36,6 +34,7 @@ function Camera() {
 
     useEffect(() => {
         cleanStorage();
+        setLoading(false);
         handleTakePhoto();
         // eslint-disable-next-line
     }, []);
