@@ -1,14 +1,17 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import './navbar.css';
-import DropdownMenu from "./DropdownMenu";
-import Logo from "../Logo";
+import DropdownMenu from './DropdownMenu';
+import Logo from '../Logo';
+import ProfileIcon from '../ProfileIcon';
 import burguerIcon from '../../assets/burguer-icon.png';
 import cancelIcon from '../../assets/cancel-icon.png';
 
 const Navbar = (props) => {
   const { isLoggedIn, user} = useContext(AuthContext);
   const [menuVisible, setMenuVisible] = useState(false);
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
@@ -25,18 +28,26 @@ const Navbar = (props) => {
 
   return (
     <div>
-      {props.content === "profile"
-        ? <div> <p> Back </p> <img src="https://cdn-icons-png.flaticon.com/512/6522/6522516.png" alt="hi" /> </div>
+      {props.content === "editProfile"
+        ? <nav style={styleBackground}>
+            <p onClick={() => navigate(-1)}>back</p>
+            <div className="logo">
+              <ProfileIcon />
+            </div>
+          </nav>
         :
         <nav style={styleBackground}>
           {menuVisible ? <img src={cancelIcon} alt="cancel" className="burguer-btn" onClick={toggleMenu} /> :
             <img src={burguerIcon} alt="burguer" className="burguer-btn" onClick={toggleMenu} />}
           <div className="logo">
-            <Logo logoColor={props.color} />
+            {props.content === "profile"
+              ? <ProfileIcon />
+              : <Logo logoColor={props.color} />}
           </div>
           <div className={menuVisible ? "menu-visible" : ""}>
             {!isLoggedIn && <DropdownMenu links={["Profile", "Log in", "Contact"]} />}
             {isLoggedIn && <DropdownMenu links={["Profile", "Log out", "Contact"]} />}
+            {isLoggedIn && props.content === "profile" && <DropdownMenu links={["Home", "Log out", "Contact"]} />}
           </div>
         </nav>}
       {user && <p>Hello {user.name}</p> }
