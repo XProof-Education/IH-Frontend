@@ -3,14 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import loadPhotos from '../../utils/camera/loadPhoto';
 import uploadImageToCloudinary from '../../utils/uploadToCloudinary';
 import uploadToMathpix from '../../utils/uploadToMathpix';
+import Latex from 'react-latex';
 
 function Photo() {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
     const [latex, setLatex] = useState(null);
+    console.log('Rendering photo')
 
     const processPhoto = async () => {
-        console.log('Processing photo')
         try {
             const photosInStorage = await loadPhotos();
             if (photosInStorage.length === 0) {
@@ -26,8 +27,6 @@ function Photo() {
                 ];
                 setLatex(mathpixResult);
             }
-            
-            // Call to mathpix
         } catch (error) {
             console.error(error);
         }
@@ -35,11 +34,22 @@ function Photo() {
 
     useEffect(() => {
         processPhoto();
+        
+    }, []);
+
+    useEffect(() => {
         setLoading(false);
-    }, [])
+    },[latex])
 
     return ( 
-        <h1>This is the Phot View</h1>
+        <div className="photo-view">
+            <h1>Is this your text?</h1>
+            <Latex>{`$$\\begin{aligned} 3 x+2 & =5 x \\\\ 5 x & =5 \\\\ x & =-1\\end{aligned}$$`}</Latex>
+            {/* {loading && <h3>Hang tight while I scan the exercise</h3>}
+            {!loading && latex && <div>
+                <Latex> {`$$${latex[0].value}$$`} </Latex>
+            </div>} */}
+        </div>
      );
 }
 
