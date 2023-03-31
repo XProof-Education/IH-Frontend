@@ -9,12 +9,14 @@ function Photo() {
     const [latex, setLatex] = useState(null);
 
     const processPhoto = async () => {
+        console.log('Processing photo')
         try {
             const photosInStorage = await loadPhotos();
             if (photosInStorage.length === 0) {
                 navigate('/camera');
             } else {
                 const imageURL = await uploadImageToCloudinary(photosInStorage[0].webviewPath);
+                console.log(imageURL);
             }
             
             // Call to mathpix

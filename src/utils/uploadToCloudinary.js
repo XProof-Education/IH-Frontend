@@ -1,29 +1,27 @@
-import axios from 'axios';
+import cloudinaryService from '../services/cloudinaryService';
 
-const uploadImageToCloudinary = async (file) => {
-    const CLOUDINARY_URL = `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_NAME}/upload`;
-    const CLOUDINARY_UPLOAD_PRESET = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
-
-    // Create form data to send to Cloudinary
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
-    console.log(formData)
+const uploadImageToCloudinary = async (webviewPath) => {
     try {
-        // Send POST request to Cloudinary with the image file
-        const response = await axios.post(CLOUDINARY_URL, formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-        });
+        // Fetch the image blob from webviewPath
+        const response = await fetch(webviewPath);
+        const blob = await response.blob();
 
-        // Get the image URL from the response
-        const imageURL = response.data.secure_url;
+        // Create FormData to send the image file to your server-side endpoint
+        const formData = new FormData();
+        formData.append('image', blob);
+        const config = {
+            headers: {
+            'Content-Type': 'multipart/form-data',
+            },
+        }
+   
+        // Send the POST request to your server-side endpoint
+        const serverResponse = await cloudinaryService.uploadPhoto(formData, config)
+        const imageURL = serverResponse.fileUrl;
         return imageURL;
     } catch (error) {
-        console.error('Error uploading image to Cloudinary:', error);
+        console.error('Error uploading image:', error);
         return null;
     }
 };
-
 export default uploadImageToCloudinary;
