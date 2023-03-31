@@ -1,16 +1,15 @@
-import React, { useState, useEffect, useContext } from 'react';
-//import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthContext';
+import { useAuth } from '../../hooks/useAuth';
 import userService from '../../services/userService.js';
 import Navbar from '../../components/Header/Navbar';
 import Button from '../../components/Button';
 import Error from '../../components/Error.jsx';
 
 const EditProfile = () => {
-  const { logOutUser } = useContext(AuthContext); 
+  const { logOutUser } = useAuth(); 
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState(null);
   const [userInfo, setUserInfo] = useState({
@@ -51,8 +50,7 @@ const EditProfile = () => {
       } else if (!/^[a-zA-ZáéíóúàèòÁÉÍÓÚÀÈÒäëïöüÄËÏÖÜºª\s]+$/.test(userInfo.lastName)){
         setErrorMessage('Lastname just allows letters');
       } else {
-        const updatedData = await userService.editUserData(userInfo);
-        console.log("up", updatedData)
+        await userService.editUserData(userInfo);
         toast.success('Profile updated', {
           position: "top-center",
           autoClose: 2000,
