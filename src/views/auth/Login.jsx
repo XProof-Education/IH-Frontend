@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
+import { Link } from "react-router-dom";
 import { useAuth } from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import authService from '../../services/authService';
@@ -57,6 +58,7 @@ export default function Login() {
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
         <button type="submit">Log in </button>
       </form>
+      <Link to="/signup">Sign up</Link>
     </div>
   )
 }
