@@ -29,7 +29,7 @@ export default function Login() {
       if (response.authToken) {
         storeToken(response.authToken);
         authenticateUser();
-        navigate('/');
+        navigate('/home');
         toast.success('Welcome back!')
       } else {
         setErrorMessage('Unable to authenticate user')
@@ -42,7 +42,7 @@ export default function Login() {
   useEffect(() => {
     // When the component first renders, check if user is already logged in and redirects
     if (isLoggedIn) {
-      navigate('/')
+      navigate('/home')
     }
     // eslint-disable-next-line
   }, [isLoggedIn])
