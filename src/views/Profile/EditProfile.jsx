@@ -9,7 +9,7 @@ import Navbar from '../../components/Header/Navbar';
 import Button from '../../components/Button';
 import Error from '../../components/Error.jsx';
 
-const Profile = () => {
+const EditProfile = () => {
   const { logOutUser } = useContext(AuthContext); 
   const navigate = useNavigate();
   const [error, setError] = useState(null);
@@ -109,4 +109,4 @@ const Profile = () => {
   );
 }
 
-export default Profile;
+export default EditProfile;

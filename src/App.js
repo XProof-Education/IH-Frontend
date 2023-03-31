@@ -13,6 +13,11 @@ import EditProfile from './views/Profile/EditProfile';
 import Camera from './views/cameraViews/Camera';
 import Photo from './views/cameraViews/Photo';
 import Feedback from './views/cameraViews/Feedback';
+import OperationsHistory from './views/Operations/OperationsHistory';
+import OperationDetail from './views/Operations/OperationDetail';
+import Exercises from './views/Exercises/Exercises';
+import ExerciseDetail from './views/Exercises/ExerciseDetail';
+import FrequentErrors from './views/FrequentErrors';
 
 function App() {
   return (
@@ -23,6 +28,11 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<IsPrivate><Profile /></IsPrivate>} />
         <Route path="/edit-profile" element={<IsPrivate><EditProfile /></IsPrivate>} />
+        <Route path="/operations-history" element={<IsPrivate><OperationsHistory /></IsPrivate>} />
+        <Route path="/operation/:operationId" element={<IsPrivate><OperationDetail /></IsPrivate>} />
+        <Route path="/exercises" element={<IsPrivate><Exercises /></IsPrivate>} />
+        <Route path="/exercises/:exerciseId" element={<IsPrivate><ExerciseDetail /></IsPrivate>} />
+        <Route path="/frequent-errors" element={<IsPrivate><FrequentErrors /></IsPrivate>} />
         <Route path="/private" element={<IsPrivate><PrivateView /></IsPrivate>} />
         <Route path="/error" element={<ErrorPage />} />
         <Route path='/camera' element={<Camera />} />
