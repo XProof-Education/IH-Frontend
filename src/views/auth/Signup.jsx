@@ -13,7 +13,7 @@ export default function Signup() {
   const [passwordControl, setPasswordControl] = useState('');
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
-console.log("user", user)
+
   const handleChange = (e) => {
     setUser(prev => {
       return {

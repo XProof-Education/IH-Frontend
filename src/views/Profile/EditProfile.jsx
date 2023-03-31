@@ -12,7 +12,7 @@ import Error from '../../components/Error.jsx';
 const EditProfile = () => {
   const { logOutUser } = useContext(AuthContext); 
   const navigate = useNavigate();
-  const [error, setError] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
   const [userInfo, setUserInfo] = useState({
     name: "",
     lastName: "",
@@ -23,9 +23,9 @@ const EditProfile = () => {
     try {
       const response = await userService.getUserData();
       setUserInfo(response.user);
-      setError(null);
+      setErrorMessage(null);
     } catch (error) {
-      setError(error);
+      setErrorMessage('Server unavailable, sorry!');
       console.error(error);
     }
   };
@@ -46,20 +46,27 @@ const EditProfile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await userService.editUserData(userInfo);
-      await toast.success('Profile updated', {
-        position: "top-center",
-        autoClose: 2000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      })
-      navigate('/profile');
+      if (!/^[a-zA-ZáéíóúàèòÁÉÍÓÚÀÈÒäëïöüÄËÏÖÜºª\s]+$/.test(userInfo.name)) {
+        setErrorMessage('Name just allows letters');
+      } else if (!/^[a-zA-ZáéíóúàèòÁÉÍÓÚÀÈÒäëïöüÄËÏÖÜºª\s]+$/.test(userInfo.lastName)){
+        setErrorMessage('Lastname just allows letters');
+      } else {
+        const updatedData = await userService.editUserData(userInfo);
+        console.log("up", updatedData)
+        toast.success('Profile updated', {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        setErrorMessage(null);
+      }
     } catch (error) {
-      setError(error);
+      setErrorMessage('Something went wrong!');
       console.error(error);
     }
   }
@@ -69,7 +76,7 @@ const EditProfile = () => {
       await userService.deleteUserData();
       logOutUser();
     } catch (error) {
-      setError(error);
+      setErrorMessage(error);
       console.error(error);
     } finally {
       navigate('/home');
@@ -101,10 +108,10 @@ const EditProfile = () => {
         <input type="email" name="email" value={userInfo.email} onChange={handleChange} required/>
         <div>
           <Button type="submit" color="blue">Edit</Button>
+          <Button color="red" action={handleDelete}>Delete</Button>
         </div>
       </form>
-      <Button color="red" action={handleDelete}>Delete</Button>
-      {error && <Error error={error} />}
+      {errorMessage && <Error error={errorMessage} />}
     </div>
   );
 }

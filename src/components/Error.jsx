@@ -4,7 +4,7 @@ function Error(props) {
   return (
     <div>
       <h3>Error:</h3>
-      <p>{props.error.message}</p>
+      <p>{props.error}</p>
     </div>
   );
 }
