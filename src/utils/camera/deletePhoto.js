@@ -1,12 +1,10 @@
 import { Filesystem, Directory } from '@capacitor/filesystem';
 import { Preferences } from '@capacitor/preferences';
 
-// Input: photo to delete and array of existing photos
+// Input: photo to delete
 // Output: updated array of photos
 export default async function deletePhoto(photo) {
     const PHOTO_STORAGE = 'photos';
-    // Remove this photo from the Photos reference data array
-    // const newPhotos = photos.filter((p) => p.filepath !== photo.filepath);
     
     // Update photos array cache by overwriting the existing photo array
     Preferences.set({ key: PHOTO_STORAGE, value: JSON.stringify([]) });

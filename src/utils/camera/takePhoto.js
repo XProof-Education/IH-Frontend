@@ -10,7 +10,7 @@ export default async function takePhoto() {
             resultType: CameraResultType.Uri,
             source: CameraSource.Camera,
             allowEditing: true,
-            webUseInput: true,
+            webUseInput: false,
             width: 420,
             height: 1080,
             quality: 100,
