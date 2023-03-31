@@ -2,7 +2,7 @@ import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import Home from './views/Home';
-import Navbar from './components/Navbar';
+import NavbarEx from './components/NavbarEx';
 import ErrorPage from './views/ErrorPage';
 import NotFound from './views/NotFound';
 import Signup from './views/auth/Signup';
@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="App">
       <Toaster/>
-      <Navbar />
+      <NavbarEx />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
