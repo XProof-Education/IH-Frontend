@@ -8,7 +8,6 @@ import takePhoto from '../../utils/camera/takePhoto';
 function Camera() {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
-    // const [photos, setPhotos] = useState([]);
 
     const cleanStorage = async () => {
         try {
@@ -44,7 +43,7 @@ function Camera() {
     return ( 
         <div className="camera-view">
             {loading ? <h1>Loading</h1> : <div className='upload-camera-file'>
-                <p>Looks like I have no access to the camera. CLick here to upload a picture.</p>
+                <p>Looks like I have no access to the camera. Click here to upload a picture.</p>
                 <button onClick={handleTakePhoto}>Upload</button>
             </div>}
         </div>
