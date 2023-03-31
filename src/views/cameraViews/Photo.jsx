@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import loadPhotos from '../../utils/camera/loadPhoto';
 import uploadImageToCloudinary from '../../utils/uploadToCloudinary';
+import uploadToMathpix from '../../utils/uploadToMathpix';
 
 function Photo() {
     const navigate = useNavigate();
@@ -15,8 +16,15 @@ function Photo() {
             if (photosInStorage.length === 0) {
                 navigate('/camera');
             } else {
-                const imageURL = await uploadImageToCloudinary(photosInStorage[0].webviewPath);
-                console.log(imageURL);
+                // const imageURL = await uploadImageToCloudinary(photosInStorage[0].webviewPath);
+                // const mathpixResult = await uploadToMathpix(imageURL);
+                const mathpixResult = [
+                    {
+                        type: "latex",
+                        value: "\\begin{aligned} 3 x+2 & =5 x \\\\ 5 x & =5 \\\\ x & =-1\\end{aligned}",
+                    },
+                ];
+                setLatex(mathpixResult);
             }
             
             // Call to mathpix

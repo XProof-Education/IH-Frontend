@@ -30,6 +30,10 @@ class OperationsService {
   deleteOperation(operationId) {
     return this.api.delete(`/${operationId}`).then((response) => response.data).catch(err => console.error(err));
   }
+
+  getMathpixToken() {
+    return this.api.get('/mathpixToken').then(({ data }) => data).catch(err => console.error(err));
+  }
 }
 
 const operationsService = new OperationsService();
