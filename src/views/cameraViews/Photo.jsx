@@ -7,9 +7,7 @@ import Latex from 'react-latex';
 
 function Photo() {
     const navigate = useNavigate();
-    const [loading, setLoading] = useState(true);
     const [latex, setLatex] = useState(null);
-    console.log('Rendering photo')
 
     const processPhoto = async () => {
         try {
@@ -34,21 +32,18 @@ function Photo() {
 
     useEffect(() => {
         processPhoto();
-        
     }, []);
-
-    useEffect(() => {
-        setLoading(false);
-    },[latex])
 
     return ( 
         <div className="photo-view">
             <h1>Is this your text?</h1>
-            <Latex>{`$$\\begin{aligned} 3 x+2 & =5 x \\\\ 5 x & =5 \\\\ x & =-1\\end{aligned}$$`}</Latex>
-            {/* {loading && <h3>Hang tight while I scan the exercise</h3>}
-            {!loading && latex && <div>
-                <Latex> {`$$${latex[0].value}$$`} </Latex>
-            </div>} */}
+            {latex && latex.map((elem, idx) => {
+                return (
+                    <div key={idx}>
+                        <Latex>{`$$${elem.value}$$`}</Latex>
+                    </div>
+                )
+            })}
         </div>
      );
 }
