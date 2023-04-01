@@ -3,7 +3,7 @@ import axios from 'axios';
 class CloudinaryService {
   constructor() {
     this.api = axios.create({
-      baseURL: `${process.env.REACT_APP_BACKEND_URL}/cloudinary`
+      baseURL: `${process.env.REACT_APP_BACKEND_URL}/api/v1/cloudinary`
     });
 
     this.api.interceptors.request.use(config => {

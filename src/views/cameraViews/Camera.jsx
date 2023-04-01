@@ -5,7 +5,6 @@ import deletePhoto from '../../utils/camera/deletePhoto';
 import takePhoto from '../../utils/camera/takePhoto';
 
 function Camera() {
-    console.log('Rendering camera');
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
 

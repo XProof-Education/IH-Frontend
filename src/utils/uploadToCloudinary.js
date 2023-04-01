@@ -9,6 +9,7 @@ const uploadImageToCloudinary = async (webviewPath) => {
         // Create FormData to send the image file to your server-side endpoint
         const formData = new FormData();
         formData.append('image', blob);
+
         const config = {
             headers: {
             'Content-Type': 'multipart/form-data',
@@ -16,7 +17,7 @@ const uploadImageToCloudinary = async (webviewPath) => {
         }
    
         // Send the POST request to your server-side endpoint
-        const serverResponse = await cloudinaryService.uploadPhoto(formData, config)
+        const serverResponse = await cloudinaryService.uploadPhoto(formData, config);
         const imageURL = serverResponse.fileUrl;
         return imageURL;
     } catch (error) {
