@@ -7,9 +7,10 @@ import userService from '../../services/userService.js';
 import Navbar from '../../components/Header/Navbar';
 import Button from '../../components/Button';
 import Error from '../../components/Error.jsx';
+import validation from '../../utils/validations';
 
 const EditProfile = () => {
-  const { logOutUser } = useAuth(); 
+  const { storeToken, logOutUser, removeToken, authenticateUser } = useAuth();
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState(null);
   const [userInfo, setUserInfo] = useState({
@@ -45,26 +46,34 @@ const EditProfile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (!/^[a-zA-ZáéíóúàèòÁÉÍÓÚÀÈÒäëïöüÄËÏÖÜºª\s]+$/.test(userInfo.name)) {
+      if (!validation(userInfo.name, "name")) {
         setErrorMessage('Name just allows letters');
-      } else if (!/^[a-zA-ZáéíóúàèòÁÉÍÓÚÀÈÒäëïöüÄËÏÖÜºª\s]+$/.test(userInfo.lastName)){
+      } else if (!validation(userInfo.lastName, "lastName")){
         setErrorMessage('Lastname just allows letters');
       } else {
-        await userService.editUserData(userInfo);
-        toast.success('Profile updated', {
-          position: "top-center",
-          autoClose: 2000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-        setErrorMessage(null);
+        const response = await userService.editUserData(userInfo);
+        if (response.authToken) {
+          removeToken();
+          storeToken(response.authToken);
+          authenticateUser();
+          navigate('/profile');
+          toast.success('Profile updated', {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          setErrorMessage('Unable to update user');
+        } else {
+          setErrorMessage(null);
+        }
       }
     } catch (error) {
-      setErrorMessage('Something went wrong!');
+      setErrorMessage('Unable to update user');
       console.error(error);
     }
   }
