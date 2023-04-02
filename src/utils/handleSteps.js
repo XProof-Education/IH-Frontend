@@ -199,12 +199,14 @@ const handleOperation = (operation) => {
         });
         return {
             isCorrect: false,
-            operation: colouredOperation 
+            operation: colouredOperation,
+            prompt: `step 1: ${operation[incorrectStepsIdx.step1Idx]} & step 2: ${operation[incorrectStepsIdx.step2Idx]}\n\n###\n\n` 
         }
     } else {
         return {
             isCorrect: true,
-            operation: operation 
+            operation: operation,
+            prompt: null
         }
     }
 }
