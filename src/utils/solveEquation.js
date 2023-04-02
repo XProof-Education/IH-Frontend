@@ -146,16 +146,4 @@ const solveEquation = (latexEquation) => {
 }
 
 // For testing
-// console.log(latexToStep('2x - 3y + 4 = 5x + 6y - 7'));
-// console.log(latexToStep('\\frac{-10}{11}-\\frac{-1}{11}=-\\frac{x-7 \\cdot (5+5 x)}{11}+\\frac{2}{11}-\\frac{-4}{11}'));
-// console.log(latexToStep('-9 x-3 x+9+10=-\\frac{-10(-7 x-7+3+8 x)-7 x}{21}-\\frac{-8 \\cdot (3-6 x)+7 \\cdot (x-7)-8 x}{2}+\\frac{5 x-1}{2}-\\frac{-x-3 x}{2}-\\frac{-8 x-10}{10}'));
-// console.log(latexToStep('3(x^{\\frac{2}{3}}-5)=7-3 x+5 \\cdot (4 x-1)'));
-
-// const out = stepToOccurrences([ [ '+2x', '\\textcolor{red}{-21}', '+2x' ], [ '+5' ] ]);
-// console.log(out)
-
-const eq1= '6 x-9+\\frac{-1 x+1}{5}-2 x+7 x+9 x+\\frac{x-2 x+2}{6}=1+4';
-const eq2 = '\\frac{6 x-9-1 x+1-2 x+7 x+9 x+x-2 x+2}{11}=1+4';
-const step1 = latexToStep(eq1);
-const step2 = latexToStep(eq2);
-console.log(colorChangedElems(step1,step2))
+console.log(solveEquation('5 x=5'))
