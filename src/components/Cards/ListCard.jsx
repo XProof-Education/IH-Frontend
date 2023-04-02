@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 
 const ListCard = ({ props }) => {
-  console.log(props)
   return (
     <div>
       {props.map((prop) => {

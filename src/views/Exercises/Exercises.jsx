@@ -10,7 +10,6 @@ const Exercises = () => {
   const getExercises = async () => {
     try {
       const response = await exercisesService.getAllExercises();
-      console.log(response.teacherExercisesData)
       setExercises(response.teacherExercisesData)
     } catch (error) {
       console.error(error)

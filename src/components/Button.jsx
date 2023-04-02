@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 const Button = (props) => {
   const [hovered, setHovered] = useState(false);
-  console.log("propsbutton", props)
   const handleHover = (e) => {
     setHovered(prev => !prev)
   };

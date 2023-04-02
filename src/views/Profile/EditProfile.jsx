@@ -19,7 +19,7 @@ const EditProfile = () => {
     email: ""
   });
   const [isValid, setIsValid] = useState({ name: true, lastName: true, email: true });
-  console.log("isValid", isValid)
+
   const getUserInfo = async () => {
     try {
       const response = await userService.getUserData();
