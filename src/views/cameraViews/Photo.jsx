@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import Feedback from '../../components/Feedback';
 import { useNavigate } from 'react-router-dom';
 import loadPhotos from '../../utils/camera/loadPhoto';
 import uploadImageToCloudinary from '../../utils/uploadToCloudinary';
 import uploadToMathpix from '../../utils/uploadToMathpix';
 import Latex from 'react-latex';
+import { Link } from 'react-router-dom';
 
 function Photo() {
     const navigate = useNavigate();
@@ -51,26 +53,35 @@ function Photo() {
         }
     }
 
-    // const handleValid = () => {
-
-    // }
+    const handleValid = () => {
+        setValidatedPhoto(true);
+    }
+    const handleInvalid = () => {
+        navigate('/camera');
+    }
     useEffect(() => {
         processPhoto();
     }, []);
 
     return ( 
         <div className="photo-view">
-            <h1>Is this your text?</h1>
-            {mathpixError && <h3>There has been an error with your photo</h3>}
-            {latex && latex.map((elem, idx) => {
-                return (
-                    <div key={idx}>
-                        <Latex>{`$$${elem}$$`}</Latex>
-                    </div>
-                );
-            })}
-            {/* <button onClick={handleValid}>All OK</button>
-            <button onClick={handleInvalid}>Retake photo</button> */}
+            {mathpixError && <div className='mathpix-error'>
+                <p>There was a problem reading this photo.</p>
+                <button><Link to={'/camera'}>Try again</Link></button>
+            </div>}
+            {latex && !validatedPhoto && <div className="mathpix-result">
+                <h2>Have I properly read the exercise?</h2>
+                {latex.map((elem, idx) => {
+                    return (
+                        <div className='equation' key={idx}>
+                            <Latex>{`$$${elem}$$`}</Latex>
+                        </div>
+                    );
+                })}
+                <button onClick={handleValid}>All OK</button>
+                <button onClick={handleInvalid}>Retake photo</button>
+            </div>}
+            {validatedPhoto && <Feedback steps={latex} imageUrl={imageUrl}/>}
         </div>
      );
 }

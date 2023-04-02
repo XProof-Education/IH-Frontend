@@ -12,7 +12,6 @@ import Profile from './views/Profile/Profile';
 import EditProfile from './views/Profile/EditProfile';
 import Camera from './views/cameraViews/Camera';
 import Photo from './views/cameraViews/Photo';
-import Feedback from './views/cameraViews/Feedback';
 import OperationsHistory from './views/Operations/OperationsHistory';
 import OperationDetail from './views/Operations/OperationDetail';
 import Exercises from './views/Exercises/Exercises';
@@ -37,7 +36,6 @@ function App() {
         <Route path="/error" element={<ErrorPage />} />
         <Route path='/camera' element={<Camera />} />
         <Route path='/camera/result' element={<Photo />} />
-        <Route path='/camera/feedback' element={<Feedback />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
