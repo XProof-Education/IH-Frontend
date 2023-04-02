@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 function Photo() {
     const navigate = useNavigate();
     const [imageUrl, setImageUrl] = useState(null);
-    const [latex, setLatex] = useState(null);
+    const [latexArr, setLatexArr] = useState(null);
     const [validatedPhoto, setValidatedPhoto] = useState(false);
     const [mathpixError, setMathpixError] = useState(false);
 
@@ -27,7 +27,7 @@ function Photo() {
                 const mathpixResult = [
                     {
                         type: "latex",
-                        value: "\\begin{aligned} 3 x+2 & =5 x \\\\ 5 x & =5 \\\\ x & =-1\\end{aligned}",
+                        value: "\\begin{aligned} 3(x+2) & =5 x+4-6 x \\\\ 3(x+2) & =4- x \\\\ 3x+2 & =4- x \\\\ 3x+x & =4-2 \\\\ 4x & =2 \\\\ x & =\\frac{2}{4}\\end{aligned}",
                     },
                 ];
                 if (mathpixResult.error) {
@@ -42,10 +42,10 @@ function Photo() {
                         .replace('\\end{array}', '')
                         .split('\\\\')
                         .map(step => step.replace('& ', '').trim());
-                    setLatex(steps);
+                    setLatexArr(steps);
                 } else {
                     const steps = mathpixResult.map(elem => elem.value);
-                    setLatex(steps);
+                    setLatexArr(steps);
                 }
             }
         } catch (error) {
@@ -69,9 +69,9 @@ function Photo() {
                 <p>There was a problem reading this photo.</p>
                 <button><Link to={'/camera'}>Try again</Link></button>
             </div>}
-            {latex && !validatedPhoto && <div className="mathpix-result">
+            {latexArr && !validatedPhoto && <div className="mathpix-result">
                 <h2>Have I properly read the exercise?</h2>
-                {latex.map((elem, idx) => {
+                {latexArr.map((elem, idx) => {
                     return (
                         <div className='equation' key={idx}>
                             <Latex>{`$$${elem}$$`}</Latex>
@@ -81,7 +81,7 @@ function Photo() {
                 <button onClick={handleValid}>All OK</button>
                 <button onClick={handleInvalid}>Retake photo</button>
             </div>}
-            {validatedPhoto && <Feedback steps={latex} imageUrl={imageUrl}/>}
+            {validatedPhoto && <Feedback latexArr={latexArr} imageUrl={imageUrl}/>}
         </div>
      );
 }
