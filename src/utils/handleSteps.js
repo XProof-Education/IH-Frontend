@@ -4,9 +4,9 @@ const latexToEquation = (expression) => {
     return nerdamer.convertFromLaTeX(expression).toString();
 }
 
-const equationToLatex = (expression) => {
-    return nerdamer.convertToLaTeX(expression).toString();
-}
+// const equationToLatex = (expression) => {
+//     return nerdamer.convertToLaTeX(expression).toString();
+// }
 
 const stepToLatex = (step) => {
     return step.map((side, sideIndex) => side.join('')).join('=');
@@ -129,11 +129,10 @@ const extractVariables = (expression) => {
     return null;
 }
 
-const solveEquation = (latexEquation) => {
-    // Input: Latex expression
-    // Output: Array with equation's solutions
+const solveStep = (latexEquation) => {
+    // Input: Latex step expression
+    // Output: Array with steps's solutions
     const eq = latexToEquation(latexEquation);
-    console.log('Equation: ',eq)
     const variables = extractVariables(eq);
     if (variables.length > 1) {
         return undefined;
@@ -145,17 +144,69 @@ const solveEquation = (latexEquation) => {
     return null;
 }
 
-// For testing
-// console.log(latexToStep('2x - 3y + 4 = 5x + 6y - 7'));
-// console.log(latexToStep('\\frac{-10}{11}-\\frac{-1}{11}=-\\frac{x-7 \\cdot (5+5 x)}{11}+\\frac{2}{11}-\\frac{-4}{11}'));
-// console.log(latexToStep('-9 x-3 x+9+10=-\\frac{-10(-7 x-7+3+8 x)-7 x}{21}-\\frac{-8 \\cdot (3-6 x)+7 \\cdot (x-7)-8 x}{2}+\\frac{5 x-1}{2}-\\frac{-x-3 x}{2}-\\frac{-8 x-10}{10}'));
-// console.log(latexToStep('3(x^{\\frac{2}{3}}-5)=7-3 x+5 \\cdot (4 x-1)'));
+const isEqualSolutions = (solutions1, solutions2) => {
+    if (typeof solutions1 != typeof solutions2) {
+        return false;
+    } else if (typeof solutions1 === 'string' && typeof solutions2 === 'string') {
+        return solutions1 === solutions2
+    } else {
+        return solutions1.length === solutions2.length && solutions1.every((val) => solutions2.includes(val));
+    }    
+}
 
-// const out = stepToOccurrences([ [ '+2x', '\\textcolor{red}{-21}', '+2x' ], [ '+5' ] ]);
-// console.log(out)
+const findIncorrectStepsIdx = (operation) => {
+    let step1Idx;
+    let step2Idx;
+    let prevSolutions = [];
+    let solutions = [];
+    for (let stepIdx = 0; stepIdx < operation.length; stepIdx++) {
+        if (stepIdx === 0) {
+            prevSolutions = solveStep(operation[stepIdx]);
+        } else {
+            solutions = solveStep(operation[stepIdx]);
+            if (!isEqualSolutions(solutions, prevSolutions)) {
+                step2Idx = stepIdx;
+                step1Idx = stepIdx - 1;
+                break;
+            } else {
+                prevSolutions = solutions;
+            }
+        }
+    }
+    if (step1Idx && step2Idx) {
+        return {
+            step1Idx,
+            step2Idx
+        }
+    } else {
+        return null;
+    }
+}
 
-const eq1= '6 x-9+\\frac{-1 x+1}{5}-2 x+7 x+9 x+\\frac{x-2 x+2}{6}=1+4';
-const eq2 = '\\frac{6 x-9-1 x+1-2 x+7 x+9 x+x-2 x+2}{11}=1+4';
-const step1 = latexToStep(eq1);
-const step2 = latexToStep(eq2);
-console.log(colorChangedElems(step1,step2))
+const handleOperation = (operation) => {
+    const incorrectStepsIdx = findIncorrectStepsIdx(operation);
+    if (incorrectStepsIdx) {
+        const operationSteps = operation.map(step => latexToStep(step));
+        const colouredSteps = colorChangedElems(operationSteps[incorrectStepsIdx.step1Idx], operationSteps[incorrectStepsIdx.step2Idx]);
+        const colouredOperation = operation.map((step, stepIdx) => {
+            if (stepIdx === incorrectStepsIdx.step1Idx) {
+                return colouredSteps[0];
+            } else if (stepIdx === incorrectStepsIdx.step2Idx) {
+                return colouredSteps[1];
+            } else {
+                return step;
+            }
+        });
+        return {
+            isCorrect: false,
+            operation: colouredOperation 
+        }
+    } else {
+        return {
+            isCorrect: true,
+            operation: operation 
+        }
+    }
+}
+
+export default handleOperation;

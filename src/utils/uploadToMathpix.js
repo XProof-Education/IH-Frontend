@@ -24,7 +24,11 @@ const uploadToMathpix = async (imageUrl) => {
     };
     const result = await fetch("https://api.mathpix.com/v3/text", options);
     const jsonResult = await result.json();
-    return jsonResult.data;
+    if (jsonResult.data) {
+        return jsonResult.data;
+    } else {
+        return jsonResult;
+    }
 }
 
 export default uploadToMathpix
