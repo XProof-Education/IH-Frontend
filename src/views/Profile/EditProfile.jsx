@@ -18,7 +18,8 @@ const EditProfile = () => {
     lastName: "",
     email: ""
   });
-
+  const [isValid, setIsValid] = useState({ name: true, lastName: true, email: true });
+  console.log("isValid", isValid)
   const getUserInfo = async () => {
     try {
       const response = await userService.getUserData();
@@ -35,12 +36,35 @@ const EditProfile = () => {
   }, []);
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setUserInfo(prev => {
       return {
         ...prev,
-        [e.target.name]: e.target.value
+        [name]: value
       }
     });
+    if (name === "name") {
+      setIsValid(prev => {
+        return {
+          ...prev,
+          name: validation(value, "name")
+        }
+      });
+    } else if (name === "lastName") {
+      setIsValid(prev => {
+        return {
+          ...prev,
+          lastName: validation(value, "lastName")
+        }
+      });
+    } else {
+      setIsValid(prev => {
+        return {
+          ...prev,
+          email: validation(value, "email")
+        }
+      });
+    }
   }
 
   const handleSubmit = async (e) => {
@@ -90,34 +114,44 @@ const EditProfile = () => {
     }
   }
 
+  const inputStyleName = {
+    color: isValid.name !== true ? "red" : ""
+  };
+  const inputStylelastName = {
+    color: isValid.lastName !== true ? "red" : ""
+  };
+  const inputStyleEmail = {
+    color: isValid.email !== true ? "red" : ""
+  };
+
   return (
     <div>
       <Navbar color="#FF6230" content="editProfile" backGround="true" />
       <h1>Edit your Profile </h1>
       <ToastContainer
-          position="top-center"
-          autoClose={2000}
-          hideProgressBar={true}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <form onSubmit={handleSubmit}>
         <label> Name </label>
-        <input type="text" name="name" value={userInfo.name} onChange={handleChange} required/>
+        <input style={inputStyleName} type="text" name="name" value={userInfo.name} onChange={handleChange} required/>
         <label> Lastname </label>
-        <input type="text" name="lastName" value={userInfo.lastName} onChange={handleChange} required/>
+        <input style={inputStylelastName} type="text" name="lastName" value={userInfo.lastName} onChange={handleChange} required/>
         <label> Email </label>
-        <input type="email" name="email" value={userInfo.email} onChange={handleChange} required/>
+        <input style={inputStyleEmail} type="email" name="email" value={userInfo.email} onChange={handleChange} required/>
         <div>
           <Button type="submit" color="blue">Edit</Button>
-          <Button color="red" action={handleDelete}>Delete</Button>
         </div>
       </form>
+      <Button color="red" action={handleDelete}>Delete</Button>
       {errorMessage && <Error error={errorMessage} />}
     </div>
   );
