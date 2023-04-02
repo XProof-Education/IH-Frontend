@@ -1,13 +1,13 @@
 const validation = (value, typeOfValue) => {
   if (typeOfValue === 'name') {
-    const nameRegex = /^[a-zA-ZáéíóúàèòÁÉÍÓÚÀÈÒäëïöüÄËÏÖÜºª\s]+$/;
+    const nameRegex = /^[a-zA-ZáéíóúàèòÁÉÍÓÚÀÈÒäëïöüÄËÏÖÜºªñ\s]+$/;
     if (nameRegex.test(value)) {
       return true;
     } else {
       return false;
     }
   } else if (typeOfValue === 'lastName') {
-    const lastNameRegex = /^[a-zA-ZáéíóúàèòÁÉÍÓÚÀÈÒäëïöüÄËÏÖÜºª\s]+$/;
+    const lastNameRegex = /^[a-zA-ZáéíóúàèòÁÉÍÓÚÀÈÒäëïöüÄËÏÖÜºªñ\s]+$/;
     if (lastNameRegex.test(value)) {
       return true;
     } else {
