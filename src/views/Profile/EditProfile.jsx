@@ -16,9 +16,10 @@ const EditProfile = () => {
   const [userInfo, setUserInfo] = useState({
     name: "",
     lastName: "",
-    email: ""
+    email: "",
+    color: ""
   });
-  const [isValid, setIsValid] = useState({ name: true, lastName: true, email: true });
+  const [isValid, setIsValid] = useState({ name: true, lastName: true, email: true, color: true });
 
   const getUserInfo = async () => {
     try {
@@ -55,6 +56,13 @@ const EditProfile = () => {
         return {
           ...prev,
           lastName: validation(value, "lastName")
+        }
+      });
+    } else if (name === "color") {
+      setIsValid(prev => {
+        return {
+          ...prev,
+          color: validation(value, "color")
         }
       });
     } else {
@@ -123,6 +131,7 @@ const EditProfile = () => {
   const inputStyleEmail = {
     color: isValid.email !== true ? "red" : ""
   };
+  console.log("userInfo", userInfo)
 
   return (
     <div>
@@ -146,7 +155,13 @@ const EditProfile = () => {
         <label> Lastname </label>
         <input style={inputStylelastName} type="text" name="lastName" value={userInfo.lastName} onChange={handleChange} required/>
         <label> Email </label>
-        <input style={inputStyleEmail} type="email" name="email" value={userInfo.email} onChange={handleChange} required/>
+        <input style={inputStyleEmail} type="email" name="email" value={userInfo.email} onChange={handleChange} required />
+        <label> Color </label>
+        <select name="color" onChange={handleChange}>
+          <option value="blue">Blue</option>
+          <option value="pink">Pink</option>
+          <option value="yellow">Yellow</option>
+        </select>
         <div>
           <Button type="submit" color="blue">Edit</Button>
         </div>

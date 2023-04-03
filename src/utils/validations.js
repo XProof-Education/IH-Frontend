@@ -27,6 +27,12 @@ const validation = (value, typeOfValue) => {
     } else {
       return false;
     }
+  } else if (typeOfValue === 'color') {
+    if (!["pink", "blue", "yellow"].includes(value)) {
+      return false;
+    } else {
+      return true;
+    }
   }
 };
 
