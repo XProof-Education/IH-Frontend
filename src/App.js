@@ -16,6 +16,8 @@ import OperationsHistory from './views/Operations/OperationsHistory';
 import OperationDetail from './views/Operations/OperationDetail';
 import Exercises from './views/Exercises/Exercises';
 import ExerciseDetail from './views/Exercises/ExerciseDetail';
+import NewExercise from './views/Exercises/newExercise';
+import EditExercise from './views/Exercises/EditExercise';
 import FrequentErrors from './views/FrequentErrors';
 
 function App() {
@@ -31,6 +33,8 @@ function App() {
         <Route path="/operation/:operationId" element={<IsPrivate><OperationDetail /></IsPrivate>} />
         <Route path="/exercises" element={<IsPrivate><Exercises /></IsPrivate>} />
         <Route path="/exercises/:exerciseId" element={<IsPrivate><ExerciseDetail /></IsPrivate>} />
+        <Route path="/new-exercise" element={<IsPrivate><NewExercise /></IsPrivate>} />
+        <Route path="/edit/:exerciseId" element={<IsPrivate><EditExercise /></IsPrivate>} />
         <Route path="/frequent-errors" element={<IsPrivate><FrequentErrors /></IsPrivate>} />
         <Route path="/private" element={<IsPrivate><PrivateView /></IsPrivate>} />
         <Route path="/error" element={<ErrorPage />} />
