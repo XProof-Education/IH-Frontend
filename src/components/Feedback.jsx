@@ -10,16 +10,25 @@ function Feedback({ operation, imageUrl }) {
     const [prompt, setPrompt] = useState(undefined);
     const [feedBacks, setFeedBacks] = useState(undefined);
 
+    const filterFeedBacks = (feedBacks) => {
+        const confidentFeedBacks = feedBacks.filter(elem => elem.confidence > 90);
+        if (confidentFeedBacks.length >= 1) {
+            return [confidentFeedBacks[0]];
+        } else {
+            return feedBacks;
+        }
+    }
+
     const getFeedback = useCallback(async () => {
         try {
-            const mathOperation = await operationsService.newOperation({
+            const response = await operationsService.newOperation({
                 prompt: prompt,
                 mathLatex: operation.join(' \\\\ '),
                 mathLatexSimplified: clouredOperation.join(' \\\\ '),
                 cloudinaryPhoto: imageUrl
             });
-            console.log(mathOperation.feedBacks);
-            setFeedBacks(mathOperation.feedBacks);
+            const filteredFeedBacks = filterFeedBacks(response.newMathOperation.feedBacks);
+            setFeedBacks(filteredFeedBacks);
         } catch (error) {
             console.error(error);
         }
@@ -51,7 +60,7 @@ function Feedback({ operation, imageUrl }) {
                 })}
             </div>}
             {feedBacks && <div>
-                <h3>Here is my guess of what is incorrect</h3>
+                {feedBacks.length > 1 ? <h3>This is a tricky one... My best guesses are:</h3> : <h3>Here is my guess of what is incorrect</h3>}
                 {feedBacks.map((elem, elemIdx) => {
                     return (
                         <p key={elemIdx}>{elem.text}</p>
