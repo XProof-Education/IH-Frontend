@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import './navbar.css';
 import DropdownMenu from './DropdownMenu';
@@ -31,9 +31,9 @@ const Navbar = (props) => {
       {props.content === "editProfile"
         ? <nav style={styleBackground}>
             <p onClick={() => navigate(-1)}>back</p>
-            <div className="logo">
-              <ProfileIcon />
-            </div>
+          <div className="logo">
+            {user.color ? <p>{user.color}</p> : <ProfileIcon />}
+          </div>
           </nav>
         :
         <nav style={styleBackground}>
@@ -41,7 +41,7 @@ const Navbar = (props) => {
             <img src={burguerIcon} alt="burguer" className="burguer-btn" onClick={toggleMenu} />}
           <div className="logo">
             {props.content === "profile"
-              ? <ProfileIcon />
+              ? user.color ? <Link to={'/edit-profile'}>{user.color}</Link> : <ProfileIcon />
               : <Logo logoColor={props.color} />}
           </div>
           <div className={menuVisible ? "menu-visible" : ""}>
@@ -50,7 +50,8 @@ const Navbar = (props) => {
             {isLoggedIn && props.content === "profile" && <DropdownMenu links={["Home", "Log out", "Contact"]} />}
           </div>
         </nav>}
-      {user && <p>Hello {user.name}</p> }
+      {user && <p>Hello {user.name}</p>}
+      
     </div>
   )
   

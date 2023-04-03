@@ -10,7 +10,7 @@ import Error from '../../components/Error.jsx';
 import validation from '../../utils/validations';
 
 const EditProfile = () => {
-  const { storeToken, logOutUser, removeToken, authenticateUser } = useAuth();
+  const { storeToken, logOutUser, removeToken, authenticateUser} = useAuth();
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState(null);
   const [userInfo, setUserInfo] = useState({
@@ -84,6 +84,7 @@ const EditProfile = () => {
         setErrorMessage('Lastname just allows letters');
       } else {
         const response = await userService.editUserData(userInfo);
+        console.log("response", response)
         if (response.authToken) {
           removeToken();
           storeToken(response.authToken);
@@ -99,7 +100,7 @@ const EditProfile = () => {
             progress: undefined,
             theme: "light",
           });
-          setErrorMessage('Unable to update user');
+          setErrorMessage('Unable to update user!');
         } else {
           setErrorMessage(null);
         }
@@ -131,7 +132,6 @@ const EditProfile = () => {
   const inputStyleEmail = {
     color: isValid.email !== true ? "red" : ""
   };
-  console.log("userInfo", userInfo)
 
   return (
     <div>
@@ -157,7 +157,8 @@ const EditProfile = () => {
         <label> Email </label>
         <input style={inputStyleEmail} type="email" name="email" value={userInfo.email} onChange={handleChange} required />
         <label> Color </label>
-        <select name="color" onChange={handleChange}>
+        <select name="color" value={userInfo.color} onChange={handleChange} required>
+          <option>Choose color</option>
           <option value="blue">Blue</option>
           <option value="pink">Pink</option>
           <option value="yellow">Yellow</option>
