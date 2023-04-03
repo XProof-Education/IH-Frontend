@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import handleOperation from '../utils/handleOperation';
 import Latex from 'react-latex';
 import operationsService from '../services/operationsService';
+import { Link } from 'react-router-dom';
 
 
 function Feedback({ operation, imageUrl }) {
@@ -49,6 +50,7 @@ function Feedback({ operation, imageUrl }) {
 
     return ( 
         <div>
+            {!setColouredOperation && <h2>Loading...</h2>}
             {clouredOperation && <div>
                 {isCorrect ? <h2>It is correct</h2> : <h2>There is a mistake</h2>}
                 {clouredOperation.map((elem, idx) => {
@@ -59,6 +61,9 @@ function Feedback({ operation, imageUrl }) {
                     );
                 })}
             </div>}
+            {!feedBacks && !isCorrect && <div className='loading-feedback'>
+                <p>Figuring out the mistake...</p>
+            </div>}
             {feedBacks && <div>
                 {feedBacks.length > 1 ? <h3>This is a tricky one... My best guesses are:</h3> : <h3>Here is my guess of what is incorrect</h3>}
                 {feedBacks.map((elem, elemIdx) => {
@@ -66,6 +71,10 @@ function Feedback({ operation, imageUrl }) {
                         <p key={elemIdx}>{elem.text}</p>
                     )
                 })}
+            </div>}
+            {clouredOperation && <div>
+                <button><Link to={'/camera'}>Take another photo</Link></button>
+                <button><Link to={'/home'}>Home</Link></button>
             </div>}
         </div>
      );

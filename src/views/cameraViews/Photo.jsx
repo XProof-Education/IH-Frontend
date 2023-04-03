@@ -68,6 +68,9 @@ function Photo() {
 
     return ( 
         <div className="photo-view">
+            {!operation && <div className='loading-mathpix'>
+                <h2>Reading operation</h2>
+            </div>}
             {mathpixError && <div className='mathpix-error'>
                 <p>There was a problem reading this photo.</p>
                 <button><Link to={'/camera'}>Try again</Link></button>
