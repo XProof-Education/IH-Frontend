@@ -39,6 +39,8 @@ function Photo() {
                         .replace('\\begin{aligned} ', '')
                         .replace('\\end{aligned}','')
                         .replace('\\begin{array}{l}', '')
+                        .replace('\\begin{array}{c}', '')
+                        .replace('\\begin{array}{r}', '')
                         .replace('\\end{array}', '')
                         .split('\\\\')
                         .map(step => step.replace('& ', '').trim());
