@@ -183,7 +183,7 @@ const findIncorrectStepsIdx = (operation) => {
             }
         }
     }
-    if (step1Idx && step2Idx) {
+    if (step1Idx !== undefined && step2Idx !== undefined) {
         return {
             step1Idx,
             step2Idx
