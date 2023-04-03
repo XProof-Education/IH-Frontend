@@ -16,7 +16,7 @@ import OperationsHistory from './views/Operations/OperationsHistory';
 import OperationDetail from './views/Operations/OperationDetail';
 import Exercises from './views/Exercises/Exercises';
 import ExerciseDetail from './views/Exercises/ExerciseDetail';
-import NewExercise from './views/Exercises/newExercise';
+import NewExercise from './views/Exercises/NewExercise';
 import EditExercise from './views/Exercises/EditExercise';
 import FrequentErrors from './views/FrequentErrors';
 
