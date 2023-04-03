@@ -20,7 +20,7 @@ const EditProfile = () => {
     color: ""
   });
   const [isValid, setIsValid] = useState({ name: true, lastName: true, email: true, color: true });
-
+  console.log("isValid", isValid)
   const getUserInfo = async () => {
     try {
       const response = await userService.getUserData();
@@ -35,6 +35,11 @@ const EditProfile = () => {
   useEffect(() => {
     getUserInfo();
   }, []);
+
+  useEffect(() => {
+    setIsValid(isValid)
+    setErrorMessage(errorMessage);
+  }, [errorMessage, isValid]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -51,6 +56,7 @@ const EditProfile = () => {
           name: validation(value, "name")
         }
       });
+      isValid.name === false ? setErrorMessage("Name just allows letters") : setErrorMessage(null);
     } else if (name === "lastName") {
       setIsValid(prev => {
         return {
@@ -58,6 +64,7 @@ const EditProfile = () => {
           lastName: validation(value, "lastName")
         }
       });
+      isValid.lastName === false ? setErrorMessage("Lastname just allows letters") : setErrorMessage(null);
     } else if (name === "color") {
       setIsValid(prev => {
         return {
@@ -65,6 +72,7 @@ const EditProfile = () => {
           color: validation(value, "color")
         }
       });
+      isValid.color === false ? setErrorMessage("just pink, yellow or blue") : setErrorMessage(null);
     } else {
       setIsValid(prev => {
         return {
@@ -72,17 +80,13 @@ const EditProfile = () => {
           email: validation(value, "email")
         }
       });
+      isValid.email === false ? setErrorMessage("Invalid email format") : setErrorMessage(null);
     }
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (!validation(userInfo.name, "name")) {
-        setErrorMessage('Name just allows letters');
-      } else if (!validation(userInfo.lastName, "lastName")){
-        setErrorMessage('Lastname just allows letters');
-      } else {
         const response = await userService.editUserData(userInfo);
         console.log("response", response)
         if (response.authToken) {
@@ -92,7 +96,7 @@ const EditProfile = () => {
           navigate('/profile');
           toast.success('Profile updated', {
             position: "top-center",
-            autoClose: 2000,
+            autoClose: 5000,
             hideProgressBar: true,
             closeOnClick: true,
             pauseOnHover: true,
@@ -100,12 +104,11 @@ const EditProfile = () => {
             progress: undefined,
             theme: "light",
           });
-          setErrorMessage('Unable to update user!');
-        } else {
           setErrorMessage(null);
+        } else {
+          setErrorMessage('Unable to update user!');
         }
-      }
-    } catch (error) {
+      } catch (error) {
       setErrorMessage('Unable to update user');
       console.error(error);
     }
@@ -139,7 +142,7 @@ const EditProfile = () => {
       <h1>Edit your Profile </h1>
       <ToastContainer
         position="top-center"
-        autoClose={2000}
+        autoClose={5000}
         hideProgressBar={true}
         newestOnTop={false}
         closeOnClick
