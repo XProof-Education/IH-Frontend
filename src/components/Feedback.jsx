@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import handleOperation from '../utils/handleSteps';
+import handleOperation from '../utils/handleOperation';
 import Latex from 'react-latex';
 import operationsService from '../services/operationsService';
 

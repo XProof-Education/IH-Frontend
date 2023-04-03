@@ -4,17 +4,13 @@ const latexToEquation = (expression) => {
     return nerdamer.convertFromLaTeX(expression).toString();
 }
 
-// const equationToLatex = (expression) => {
-//     return nerdamer.convertToLaTeX(expression).toString();
-// }
-
 const stepToLatex = (step) => {
     return step.map((side, sideIndex) => side.join('')).join('=');
 }
 
 const latexToStep = (equation) => {
-    // Input: Latex equation
-    // Output: Equation in step format. IMPORTANT --> Adds + sign to elems that have no sign (i.e. 3x=9 => +3x=+9)
+    // Input: Operation step
+    // Output: Operation step in step format. IMPORTANT --> Adds + sign to elems that have no sign (i.e. 3x=9 => +3x=+9)
     const [leftSide, rightSide] = equation.split('=');
 
     // Function to split a side into an array of terms
@@ -62,14 +58,20 @@ const latexToStep = (equation) => {
 }
 
 const stepToElemsUnique = (step) => {
+    // Input: Regular step
+    // Output: Set of elements of the step 
     return step.map(side => new Set(side));
 }
 
 const findAllOccurrences = (arr, val) => {
+    // Input: Side of step & element to count
+    // Output: Number of occurrences in side 
     return arr.filter((elem) => elem === val).length;
 }
 
 const stepToOccurrences = (step) => {
+    // Input: Regular step
+    // Output: Occurrences objects => [{occurrences left side}, {occurrences right side}] 
     const stepUniques = stepToElemsUnique(step);
     return stepUniques.map((side, sideIdx) => {
         let sideOccurrences = {};
@@ -81,6 +83,8 @@ const stepToOccurrences = (step) => {
 }
 
 const colorChangedElems = (step1, step2, color = 'red') => {
+    // Input: Step1 & Step2
+    // Output: Step1 coloured & Step2 coloured
     let step1Occurrences = stepToOccurrences(step1);
     let step2Occurrences = stepToOccurrences(step2);
 
@@ -117,6 +121,8 @@ const colorChangedElems = (step1, step2, color = 'red') => {
   }
 
 const extractVariables = (expression) => {
+    // Input: Nerdamer expression
+    // Output: Variable(s) of the equation 
     // Match all single-letter alphabetical characters that are not preceded or followed by another letter
     const variableRegex = /(?<![a-zA-Z])[a-zA-Z](?![a-zA-Z])/g; 
     const variableMatches = expression.match(variableRegex);
@@ -129,10 +135,10 @@ const extractVariables = (expression) => {
     return null;
 }
 
-const solveStep = (latexEquation) => {
+const solveStep = (step) => {
     // Input: Latex step expression
     // Output: Array with steps's solutions
-    const eq = latexToEquation(latexEquation);
+    const eq = latexToEquation(step);
     const variables = extractVariables(eq);
     if (variables.length > 1) {
         return undefined;
@@ -145,6 +151,8 @@ const solveStep = (latexEquation) => {
 }
 
 const isEqualSolutions = (solutions1, solutions2) => {
+    // Input: Array of solutions of step 1 & array of solutions of step 2
+    // Output: Bool (are equal solutions) 
     if (typeof solutions1 != typeof solutions2) {
         return false;
     } else if (typeof solutions1 === 'string' && typeof solutions2 === 'string') {
@@ -155,6 +163,8 @@ const isEqualSolutions = (solutions1, solutions2) => {
 }
 
 const findIncorrectStepsIdx = (operation) => {
+    // Input: Operation array
+    // Output: First incorrect step1 & step2 indexes 
     let step1Idx;
     let step2Idx;
     let prevSolutions = [];
@@ -184,14 +194,17 @@ const findIncorrectStepsIdx = (operation) => {
 }
 
 const handleOperation = (operation) => {
+    // Input: Frontend operation array
+    // Output: Assessment object {isCorrect, coloured operation, aiPrompt} 
     const incorrectStepsIdx = findIncorrectStepsIdx(operation);
     if (incorrectStepsIdx) {
+        const { step1Idx, step2Idx } = incorrectStepsIdx;
         const operationSteps = operation.map(step => latexToStep(step));
-        const colouredSteps = colorChangedElems(operationSteps[incorrectStepsIdx.step1Idx], operationSteps[incorrectStepsIdx.step2Idx]);
+        const colouredSteps = colorChangedElems(operationSteps[step1Idx], operationSteps[step2Idx]);
         const colouredOperation = operation.map((step, stepIdx) => {
-            if (stepIdx === incorrectStepsIdx.step1Idx) {
+            if (stepIdx === step1Idx) {
                 return colouredSteps[0];
-            } else if (stepIdx === incorrectStepsIdx.step2Idx) {
+            } else if (stepIdx === step2Idx) {
                 return colouredSteps[1];
             } else {
                 return step;
@@ -200,7 +213,7 @@ const handleOperation = (operation) => {
         return {
             isCorrect: false,
             operation: colouredOperation,
-            prompt: `step 1: ${operation[incorrectStepsIdx.step1Idx]} & step 2: ${operation[incorrectStepsIdx.step2Idx]}\n\n###\n\n` 
+            prompt: `step 1: ${operation[step1Idx]} & step 2: ${operation[step2Idx]}\n\n###\n\n` 
         }
     } else {
         return {
