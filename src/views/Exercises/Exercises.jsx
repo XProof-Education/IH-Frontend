@@ -23,7 +23,7 @@ const Exercises = () => {
     <div>
       <Navbar color="#FF6230" content="editProfile" backGround="true"/>
       <h1>My exercises</h1>
-      <ListCard props={exercises}/>
+      <ListCard props={exercises} typeData="exercises"/>
     
     </div>
   )

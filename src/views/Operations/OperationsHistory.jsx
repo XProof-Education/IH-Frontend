@@ -9,7 +9,6 @@ const OperationsHistory = () => {
   const getOperations = async () => {
     try {
       const response = await operationsService.getAllOperations();
-      console.log(response)
       setOperations(response.mathOperations);
     } catch (error) {
       console.error(error);
@@ -24,7 +23,7 @@ const OperationsHistory = () => {
     <div>
       <Navbar color="#FF6230" content="editProfile" backGround="true"/>
       <h1>My Operations history</h1>
-      <ListCard props={operations} />
+      <ListCard props={operations} typeData="operations"/>
       
     
     </div>
