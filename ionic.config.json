@@ -1,7 +1,0 @@
-{
-  "name": "XProof",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "react"
-}

@@ -61,6 +61,7 @@ function Photo() {
     }
     useEffect(() => {
         processPhoto();
+        // eslint-disable-next-line
     }, []);
 
     return ( 
