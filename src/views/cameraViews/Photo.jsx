@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 function Photo() {
     const navigate = useNavigate();
     const [imageUrl, setImageUrl] = useState(null);
-    const [latexArr, setLatexArr] = useState(null);
+    const [operation, setOperation] = useState(null);
     const [validatedPhoto, setValidatedPhoto] = useState(false);
     const [mathpixError, setMathpixError] = useState(false);
 
@@ -42,10 +42,10 @@ function Photo() {
                         .replace('\\end{array}', '')
                         .split('\\\\')
                         .map(step => step.replace('& ', '').trim());
-                    setLatexArr(steps);
+                    setOperation(steps);
                 } else {
                     const steps = mathpixResult.map(elem => elem.value);
-                    setLatexArr(steps);
+                    setOperation(steps);
                 }
             }
         } catch (error) {
@@ -69,9 +69,9 @@ function Photo() {
                 <p>There was a problem reading this photo.</p>
                 <button><Link to={'/camera'}>Try again</Link></button>
             </div>}
-            {latexArr && !validatedPhoto && <div className="mathpix-result">
+            {operation && !validatedPhoto && <div className="mathpix-result">
                 <h2>Have I properly read the exercise?</h2>
-                {latexArr.map((elem, idx) => {
+                {operation.map((elem, idx) => {
                     return (
                         <div className='equation' key={idx}>
                             <Latex>{`$$${elem}$$`}</Latex>
@@ -81,7 +81,7 @@ function Photo() {
                 <button onClick={handleValid}>All OK</button>
                 <button onClick={handleInvalid}>Retake photo</button>
             </div>}
-            {validatedPhoto && <Feedback latexArr={latexArr} imageUrl={imageUrl}/>}
+            {validatedPhoto && <Feedback operation={operation} imageUrl={imageUrl}/>}
         </div>
      );
 }
