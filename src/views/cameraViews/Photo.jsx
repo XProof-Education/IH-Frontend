@@ -26,8 +26,8 @@ function Photo() {
                 const mathpixResult = await uploadToMathpix(imageURL);
                 // const mathpixResult = [
                 //     {
-                //         type: "latex",
-                //         value: "\\begin{aligned} 3(x+2) & =5 x+4-6 x \\\\ 3(x+2) & =4- x \\\\ 3x+2 & =4- x \\\\ 3x+x & =4-2 \\\\ 4x & =2 \\\\ x & =\\frac{2}{4}\\end{aligned}",
+                //     "type": "latex",
+                //     "value": "\\begin{array}{l}\\frac{4 x}{5}+\\frac{2}{3}=x+2 \\\\ \\frac{4 x+2}{15}=\\frac{x+2}{15} \\\\ 4 x+2=x+2 \\\\ 3 x=0 \\\\ x=0\\end{array}"
                 //     },
                 // ];
                 if (mathpixResult.error) {
