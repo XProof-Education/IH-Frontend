@@ -1,16 +1,15 @@
 import { useState, useEffect } from 'react';
-import { useParams} from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import operationsService from '../../services/operationsService';
 import Navbar from '../../components/Header/Navbar';
-// import Button from '../../components/Button';
-// import Feedback from '../../components/Feedback';
-// import Latex from 'react-latex';
-//import handleOperation from '../../utils/handleOperation';
+import Latex from 'react-latex';
+import Button from '../../components/Button';
 
 
 const OperationDetail = () => {
+  const navigate = useNavigate();
   const { operationId } = useParams();
-  const [operation, setOperation] = useState({});
+  const [operation, setOperation] = useState(null);
 
   const getOneOperation = async () => {
     try {
@@ -20,33 +19,33 @@ const OperationDetail = () => {
       console.error(error);
     }
   }
-  console.log(operation)
+
   useEffect(() => {
     getOneOperation();
     //eslint-disable-next-line
   }, []);
 
-  useEffect(() => {
-    setOperation(operation);
-  }, [operation]);
+  const handleDelete = async () => {
+    try {
+      await operationsService.deleteOperation(operationId);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      navigate('/operations-history');
+    }
+  }
 
   return (
     <div>
       <Navbar color="#FF6230" content="editProfile" backGround="true"/>
       <h1>Operation detail</h1>
-      <p>{operation.mathLatexSimplified}</p>
-      {/* {console.log(operation.feedBacks)} */}
-       {/* {operation.feedBacks.map(fb => {
-        return (
-          <div>
-          <p>{fb.text}</p>
-            <p>{fb.confidence}</p>
-            </div>
-       )
-     })}  */}
-  
-      
-    
+      {operation && 
+       <div className='equation'> 
+          <Latex>{`$$${operation.mathLatexSimplified}$$`}</Latex>
+          <p>{operation.feedBacks[0].text}</p>
+        </div>
+      }
+      <Button color="red" action={handleDelete}>Delete</Button>
     </div>
   )
   
