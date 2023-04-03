@@ -16,7 +16,7 @@ const Button = (props) => {
         : "white"
       : "transparent",
     color: hovered ? "#fff" : "inherit",
-    transition: "all 0.8s ease-in-out",
+    transition: "all 0.7s ease-in-out",
     margin: "20px 5px 20px 5px",
     padding: "3px 15px"
   }
