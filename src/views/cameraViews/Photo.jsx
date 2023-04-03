@@ -20,16 +20,16 @@ function Photo() {
             if (photosInStorage.length === 0) {
                 navigate('/camera');
             } else {
-                // const imageURL = await uploadImageToCloudinary(photosInStorage[0].webviewPath);
-                const imageURL = 'www.something...';
+                const imageURL = await uploadImageToCloudinary(photosInStorage[0].webviewPath);
+                // const imageURL = 'www.something...';
                 setImageUrl(imageURL);
-                // const mathpixResult = await uploadToMathpix(imageURL);
-                const mathpixResult = [
-                    {
-                        type: "latex",
-                        value: "\\begin{aligned} 3(x+2) & =5 x+4-6 x \\\\ 3(x+2) & =4- x \\\\ 3x+2 & =4- x \\\\ 3x+x & =4-2 \\\\ 4x & =2 \\\\ x & =\\frac{2}{4}\\end{aligned}",
-                    },
-                ];
+                const mathpixResult = await uploadToMathpix(imageURL);
+                // const mathpixResult = [
+                //     {
+                //         type: "latex",
+                //         value: "\\begin{aligned} 3(x+2) & =5 x+4-6 x \\\\ 3(x+2) & =4- x \\\\ 3x+2 & =4- x \\\\ 3x+x & =4-2 \\\\ 4x & =2 \\\\ x & =\\frac{2}{4}\\end{aligned}",
+                //     },
+                // ];
                 if (mathpixResult.error) {
                     setMathpixError(true);
                     return;
