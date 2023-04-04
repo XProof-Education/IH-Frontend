@@ -1,0 +1,42 @@
+/* ---------------- Button ------------------ */
+
+.button-style {
+  border-radius: 20px;
+  transition: all 0.3s ease-in-out;
+  margin: 20px 5px 20px 5px;
+  padding: 3px 15px;
+  color:#000;
+  background-color: #fbfbfb;
+}
+
+.button-color-red {
+  border: 1px solid #FF6230;
+}
+
+.button-color-blue {
+  border: 1px solid #3073D7;
+}
+
+.button-color-pink {
+  border: 1px solid #ff5be1;
+}
+
+/* .button-color-white {
+  border: 1px solid #000;
+  background-color: #fbfbfb;
+} */
+
+.button-color-red:hover {
+  background-color: #FF6230;
+  color: #fbfbfb;
+}
+
+.button-color-blue:hover {
+  background-color: #3073D7;
+  color: #fbfbfb;
+}
+
+.button-color-pink:hover {
+  background-color: #ff5be1;
+  color: #fbfbfb;
+}

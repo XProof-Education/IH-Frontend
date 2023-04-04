@@ -17,26 +17,26 @@ const Navbar = (props) => {
     setMenuVisible(!menuVisible);
   }
 
-  const styleBackground = {
-    width: "100%",
-    height: "5em",
-    display: "flex",
-    alignItems: "center",
-    padding: "1em",
-    backgroundColor: props.backGround ? "#fbfbfb" : "transparent",
-  }
+  // const styleBackground = {
+  //   width: "100%",
+  //   height: "5em",
+  //   display: "flex",
+  //   alignItems: "center",
+  //   padding: "1em",
+  //   backgroundColor: props.backGround ? "#fbfbfb" : "transparent",
+  // }
 
   return (
     <div>
       {props.content === "editProfile"
-        ? <nav style={styleBackground}>
+        ? <nav className={props.backGround ? "nav nav-background" : "nav-background-transparent"}>
             <p onClick={() => navigate(-1)}>back</p>
           <div className="logo">
             {user.color ? <p>{user.color}</p> : <ProfileIcon />}
           </div>
           </nav>
         :
-        <nav style={styleBackground}>
+        <nav className={props.backGround ? "nav nav-background" : "nav-background-transparent"}>
           {menuVisible ? <img src={cancelIcon} alt="cancel" className="burguer-btn" onClick={toggleMenu} /> :
             <img src={burguerIcon} alt="burguer" className="burguer-btn" onClick={toggleMenu} />}
           <div className="logo">
