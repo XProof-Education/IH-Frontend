@@ -5,7 +5,7 @@ import HalfDotColor from "../HalfDot";
 
 const DropdownMenu = (props) => {
   const { logOutUser } = useContext(AuthContext);
-  const imageLinks = [<HalfDotColor color="#3073D7"/>, <HalfDotColor color="#F78DA7"/>, <HalfDotColor color="#FFCD29"/>];
+  const imageLinks = [<HalfDotColor color="blue" size="14"/>, <HalfDotColor color="yellow" size="14"/>, <HalfDotColor color="pink" size="14"/>];
 
   return (
     <div className="menu">

@@ -10,7 +10,7 @@ const Profile = () => {
   return (
     <div>
       {isLoading && <Loading/>}
-      <Navbar color="#FF6230" content="profile" backGround="true" />
+      <Navbar content="profile" backGround="true" />
       <h1>This is Profile Page</h1>
       {user.role !== 'teacher'
         ? <ProfileCard sections={[{ title: "my equation history", url: '/operations-history' }, { title: "my frequent errors", url: "/frequent-errors" }, { title: "find exercises", url: "/exercises" }]} />

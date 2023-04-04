@@ -5,7 +5,7 @@ export default function Home() {
   console.log("I am here")
   return (
     <div>
-      <Navbar color="#3073D7"/>
+      <Navbar color="blue"/>
       <h1>Home</h1>
     </div>
   )

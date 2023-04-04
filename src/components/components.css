@@ -1,3 +1,16 @@
+/* ---------------- Loading ------------------ */
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 300px;
+}
+
+.loading {
+  width: 200px;
+}
+
 /* ---------------- Button ------------------ */
 
 .button-style {

@@ -1,8 +1,11 @@
 import yellow from '../assets/loading-transparent.gif';
+import './components.css';
 
 const Loading = () => {
   return (
-    <img style={{width:"150px"}} src={yellow} alt="loading"/>
+    <div className="loading-container">
+      <img className="loading" src={yellow} alt="loading" />
+    </div>
   )
 }
 

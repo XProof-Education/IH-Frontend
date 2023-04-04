@@ -7,6 +7,7 @@ import Logo from '../Logo';
 import ProfileIcon from '../ProfileIcon';
 import burguerIcon from '../../assets/burguer-icon.png';
 import cancelIcon from '../../assets/cancel-icon.png';
+import HalfDotColor from '../HalfDot';
 
 const Navbar = (props) => {
   const { isLoggedIn, user} = useContext(AuthContext);
@@ -32,7 +33,7 @@ const Navbar = (props) => {
         ? <nav className={props.backGround ? "nav nav-background" : "nav-background-transparent"}>
             <p onClick={() => navigate(-1)}>back</p>
           <div className="logo">
-            {user.color ? <p>{user.color}</p> : <ProfileIcon />}
+            {user.color ? <HalfDotColor color={user.color} size="40" text={user.name} /> : <ProfileIcon />}
           </div>
           </nav>
         :
@@ -40,9 +41,9 @@ const Navbar = (props) => {
           {menuVisible ? <img src={cancelIcon} alt="cancel" className="burguer-btn" onClick={toggleMenu} /> :
             <img src={burguerIcon} alt="burguer" className="burguer-btn" onClick={toggleMenu} />}
           <div className="logo">
-            {props.content === "profile"
-              ? user.color ? <Link to={'/edit-profile'}>{user.color}</Link> : <ProfileIcon />
-              : <Logo logoColor={props.color} />}
+            {props.content === "profile" && user.color !== false
+              ? user.color !=="false" ? <Link to={'/edit-profile'}><HalfDotColor color={user.color} size="40" text={user.name}/></Link> : <ProfileIcon />
+              : <Logo color={props.color} />}
           </div>
           <div className={menuVisible ? "menu-visible" : ""}>
             {!isLoggedIn && <DropdownMenu links={["Profile", "Log in", "Contact"]} />}
