@@ -5,9 +5,9 @@ import './navbar.css';
 import DropdownMenu from './DropdownMenu';
 import Logo from '../Logo';
 import ProfileIcon from '../ProfileIcon';
-import burguerIcon from '../../assets/burguer-icon.png';
-import cancelIcon from '../../assets/cancel-icon.png';
-import backIcon from '../../assets/back.png'
+import burguerIcon from '../../assets//images/burguer-icon.png';
+import cancelIcon from '../../assets//images/cancel-icon.png';
+import backIcon from '../../assets/images/back.png'
 import HalfDotColor from '../HalfDot';
 
 const Navbar = (props) => {

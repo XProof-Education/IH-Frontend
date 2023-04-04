@@ -8,5 +8,36 @@
   align-items: center;
 }
 
-/* ---------------- Profile view ------------------ */
+/* ---------------- General ------------------ */
 
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: apercu;
+  src: url("./assets/fonts/Apercu\ Light.otf");
+}
+
+@font-face {
+  font-family: raisonne;
+  src: url("./assets/fonts/raisonne-demibold.ttf");
+}
+
+:root {
+  --primary-yellow: #F7CF5C;
+  --primary-blue: #61D4F7;
+  --primary-pink: #E7327B;
+  --primary-white: #fbfbfb;
+  --primary-black: #131313;
+
+}
+
+html, body {
+  font-family: apercu;
+  background-color: var(--primary-white);
+}
+
+h1 {
+  font-family: raisonne;
+}

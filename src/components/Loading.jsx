@@ -1,4 +1,4 @@
-import yellow from '../assets/loading-transparent.gif';
+import yellow from '../assets/images/loading-transparent.gif';
 import './components.css';
 
 const Loading = () => {
