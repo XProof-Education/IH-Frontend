@@ -75,7 +75,7 @@ const EditProfile = () => {
           color: validation(value, "color")
         }
       });
-      isValid.color === false ? setErrorMessage("just pink, yellow or blue") : setErrorMessage(null);
+      isValid.color === false ? setErrorMessage("Choose between pink, yellow or blue colors") : setErrorMessage(null);
     } else {
       setIsValid(prev => {
         return {
@@ -158,7 +158,7 @@ const EditProfile = () => {
       />
       {loading && <Loading />}
       {!loading && userInfo &&
-        < form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
         <label> Name </label>
         <input style={inputStyleName} type="text" name="name" value={userInfo.name} onChange={handleChange} required />
         <label> Lastname </label>

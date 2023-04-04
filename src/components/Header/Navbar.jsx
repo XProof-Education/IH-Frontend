@@ -7,6 +7,7 @@ import Logo from '../Logo';
 import ProfileIcon from '../ProfileIcon';
 import burguerIcon from '../../assets/burguer-icon.png';
 import cancelIcon from '../../assets/cancel-icon.png';
+import backIcon from '../../assets/back.png'
 import HalfDotColor from '../HalfDot';
 
 const Navbar = (props) => {
@@ -31,7 +32,7 @@ const Navbar = (props) => {
     <div>
       {props.content === "editProfile"
         ? <nav className={props.backGround ? "nav nav-background" : "nav-background-transparent"}>
-            <p onClick={() => navigate(-1)}>back</p>
+            <img src={backIcon} onClick={() => navigate(-1)} alt="back"/>
           <div className="logo">
             {user.color ? <HalfDotColor color={user.color} size="40" text={user.name} /> : <ProfileIcon />}
           </div>
