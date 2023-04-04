@@ -1,8 +1,26 @@
-const nerdamer = require("nerdamer/all.min")
+const { parse } = require('latex-parser');
+const { simplify, evaluate, parse: mathParse } = require('mathjs');
 
-const latexToEquation = (expression) => {
-    return nerdamer.convertFromLaTeX(expression).toString();
-}
+// const latexToEquation = (expression) => {
+//     return nerdamer.convertFromLaTeX(expression).toString();
+// }
+
+function latexToEquation(latex) {
+    const latexParsed = parse(latex);
+    const mathjsExpr = latexParsed.map(term => {
+      if (term.type === 'BinaryOperator') {
+        return term.operator;
+      } else if (term.type === 'Number') {
+        return term.value;
+      } else if (term.type === 'Variable') {
+        return term.symbol;
+      } else {
+        throw new Error('Unsupported term type: ' + term.type);
+      }
+    });
+    return mathjsExpr.join(' ');
+  }
+  
 
 const stepToLatex = (step) => {
     return step.map((side, sideIndex) => side.join('')).join('=');
@@ -224,4 +242,7 @@ const handleOperation = (operation) => {
     }
 }
 
-export default handleOperation;
+// export default handleOperation;
+
+// Testing
+console.log(latexToEquation('3 x+2-5 x=8 x+9'))
