@@ -1,25 +1,25 @@
-const { parse } = require('latex-parser');
-const { simplify, evaluate, parse: mathParse } = require('mathjs');
+const Algebrite = require('algebrite');
+const { simplify, evaluate } = require('mathjs');
 
 // const latexToEquation = (expression) => {
 //     return nerdamer.convertFromLaTeX(expression).toString();
 // }
 
-function latexToEquation(latex) {
-    const latexParsed = parse(latex);
-    const mathjsExpr = latexParsed.map(term => {
-      if (term.type === 'BinaryOperator') {
-        return term.operator;
-      } else if (term.type === 'Number') {
-        return term.value;
-      } else if (term.type === 'Variable') {
-        return term.symbol;
-      } else {
-        throw new Error('Unsupported term type: ' + term.type);
-      }
-    });
-    return mathjsExpr.join(' ');
-  }
+// function latexToEquation(latex) {
+//     const latexParsed = parse(latex);
+//     const mathjsExpr = latexParsed.map(term => {
+//       if (term.type === 'BinaryOperator') {
+//         return term.operator;
+//       } else if (term.type === 'Number') {
+//         return term.value;
+//       } else if (term.type === 'Variable') {
+//         return term.symbol;
+//       } else {
+//         throw new Error('Unsupported term type: ' + term.type);
+//       }
+//     });
+//     return mathjsExpr.join(' ');
+//   }
   
 
 const stepToLatex = (step) => {
@@ -153,20 +153,35 @@ const extractVariables = (expression) => {
     return null;
 }
 
-const solveStep = (step) => {
-    // Input: Latex step expression
-    // Output: Array with steps's solutions
-    const eq = latexToEquation(step);
-    const variables = extractVariables(eq);
-    if (variables.length > 1) {
-        return undefined;
+// const solveStep = (step) => {
+//     // Input: Latex step expression
+//     // Output: Array with steps's solutions
+//     const eq = latexToEquation(step);
+//     const variables = extractVariables(eq);
+//     if (variables.length > 1) {
+//         return undefined;
+//     }
+//     const solutions = nerdamer.solve(eq, variables[0]).toString();
+//     if (solutions) {
+//         return solutions;
+//     }
+//     return null;
+// }
+
+const solveStep = (latexStep) => {
+    const [leftSide, rightSide] = latexStep.split('=');
+    const leftSideParsed = Algebrite.run(leftSide).toString();
+    const rightSideParsed = Algebrite.run(rightSide).toString();
+  
+    const equation = `${leftSideParsed} - (${rightSideParsed})`;
+    const simplifiedEquation = simplify(equation).toString();
+    try {
+        const solution = Algebrite.roots(simplifiedEquation).toString();
+        return solution;   
+    } catch (error) {
+        return null
     }
-    const solutions = nerdamer.solve(eq, variables[0]).toString();
-    if (solutions) {
-        return solutions;
-    }
-    return null;
-}
+  }
 
 const isEqualSolutions = (solutions1, solutions2) => {
     // Input: Array of solutions of step 1 & array of solutions of step 2
@@ -242,7 +257,7 @@ const handleOperation = (operation) => {
     }
 }
 
-// export default handleOperation;
+export default handleOperation;
 
 // Testing
-console.log(latexToEquation('3 x+2-5 x=8 x+9'))
+// console.log(solveStep('3y^2 - \\frac{3}{2} =0'))
