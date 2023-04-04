@@ -8,11 +8,13 @@ import Navbar from '../../components/Header/Navbar';
 import Button from '../../components/Button';
 import Error from '../../components/Error.jsx';
 import validation from '../../utils/validations';
+import Loading from '../../components/Loading';
 
 const EditProfile = () => {
   const { storeToken, logOutUser, removeToken, authenticateUser} = useAuth();
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [userInfo, setUserInfo] = useState({
     name: "",
     lastName: "",
@@ -22,12 +24,14 @@ const EditProfile = () => {
   const [isValid, setIsValid] = useState({ name: true, lastName: true, email: true, color: true });
   
   const getUserInfo = async () => {
+    setLoading(true);
     try {
       const response = await userService.getUserData();
       setUserInfo(response.user);
       setErrorMessage(null);
+      setLoading(false);
     } catch (error) {
-      setErrorMessage('Server unavailable, sorry!');
+      setErrorMessage("Sorry, we couldn't get tour profile data. Please try again.");
       console.error(error);
     }
   };
@@ -37,8 +41,7 @@ const EditProfile = () => {
   }, []);
 
   useEffect(() => {
-    setIsValid(isValid)
-    setErrorMessage(errorMessage);
+    isValid !== true ? setErrorMessage(errorMessage) : setErrorMessage(null);
   }, [errorMessage, isValid]);
 
   const handleChange = (e) => {
@@ -86,9 +89,9 @@ const EditProfile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
         const response = await userService.editUserData(userInfo);
-        console.log("response", response)
         if (response.authToken) {
           removeToken();
           storeToken(response.authToken);
@@ -105,6 +108,7 @@ const EditProfile = () => {
             theme: "light",
           });
           setErrorMessage(null);
+          setLoading(false);
         } else {
           setErrorMessage('Unable to update user!');
         }
@@ -152,11 +156,13 @@ const EditProfile = () => {
         pauseOnHover
         theme="light"
       />
-      <form onSubmit={handleSubmit}>
+      {loading && <Loading />}
+      {!loading && userInfo &&
+        < form onSubmit={handleSubmit}>
         <label> Name </label>
-        <input style={inputStyleName} type="text" name="name" value={userInfo.name} onChange={handleChange} required/>
+        <input style={inputStyleName} type="text" name="name" value={userInfo.name} onChange={handleChange} required />
         <label> Lastname </label>
-        <input style={inputStylelastName} type="text" name="lastName" value={userInfo.lastName} onChange={handleChange} required/>
+        <input style={inputStylelastName} type="text" name="lastName" value={userInfo.lastName} onChange={handleChange} required />
         <label> Email </label>
         <input style={inputStyleEmail} type="email" name="email" value={userInfo.email} onChange={handleChange} required />
         <label> Color </label>
@@ -169,8 +175,8 @@ const EditProfile = () => {
         <div>
           <Button type="submit" color="blue">Edit</Button>
         </div>
-      </form>
-      <Button color="red" action={handleDelete}>Delete</Button>
+      </form>}
+      {!loading && <Button color="red" action={handleDelete}>Delete</Button>}
       {errorMessage && <Error error={errorMessage} />}
     </div>
   );
