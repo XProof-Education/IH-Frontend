@@ -34,7 +34,7 @@ const Navbar = (props) => {
         ? <nav className={props.backGround ? "nav nav-background" : "nav-background-transparent"}>
             <img src={backIcon} onClick={() => navigate(-1)} alt="back"/>
           <div className="logo">
-            {user.color ? <HalfDotColor color={user.color} size="40" text={user.name} /> : <ProfileIcon />}
+            {user.color !== "false" ? <HalfDotColor color={user.color} size="40" text={user.name} /> : <ProfileIcon />}
           </div>
           </nav>
         :
