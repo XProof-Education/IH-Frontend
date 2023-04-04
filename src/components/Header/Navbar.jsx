@@ -47,7 +47,7 @@ const Navbar = (props) => {
               : <Logo color={props.color} />}
           </div>
           <div className={menuVisible ? "menu-visible" : ""}>
-            {!isLoggedIn && <DropdownMenu links={["Profile", "Log in", "Contact"]} />}
+            {!isLoggedIn && <DropdownMenu links={["Sign Up", "Log in", "Contact"]} />}
             {isLoggedIn && <DropdownMenu links={["Profile", "Log out", "Contact"]} />}
             {isLoggedIn && props.content === "profile" && <DropdownMenu links={["Home", "Log out", "Contact"]} />}
           </div>

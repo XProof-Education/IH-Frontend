@@ -6,7 +6,7 @@ export default function NotFound() {
  
   return (
     <div>
-      <p>Sorry, there is no URL called {location.pathname} in this website. You might want to <Link to="/home">go to the main site</Link></p>
+      <p>Sorry, there is no URL called {location.pathname} in this website. You might want to <Link to="/">go to the main site</Link></p>
     </div>
   )
 }
