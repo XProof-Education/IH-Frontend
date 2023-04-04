@@ -14,7 +14,7 @@ const DropdownMenu = (props) => {
           <div className="link-navbar-container" key={link}>
             {link === 'Log out'
               ? <p className="navbar-link" onClick={() => logOutUser()}>{imageLinks[i]}{link}</p>
-              : <Link to={`/${link.toLowerCase().replaceAll(' ', '')}`} className="navbar-link">{imageLinks[i]}{link}</Link>}
+              : <Link to={link === 'Home' ?  '/' : `/${link.toLowerCase().replaceAll(' ', '')}`} className="navbar-link">{imageLinks[i]}{link}</Link>}
           </div>
         )
       })}

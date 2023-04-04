@@ -10,8 +10,8 @@ import PrivateView from './views/PrivateView';
 import IsPrivate from './components/IsPrivate';
 import Profile from './views/Profile/Profile';
 import EditProfile from './views/Profile/EditProfile';
-import Camera from './views/cameraViews/Camera';
-import Photo from './views/cameraViews/Photo';
+import Camera from './views/Camera/Camera';
+import Photo from './views/Camera/Photo';
 import OperationsHistory from './views/Operations/OperationsHistory';
 import OperationDetail from './views/Operations/OperationDetail';
 import Exercises from './views/Exercises/Exercises';
@@ -24,7 +24,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<IsPrivate><Profile /></IsPrivate>} />
