@@ -1,8 +1,24 @@
-const nerdamer = require("nerdamer/all.min")
+const Algebrite = require('algebrite');
 
-const latexToEquation = (expression) => {
-    return nerdamer.convertFromLaTeX(expression).toString();
-}
+const convertLatexToText = (latex) => {
+    // Input: latex step from mathpix
+    // Output: step in algebrite valid format (@solveStep)
+    const latexReplacements = [
+      { regex: /\\frac{(.+?)}{(.+?)}/g, replacement: '($1)/($2)' },
+      { regex: /\\cdot/g, replacement: '*' },
+      { regex: /\\sqrt{(.+?)}/g, replacement: 'sqrt($1)' },
+      { regex: /(.+?)\^{(.+?)}/g, replacement: '($1)^($2)' },
+      { regex: /\\log_{(.+?)}{(.+?)}/g, replacement: 'log($2, $1)' },
+      { regex: /\\ln{(.+?)}/g, replacement: 'log($1)' }
+    ];
+  
+    let text = latex;
+    for (const { regex, replacement } of latexReplacements) {
+      text = text.replace(regex, replacement);
+    }
+  
+    return text;
+  }
 
 const stepToLatex = (step) => {
     return step.map((side, sideIndex) => side.join('')).join('=');
@@ -120,35 +136,23 @@ const colorChangedElems = (step1, step2, color = 'red') => {
     return [stepToLatex(coloredStep1), stepToLatex(coloredStep2)];
   }
 
-const extractVariables = (expression) => {
-    // Input: Nerdamer expression
-    // Output: Variable(s) of the equation 
-    // Match all single-letter alphabetical characters that are not preceded or followed by another letter
-    const variableRegex = /(?<![a-zA-Z])[a-zA-Z](?![a-zA-Z])/g; 
-    const variableMatches = expression.match(variableRegex);
-    if (variableMatches) {
-        // Convert matches to a set to remove duplicates, then convert back to an array
-        const variableSymbols = [...new Set(variableMatches)]; 
-        // Return array of variable symbols
-        return variableSymbols; 
-    }
-    return null;
-}
+const solveStep = (latexStep) => {
+    // Input: latex step from mathpix
+    // Output: Step solutions (Array if multiple). Works with imaginary numbers 
+    const step = convertLatexToText(latexStep);
+    const [leftSide, rightSide] = step.split('=');
+    const leftSideParsed = Algebrite.run(leftSide).toString();
+    const rightSideParsed = Algebrite.run(rightSide).toString();
+  
+    const equation = `${leftSideParsed} - (${rightSideParsed})`;
 
-const solveStep = (step) => {
-    // Input: Latex step expression
-    // Output: Array with steps's solutions
-    const eq = latexToEquation(step);
-    const variables = extractVariables(eq);
-    if (variables.length > 1) {
-        return undefined;
+    try {
+        const solution = Algebrite.roots(equation).toString();
+        return solution;   
+    } catch (error) {
+        return null
     }
-    const solutions = nerdamer.solve(eq, variables[0]).toString();
-    if (solutions) {
-        return solutions;
-    }
-    return null;
-}
+  }
 
 const isEqualSolutions = (solutions1, solutions2) => {
     // Input: Array of solutions of step 1 & array of solutions of step 2
@@ -225,3 +229,7 @@ const handleOperation = (operation) => {
 }
 
 export default handleOperation;
+
+// Testing
+// const steps = ['3 x+2-5 x=8 x+9', '3 x-5 x+8 x=9+2', '\\frac{3 x}{5}-\\frac{2+4 x}{3}=1', 'x=\\frac{3}{5}', '\\frac{2 x+3}{2}-\\frac{5 x+1}{2}=\\frac{4}{2}', '3x^2-15x=4(x+4)', 'x^2=-1'];
+// steps.forEach(elem => console.log(solveStep(elem)));
