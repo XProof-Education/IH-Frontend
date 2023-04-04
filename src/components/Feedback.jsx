@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-// import handleOperation from '../utils/handleOperation';
+import handleOperation from '../utils/handleOperation';
 import Latex from 'react-latex';
 import operationsService from '../services/operationsService';
 import { Link } from 'react-router-dom';
@@ -36,8 +36,8 @@ function Feedback({ operation, imageUrl }) {
     }, [prompt, operation, clouredOperation, imageUrl]);
 
     useEffect(() => {
-        // const result = handleOperation(operation);
-        const result = operation;
+        const result = handleOperation(operation);
+        // const result = operation;
         setIsCorrect(result.isCorrect);
         setColouredOperation(result.operation);
         setPrompt(result.prompt);
