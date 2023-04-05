@@ -20,7 +20,6 @@ const Exercises = () => {
         setExercises(response.teacherExercisesData);
       } else {
         const response = await exerciseAssignationsService.getAllAssignations();
-        console.log(response.findAssignation)
         setExercises(response.findAssignation)
         }
       setLoading(false);
