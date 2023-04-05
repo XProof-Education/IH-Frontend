@@ -94,9 +94,6 @@ const EditProfile = () => {
         const response = await userService.editUserData(userInfo);
         if (response.authToken) {
           removeToken();
-          storeToken(response.authToken);
-          authenticateUser();
-          navigate('/profile');
           toast.success('Profile updated', {
             position: "top-center",
             autoClose: 5000,
@@ -107,6 +104,9 @@ const EditProfile = () => {
             progress: undefined,
             theme: "light",
           });
+          storeToken(response.authToken);
+          authenticateUser();
+          navigate('/profile');
           setErrorMessage(null);
           setLoading(false);
         } else {
