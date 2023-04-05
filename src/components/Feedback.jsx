@@ -75,7 +75,7 @@ function Feedback({ operation, imageUrl }) {
             </div>}
             {clouredOperation && <div>
                 <button><Link to={'/camera'}>Take another photo</Link></button>
-                <button><Link to={'/home'}>Home</Link></button>
+                <button><Link to={'/'}>Home</Link></button>
             </div>}
         </div>
      );
