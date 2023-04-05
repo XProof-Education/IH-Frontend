@@ -99,6 +99,7 @@ const NewExercise = () => {
     } else {
       setFoundUsers([]);
     }
+    // eslint-disable-next-line
   },[query, isAssigning]);
 
   return (
