@@ -13,7 +13,6 @@ const NewExercise = () => {
     exerciseId: "",
   }
   const [exercise, setExercise] = useState(initialStateExercise);
-  // const [isExercise, setIsExercise] = useState(false);
   const [assignations, setAssignations] = useState([]);
   const [query, setQuery] = useState('');
   const [foundUsers, setFoundUsers] = useState([]);
@@ -56,38 +55,18 @@ const NewExercise = () => {
     const studentIds = assignations.map(assignation => assignation.studentId);
     try {
       const { newExerciseData } = await exercisesService.newExercise(exercise);
-      await exerciseAssignationsService.newExerciseAssignation(newExerciseData._id, {studentIds});
+      await exerciseAssignationsService.newExerciseAssignations(newExerciseData._id, {studentIds});
       navigate('/exercises');
-      // setExercise(prev => {
-      //   return {
-      //     ...prev,
-      //     exerciseId: newExerciseData._id
-      //   }
-      // });
-
     } catch (error) {
       console.error(error);
     }
   }
 
-  // const handleSubmitAssignation = async (e) => {
-  //   e.preventDefault();
-  //   const studentIds = assignations.map(assignation => assignation.studentId);
-  //   try {
-  //     await exerciseAssignationsService.newExerciseAssignation(exercise.exerciseId, {studentIds});
-  //     navigate('/exercises');
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
-
   const searchUsers = async (query) => {
     try {
       const {users} = await userService.getSearchUser(query);
-      // console.log(users)
       const assignedStudentsEmails = assignations.map(assignation => assignation.email);
       const students = users.filter(user => user.role === 'student' && !assignedStudentsEmails.includes(user.email));
-      // console.log(students)
       if (students.length === 0) {
         students.push({notFound: 'No students found by this email'})
       }
