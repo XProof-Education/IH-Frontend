@@ -19,6 +19,10 @@ class UserService {
     return this.api.get('/').then(({ data }) => data).catch(err => console.error(err));
   }
 
+  getSearchUser(query) {
+    return this.api.get(`/search?userEmail=${query}`).then(({ data }) => data).catch(err => console.error(err));
+  }
+
   editUserData(body) {
     return this.api.put('/', body).then(({ data }) => data).catch(err => console.error(err));
   }
