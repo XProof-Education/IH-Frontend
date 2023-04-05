@@ -71,8 +71,8 @@ const NewExercise = () => {
     e.preventDefault();
     const studentIds = assignations.map(assignation => assignation.studentId);
     try {
-      const assignations = await exerciseAssignationsService.newExerciseAssignation(exercise.exerciseId, studentIds);
-      console.log(assignations);
+      await exerciseAssignationsService.newExerciseAssignation(exercise.exerciseId, {studentIds});
+      navigate('/exercises');
     } catch (error) {
       console.error(error);
     }
