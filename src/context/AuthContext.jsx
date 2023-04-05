@@ -20,7 +20,6 @@ function AuthProviderWrapper(props) {
         data: token,
         directory: Directory.Data,
       });
-      console.log('Stored in mobile')
     } else {
       localStorage.setItem('authToken', token);
     }
@@ -59,7 +58,6 @@ function AuthProviderWrapper(props) {
   const authenticateUser = async () => {
     setLoading(true);
     const storedToken = await getToken();
-    console.log(`In authenticate token: ${storedToken}`)
     if (storedToken) {
       try {
         const response = await authService.me();
