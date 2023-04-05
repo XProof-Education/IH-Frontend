@@ -8,7 +8,17 @@ const ListCard = ({ props, typeData }) => {
       {props.map((prop) => {
         return (
           <div key={prop._id}>
-            <Link to={`/exercises/${prop._id}`}><img style={{ width: "100%" }} src={typeData === 'operations' ? prop.cloudinaryPhoto : prop.exerciseFile} alt="exercise" /></Link>
+            <Link to={typeData === 'exercises'
+              ? `/exercises/${prop._id}`
+              : typeData === 'studentExercises'
+              ? `/exercises/${prop.exerciseId._id}`
+              : `/operations/${prop._id}`}>
+              <img style={{ width: "100%" }} src={typeData === 'operations'
+                ? prop.cloudinaryPhoto
+                : typeData === 'studentExercises'
+                ? prop.exerciseId.exerciseFile
+                : prop.exerciseFile} alt="exercise" />
+            </Link>
           </div>
         );
       })

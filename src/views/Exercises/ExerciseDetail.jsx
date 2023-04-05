@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
-import Navbar from '../../components/Header/Navbar';
 import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth';
+import Navbar from '../../components/Header/Navbar';
 import exercisesService from '../../services/exercicesService';
 import Button from '../../components/Button';
 
 const ExerciseDetail = () => {
+  const { user } = useAuth();
   const { exerciseId } = useParams();
   const [exercise, setExercise] = useState({});
   const navigate = useNavigate();
@@ -38,10 +40,13 @@ const ExerciseDetail = () => {
       <Navbar color="#FF6230" content="editProfile" backGround="true"/>
       <h1>Single exercise</h1>
       <img style={{width:"100%"}} src={exercise.exerciseFile} alt="exercise"/>
+      {user.role === 'teacher' && 
+      <div>
       <Link to={`/edit/${exerciseId}`}><Button color="blue"> Edit </Button></Link>
-      <Button color="red" action={handleDelete}> Delete </Button>
+          <Button color="red" action={handleDelete}> Delete </Button>
+      </div>}
     </div>
   )
-  
 }
+
 export default ExerciseDetail;

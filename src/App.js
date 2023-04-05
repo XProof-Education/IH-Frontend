@@ -30,7 +30,7 @@ function App() {
         <Route path="/profile" element={<IsPrivate><Profile /></IsPrivate>} />
         <Route path="/edit-profile" element={<IsPrivate><EditProfile /></IsPrivate>} />
         <Route path="/operations-history" element={<IsPrivate><OperationsHistory /></IsPrivate>} />
-        <Route path="/operation/:operationId" element={<IsPrivate><OperationDetail /></IsPrivate>} />
+        <Route path="/operations/:operationId" element={<IsPrivate><OperationDetail /></IsPrivate>} />
         <Route path="/exercises" element={<IsPrivate><Exercises /></IsPrivate>} />
         <Route path="/exercises/:exerciseId" element={<IsPrivate><ExerciseDetail /></IsPrivate>} />
         <Route path="/new-exercise" element={<IsPrivate><NewExercise /></IsPrivate>} />
