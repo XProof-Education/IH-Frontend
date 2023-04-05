@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Navbar from '../../components/Header/Navbar';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import exercisesService from '../../services/exercicesService';
 import Button from '../../components/Button';
 
@@ -38,7 +38,7 @@ const ExerciseDetail = () => {
       <Navbar color="#FF6230" content="editProfile" backGround="true"/>
       <h1>Single exercise</h1>
       <img style={{width:"100%"}} src={exercise.exerciseFile} alt="exercise"/>
-      <Button color="blue"> Edit </Button>
+      <Link to={`/edit/${exerciseId}`}><Button color="blue"> Edit </Button></Link>
       <Button color="red" action={handleDelete}> Delete </Button>
     </div>
   )

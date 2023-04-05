@@ -27,8 +27,8 @@ class ExerciseAssignationsService {
     return this.api.post(`/${exerciseId}`, body).then(({ data }) => data).catch(err => console.error(err));
   }
 
-  editExerciseAssignation(exerciseId, body) {
-    return this.api.put(`/${exerciseId}`, body).then(({ data }) => data).catch(err => console.error(err));
+  editExerciseAssignation(assignationId, body) {
+    return this.api.put(`/${assignationId}`, body).then(({ data }) => data).catch(err => console.error(err));
   }
 
   deleteAllExerciseAssignation(exerciseId) {
