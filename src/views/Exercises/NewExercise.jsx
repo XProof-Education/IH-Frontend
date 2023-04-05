@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import exercisesService from '../../services/exercicesService';
+import userService from '../../services/userService';
 import Navbar from "../../components/Header/Navbar";
 import Button from '../../components/Button';
 
@@ -13,7 +14,8 @@ const NewExercise = () => {
   const [exercise, setExercise] = useState(initialStateExercise);
   const [isExercise, setIsExercise] = useState(false);
   const [assignations, setAssignations] = useState([]);
-  const [student, setStudent] = useState('');
+  const [query, setQuery] = useState('');
+  const [foundUsers, setFoundUsers] = useState([{}]);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -25,9 +27,24 @@ const NewExercise = () => {
     })
   }
 
-  const handleStudentChange = (e) => {
-    setStudent(e.target.value);
-    
+  const handleQueryChange = async (e) => {
+    setQuery(e.target.value);
+  }
+
+  const addStudentAssignation = (studentId, userEmail) => {
+    setAssignations(prev => [
+      ...prev,
+      {
+        exerciseId: exercise.exerciseId,
+        studentId: studentId,
+        email: userEmail,
+      }
+    ])
+  };
+
+  const removeStudentAssignation = (studentId) => {
+    const newAssignations = assignations.filter(user => user.studentId !== studentId);
+    setAssignations(newAssignations);
   }
 
   const handleSubmitExercise = async (e) => {
@@ -55,6 +72,27 @@ const NewExercise = () => {
     }
   }
 
+  const searchUsers = async (query) => {
+    try {
+      const {users} = await userService.getSearchUser(query);
+      const students = users.filter(user => user.role === 'student');
+      if (students.length === 0) {
+        students.push({notFound: 'No students found by this email'})
+      }
+      setFoundUsers(students);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    if (query) {
+      searchUsers(query);
+    } else {
+      setFoundUsers([]);
+    }
+  },[query]);
+
   return (
     <div>
       <Navbar color="#FF6230" content="editProfile" backGround="true" />
@@ -69,8 +107,28 @@ const NewExercise = () => {
           </form> 
         : <form onSubmit={handleSubmitAssignation}>
             <label>Who do you want to assign this exercise to?</label>
-            <input type="text" name="student" onChange={handleStudentChange} value={student}/>
+            <input type="text" name="student" onChange={handleQueryChange} value={query}/>
           </form>}
+      {assignations && assignations.map(user => {
+        return (
+          <div key={user.studentId}>
+            <p>{user.email}</p>
+            <Button color='red' action={() => removeStudentAssignation(user.studentId)}>Remove</Button>
+          </div>
+          )
+      })}
+      {isExercise && foundUsers && foundUsers.map(user => {
+        return (
+          <div key={user._id ? user._id : user.notFound}>
+            {user.notFound ? <p>{user.notFound}</p> 
+            : <div>
+              <h5>{user.name}</h5>
+              <p>{user.email}</p>
+              <Button color='blue' action={() => addStudentAssignation(user._id, user.email)}>Add</Button>
+            </div>}   
+          </div>
+        )
+      })}
     </div>
   )
 }
