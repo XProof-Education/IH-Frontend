@@ -13,10 +13,10 @@ const NewExercise = () => {
     exerciseId: "",
   }
   const [exercise, setExercise] = useState(initialStateExercise);
-  const [isExercise, setIsExercise] = useState(false);
+  // const [isExercise, setIsExercise] = useState(false);
   const [assignations, setAssignations] = useState([]);
   const [query, setQuery] = useState('');
-  const [foundUsers, setFoundUsers] = useState([{}]);
+  const [foundUsers, setFoundUsers] = useState([]);
   const [isAssigning, setIsAssigning] = useState(false);
   const navigate = useNavigate();
 
@@ -51,38 +51,43 @@ const NewExercise = () => {
     setAssignations(newAssignations);
   }
 
-  const handleSubmitExercise = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const studentIds = assignations.map(assignation => assignation.studentId);
     try {
       const { newExerciseData } = await exercisesService.newExercise(exercise);
-      setExercise(prev => {
-        return {
-          ...prev,
-          exerciseId: newExerciseData._id
-        }
-      });
-      setIsExercise(true);
+      await exerciseAssignationsService.newExerciseAssignation(newExerciseData._id, {studentIds});
+      navigate('/exercises');
+      // setExercise(prev => {
+      //   return {
+      //     ...prev,
+      //     exerciseId: newExerciseData._id
+      //   }
+      // });
+
     } catch (error) {
       console.error(error);
     }
   }
 
-  const handleSubmitAssignation = async (e) => {
-    e.preventDefault();
-    const studentIds = assignations.map(assignation => assignation.studentId);
-    try {
-      await exerciseAssignationsService.newExerciseAssignation(exercise.exerciseId, {studentIds});
-      navigate('/exercises');
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  // const handleSubmitAssignation = async (e) => {
+  //   e.preventDefault();
+  //   const studentIds = assignations.map(assignation => assignation.studentId);
+  //   try {
+  //     await exerciseAssignationsService.newExerciseAssignation(exercise.exerciseId, {studentIds});
+  //     navigate('/exercises');
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
 
   const searchUsers = async (query) => {
     try {
       const {users} = await userService.getSearchUser(query);
+      // console.log(users)
       const assignedStudentsEmails = assignations.map(assignation => assignation.email);
       const students = users.filter(user => user.role === 'student' && !assignedStudentsEmails.includes(user.email));
+      // console.log(students)
       if (students.length === 0) {
         students.push({notFound: 'No students found by this email'})
       }
@@ -106,28 +111,24 @@ const NewExercise = () => {
     <div>
       <Navbar color="#FF6230" content="editProfile" backGround="true" />
       <h1>New exercise</h1>
-      {!isExercise 
-        ? <form onSubmit={handleSubmitExercise}>
-            <label>Upload exercise file</label>
-            <input type="text" name="exerciseFile" onChange={handleChange} value={exercise.exerciseFile} required />
-            <label>Upload exercise solution</label>
-            <input type="text" name="solutionFile" onChange={handleChange} value={exercise.solutionFile} />
-            <Button color="blue" type="submit">Submit</Button>
-          </form> 
-        : <form onSubmit={handleSubmitAssignation}>
-            <label>Who do you want to assign this exercise to?</label>
-            <input type="text" name="student" onChange={handleQueryChange} value={query}/>
-            <Button color="blue" type="submit">Assing exercise</Button>
-          </form>}
-      {assignations && assignations.map(user => {
+      <form onSubmit={handleSubmit}>
+        <label>Upload exercise file</label>
+        <input type="text" name="exerciseFile" onChange={handleChange} value={exercise.exerciseFile} required />
+        <label>Upload exercise solution</label>
+        <input type="text" name="solutionFile" onChange={handleChange} value={exercise.solutionFile} />
+        <label>Who do you want to assign this exercise to?</label>
+        <input type="text" name="student" onChange={handleQueryChange} value={query}/>
+        <Button color="blue" type="submit">Submit exercise</Button>
+      </form> 
+      {assignations.length !== 0 && assignations.map(user => {
         return (
-          <div key={user.studentId}>
+          <div key={user.email}>
             <p>{user.email}</p>
             <Button color='red' action={() => removeStudentAssignation(user.studentId)}>Remove</Button>
           </div>
           )
       })}
-      {isExercise && foundUsers && foundUsers.map(user => {
+      {foundUsers.length !== 0 && foundUsers.map(user => {
         return (
           <div key={user._id ? user._id : user.notFound}>
             {user.notFound ? <p>{user.notFound}</p> 
