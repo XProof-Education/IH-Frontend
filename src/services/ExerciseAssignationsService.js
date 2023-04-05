@@ -23,8 +23,8 @@ class ExerciseAssignationsService {
     return this.api.get(`/${exerciseId}`).then(({ data }) => data).catch(err => console.error(err));
   }
 
-  newExerciseAssignation(assignationId, body) {
-    return this.api.post(`/${assignationId}`, body).then(({ data }) => data).catch(err => console.error(err));
+  newExerciseAssignation(exerciseId, body) {
+    return this.api.post(`/${exerciseId}`, body).then(({ data }) => data).catch(err => console.error(err));
   }
 
   editExerciseAssignation(exerciseId, body) {
