@@ -5,6 +5,7 @@ import userService from '../../services/userService';
 import Navbar from "../../components/Header/Navbar";
 import exerciseAssignationsService from '../../services/exerciseAssignationsService';
 import Button from '../../components/Button';
+import CameraIcon from '../../components/CameraIcon';
 
 const NewExercise = () => {
   const initialStateExercise = {
@@ -116,12 +117,12 @@ const NewExercise = () => {
     <div>
       <Navbar color="#FF6230" content="editProfile" backGround="true" />
       <h1>New exercise</h1>
-      <form onSubmit={handleSubmit}>
-        <label>Upload exercise file</label>
-        <input type="file" name="exerciseFile" onChange={(e) => handleFileUpload(e)} required />
+      <form onSubmit={handleSubmit} style={{display: 'flex', flexDirection: 'column', alignItems:'flex-start'}}>
+        <label htmlFor="exercise"><CameraIcon color="blue" size='24'/> Upload exercise file</label>
+        <input type="file" id="exercise" name="exerciseFile" onChange={(e) => handleFileUpload(e)} required hidden/>
         {imagePreview && <img src={imagePreview} alt="preview file" /> }
-        <label>Upload exercise solution</label>
-        <input type="file" name="solutionFile" onChange={(e) => handleFileUpload(e)} />
+        <label htmlFor="solution"><CameraIcon color="blue" size='24'/> Upload exercise solution</label>
+        <input type="file" id="solution" name="solutionFile" onChange={(e) => handleFileUpload(e)} hidden/>
         {imagePreviewSolution && <img src={imagePreviewSolution} alt="preview file" /> }
         <label>Who do you want to assign this exercise to?</label>
         <input type="text" name="student" onChange={handleQueryChange} value={query}/>
