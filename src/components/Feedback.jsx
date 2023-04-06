@@ -3,6 +3,7 @@ import handleOperation from '../utils/handleOperation';
 import Latex from 'react-latex';
 import operationsService from '../services/operationsService';
 import { Link } from 'react-router-dom';
+import filterFeedBacks from '../utils/filterFeedbacks';
 
 
 function Feedback({ operation, imageUrl }) {
@@ -10,15 +11,6 @@ function Feedback({ operation, imageUrl }) {
     const [clouredOperation, setColouredOperation] = useState(undefined);
     const [prompt, setPrompt] = useState(undefined);
     const [feedBacks, setFeedBacks] = useState(undefined);
-
-    const filterFeedBacks = (feedBacks) => {
-        const confidentFeedBacks = feedBacks.filter(elem => elem.confidence > 90);
-        if (confidentFeedBacks.length >= 1) {
-            return [confidentFeedBacks[0]];
-        } else {
-            return feedBacks;
-        }
-    }
 
     const getFeedback = useCallback(async () => {
         try {

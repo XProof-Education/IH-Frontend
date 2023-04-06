@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/Header/Navbar';
 import operationsService from '../../services/operationsService';
+import getErrorPercentage from '../../utils/progress/getErrorPercentage';
+import errorToFeedback from '../../utils/progress/errorToFeedback';
 import { Link } from 'react-router-dom';
 
 function Progress() {
   const [operations, setOperations] = useState([]);
+  const [statistics, setStatistics] = useState(undefined);
 
   const getOperations = async () => {
     try {
@@ -15,9 +18,14 @@ function Progress() {
     }
   }
 
-  useEffect (() => {
+  useEffect(() => {
     getOperations();
   }, []);
+
+  useEffect(() => {
+    const stats = getErrorPercentage(operations);
+    setStatistics(stats);
+  }, [operations]);
 
   return ( 
     <div>
