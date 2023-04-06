@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/Header/Navbar';
 import operationsService from '../../services/operationsService';
-import getErrorStatistics from '../../utils/progress/getErrorStatistics';
+import { getErrorStatistics, computeL} from '../../utils/progress/getErrorStatistics';
 import Button from '../../components/Button';
 
 function Progress() {
   const [operations, setOperations] = useState([]);
   const [statistics, setStatistics] = useState(undefined);
   const [lArray, setLArray] = useState([]);
+  const [errorArray, setErrorArray] = useState([]);
 
   const computePercentage = (number, total) => {
     return (number / total * 100).toFixed(2);
@@ -20,6 +21,10 @@ function Progress() {
     } catch (error) {
       console.error(error);
     }
+  }
+
+  const handleDetail = (l) => {
+
   }
 
   useEffect(() => {

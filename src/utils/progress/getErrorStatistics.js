@@ -61,4 +61,7 @@ const getErrorStatistics = (operations) => {
   return statistics;
 }
 
-export default getErrorStatistics;
+export {
+  getErrorStatistics,
+  computeL
+}
