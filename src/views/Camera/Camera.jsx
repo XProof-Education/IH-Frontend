@@ -24,7 +24,8 @@ function Camera() {
             if (photosInStorage.length !== 0) {
                 navigate('/camera/result');
             } else {
-                handleTakePhoto();
+                navigate('/');
+                // handleTakePhoto();
             }
         } catch (error) {
             console.error(error);
