@@ -31,7 +31,7 @@ function ErrorDetail() {
 
     for (const error in stats.errors) {
       if (parseInt(l) === computeL(error) && parseInt(error) === targetError) {
-        setTitle(stats.errors[error].feedback)
+        setTitle(stats.errors[error].feedback.split('.')[0])
         setFilteredOperations(stats.errors[error].operations)
       }
     }

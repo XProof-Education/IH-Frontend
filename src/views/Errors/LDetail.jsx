@@ -56,7 +56,7 @@ function LDetail() {
       {errors && errors.map(error => {
         return (
           <div className="error-card" key={error.error}>
-            <h5>{error.feedback}</h5>
+            <h5>{error.feedback.split('.')[0]}</h5>
             <p>{Math.floor(computePercentage(error.count, statistics.incorrect))}% of your mistakes</p>
             <Link to={`/profile/progress/${l}/${error.error}`}><Button color='blue'>See operations</Button></Link>
           </div>
