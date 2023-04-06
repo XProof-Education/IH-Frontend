@@ -8,7 +8,9 @@ function Progress() {
   const [operations, setOperations] = useState([]);
   const [statistics, setStatistics] = useState(undefined);
   const [lArray, setLArray] = useState([]);
-  const [errorArray, setErrorArray] = useState([]);
+  const [isLDetail, setIsLDetail] = useState(false);
+  const [errorsArray, setErrorsArray] = useState([]);
+  const [detailedErrors, setDetailedErrors] = useState([]);
 
   const computePercentage = (number, total) => {
     return (number / total * 100).toFixed(2);
@@ -23,8 +25,15 @@ function Progress() {
     }
   }
 
-  const handleDetail = (l) => {
-
+  const handleLDetail = (l) => {
+    if (isLDetail) {
+      setDetailedErrors([]);
+      setIsLDetail(false);
+    } else {
+      const filteredErrors = errorsArray.filter(elem => elem.L === l);
+      setDetailedErrors(filteredErrors);
+      setIsLDetail(true);
+    }
   }
 
   useEffect(() => {
@@ -33,16 +42,29 @@ function Progress() {
 
   useEffect(() => {
     const stats = getErrorStatistics(operations);
+
     const arrayOfL = [];
     for (const l in stats.L) {
       arrayOfL.push({
-        L: l,
+        L: parseInt(l),
         count: stats.L[l].count,
         feedback: stats.L[l].feedback
       });
     }
+
+    const arrayOfErrors = [];
+    for (const error in stats.errors) {
+      arrayOfErrors.push({
+        L: computeL(error),
+        error: parseInt(error),
+        count: stats.errors[error].count,
+        feedback: stats.errors[error].feedback,
+        operations: stats.errors[error].operations
+      })
+    }
     setStatistics(stats);
     setLArray(arrayOfL);
+    setErrorsArray(arrayOfErrors);
   }, [operations]);
 
   return ( 
@@ -71,7 +93,19 @@ function Progress() {
               <div className="l-card" key={elem.L}>
                 <h4>{elem.feedback}</h4>
                 <p>{Math.floor(computePercentage(elem.count, statistics.incorrect))}% of your mistakes</p>
-                <Button color='blue' action={() => handleDetail(elem.l)}>See details</Button>
+                {isLDetail ? <Button color='red' action={() => handleLDetail(elem.L)}>Hide details</Button> : <Button color='blue' action={() => handleLDetail(elem.L)}>See details</Button>}
+                {isLDetail && 
+                  <div className='error-cards'>
+                    {detailedErrors.map(error => {
+                      return (
+                        <div className="error-card" key={error.error}>
+                          <h5>{error.feedback}</h5>
+                          <p>{Math.floor(computePercentage(error.count, statistics.incorrect))}% of your mistakes</p>
+                        </div>
+                      )
+                    })}
+                  </div>
+                }
               </div>
             )
           })}
