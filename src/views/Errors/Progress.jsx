@@ -75,31 +75,6 @@ function Progress() {
           })}
         </div>}
       </div>
-                // {isLDetail === elem.L && 
-                //   <div className='error-cards'>
-                //     {detailedErrors.map(error => {
-                //       return (
-                //         <div className="error-card" key={error.error}>
-                //           <h5>{error.feedback}</h5>
-                //           <p>{Math.floor(computePercentage(error.count, statistics.incorrect))}% of your mistakes</p>
-                //           {isErrorDetail === error.error ? <Button color='red' action={() => handleErrorDetail(error.error)}>Hide operations</Button> : <Button color='blue' action={() => handleErrorDetail(error.error)}>See operations</Button>}
-                //           {isErrorDetail === error.error &&
-                //             <div className='operation-cards'>
-                //               {error.operations.map(operation => {
-                //                 return (
-                //                   <div className="operation-card" key={operation._id}>
-                //                     <img width='100px' src={operation.cloudinaryPhoto} alt="Operation detail" />
-                //                     <Link to={`/operations/${operation._id}`}><Button color='blue'>See operation</Button></Link>
-                //                   </div>
-                //                 )
-                //               })}
-                //             </div>
-                //           }
-                //         </div>
-                //       )
-                //     })}
-                //   </div>
-                // }  
    );
 }
 
