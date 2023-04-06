@@ -1,5 +1,5 @@
 import errorToFeedback from "./errorToFeedback";
-import lToFeedback from "./LToFeedback";
+import lToFeedback from "./lToFeedback";
 
 const computeL = (errorNumber) => {
   let l;
