@@ -18,7 +18,6 @@ import Exercises from './views/Exercises/Exercises';
 import ExerciseDetail from './views/Exercises/ExerciseDetail';
 import NewExercise from './views/Exercises/NewExercise';
 import EditExercise from './views/Exercises/EditExercise';
-import FrequentErrors from './views/FrequentErrors';
 import Progress from './views/Errors/Progress';
 import LDetail from './views/Errors/LDetail';
 import ErrorDetail from './views/Errors/ErrorDetail';
@@ -41,7 +40,6 @@ function App() {
         <Route path="/exercises/:exerciseId" element={<IsPrivate><ExerciseDetail /></IsPrivate>} />
         <Route path="/new-exercise" element={<IsPrivate><NewExercise /></IsPrivate>} />
         <Route path="/edit/:exerciseId" element={<IsPrivate><EditExercise /></IsPrivate>} />
-        <Route path="/frequent-errors" element={<IsPrivate><FrequentErrors /></IsPrivate>} />
         <Route path="/private" element={<IsPrivate><PrivateView /></IsPrivate>} />
         <Route path="/error" element={<ErrorPage />} />
         <Route path='/camera' element={<Camera />} />
