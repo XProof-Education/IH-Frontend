@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/Header/Navbar';
 import ListCard from '../../components/Cards/ListCard';
 import operationsService from '../../services/operationsService';
+import { Link } from 'react-router-dom';
 
 const OperationsHistory = () => {
   const [operations, setOperations] = useState([]);
@@ -23,6 +24,7 @@ const OperationsHistory = () => {
     <div>
       <Navbar color="#FF6230" content="editProfile" backGround="true"/>
       <h1>My Operations history</h1>
+      <Link to={'/profile/progress'}>See your progress</Link>
       <ListCard props={operations} typeData="operations"/>
       
     
