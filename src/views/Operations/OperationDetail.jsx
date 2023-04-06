@@ -6,9 +6,15 @@ import Latex from 'react-latex';
 import Button from '../../components/Button';
 
 
-const OperationDetail = () => {
+const OperationDetail = (props) => {
   const navigate = useNavigate();
-  const { operationId } = useParams();
+  const params = useParams();
+  let operationId;
+  if (props.operationId) {
+    operationId = props.operationId;
+  } else {
+    operationId = params.operationId
+  }
   const [operation, setOperation] = useState(null);
 
   const getOneOperation = async () => {
