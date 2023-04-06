@@ -9,11 +9,15 @@ const Button = (props) => {
 
   const styleButton = {
     borderRadius: "20px",
-    border: `1px solid ${props.color === "blue" ? "#3073D7" : props.color === "red" ? "#FF6230" : "white"}`,
+    border: `1px solid ${props.color === "blue" ? "#61D4F7" : props.color === "pink" ? "#E7327B" : props.color === "yellow" ? "#F7CF5C" : props.color === "purple" ? "#420ED0" : "white" }`,
     backgroundColor: hovered ? props.color === "blue"
-      ? "#3073D7"
-      : props.color === "red"
-        ? "red"
+      ? "#61D4F7"
+      : props.color === "pink"
+        ? "#E7327B"
+        : props.color === "purple"
+        ? "#420ED0"
+          : props.color === "yellow"
+          ? "#F7CF5C"
         : "white"
       : "transparent",
     color: hovered ? "#fff" : "inherit",

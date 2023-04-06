@@ -132,7 +132,7 @@ const NewExercise = () => {
         return (
           <div key={user.email}>
             <p>{user.email}</p>
-            <Button color='red' action={() => removeStudentAssignation(user.studentId)}>Remove</Button>
+            <Button color='pink' action={() => removeStudentAssignation(user.studentId)}>Remove</Button>
           </div>
           )
       })}

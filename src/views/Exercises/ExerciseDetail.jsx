@@ -43,8 +43,8 @@ const ExerciseDetail = () => {
       {exercise.solutionFile && <img style={{ width: "100%" }} src={exercise.solutionFile} alt="exercise solution" />}
       {user.role === 'teacher' && 
       <div>
-      <Link to={`/edit/${exerciseId}`}><Button color="blue"> Edit </Button></Link>
-          <Button color="red" action={handleDelete}> Delete </Button>
+      <Link to={`/edit/${exerciseId}`}><Button color="yellow"> Edit </Button></Link>
+          <Button color="pink" action={handleDelete}> Delete </Button>
       </div>}
     </div>
   )

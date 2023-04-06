@@ -51,7 +51,7 @@ const OperationDetail = (props) => {
           {operation.isCorrect ? <p>This operation is correct. Good job!</p> : <p>{operation.feedBacks[0].text}</p>}
         </div>
       }
-      <Button color="red" action={handleDelete}>Delete</Button>
+      <Button color="pink" action={handleDelete}>Delete</Button>
     </div>
   )
   
