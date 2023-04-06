@@ -20,6 +20,7 @@ import NewExercise from './views/Exercises/NewExercise';
 import EditExercise from './views/Exercises/EditExercise';
 import FrequentErrors from './views/FrequentErrors';
 import Progress from './views/Errors/Progress';
+import LDetail from './views/Errors/LDetail';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<IsPrivate><Profile /></IsPrivate>} />
         <Route path="/profile/progress" element={<IsPrivate><Progress /></IsPrivate>} />
+        <Route path="/profile/progress/:l" element={<IsPrivate><LDetail /></IsPrivate>} />
         <Route path="/edit-profile" element={<IsPrivate><EditProfile /></IsPrivate>} />
         <Route path="/operations-history" element={<IsPrivate><OperationsHistory /></IsPrivate>} />
         <Route path="/operations/:operationId" element={<IsPrivate><OperationDetail /></IsPrivate>} />

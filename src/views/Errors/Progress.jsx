@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/Header/Navbar';
 import operationsService from '../../services/operationsService';
-import { getErrorStatistics, computeL} from '../../utils/progress/getErrorStatistics';
+import { getErrorStatistics } from '../../utils/progress/getErrorStatistics';
 import Button from '../../components/Button';
 import { Link } from 'react-router-dom';
 
@@ -9,10 +9,6 @@ function Progress() {
   const [operations, setOperations] = useState([]);
   const [statistics, setStatistics] = useState(undefined);
   const [lArray, setLArray] = useState([]);
-  const [isLDetail, setIsLDetail] = useState(null);
-  const [errorsArray, setErrorsArray] = useState([]);
-  const [detailedErrors, setDetailedErrors] = useState([]);
-  const [isErrorDetail, setIsErrorDetail] = useState(false);
 
   const computePercentage = (number, total) => {
     return (number / total * 100).toFixed(2);
@@ -25,22 +21,6 @@ function Progress() {
     } catch (error) {
       console.error(error);
     }
-  }
-
-  const handleLDetail = (l) => {
-    if (isLDetail) {
-      setDetailedErrors([]);
-      setIsLDetail(null);
-    } else {
-      const filteredErrors = errorsArray.filter(elem => elem.L === l);
-      console.log(filteredErrors);
-      setDetailedErrors(filteredErrors);
-      setIsLDetail(l);
-    }
-  }
-
-  const handleErrorDetail = () => {
-    setIsErrorDetail(prev => !prev);
   }
 
   useEffect(() => {
@@ -59,19 +39,8 @@ function Progress() {
       });
     }
 
-    const arrayOfErrors = [];
-    for (const error in stats.errors) {
-      arrayOfErrors.push({
-        L: computeL(error),
-        error: parseInt(error),
-        count: stats.errors[error].count,
-        feedback: stats.errors[error].feedback,
-        operations: stats.errors[error].operations
-      })
-    }
     setStatistics(stats);
     setLArray(arrayOfL);
-    setErrorsArray(arrayOfErrors);
   }, [operations]);
 
   return ( 
@@ -100,37 +69,37 @@ function Progress() {
               <div className="l-card" key={elem.L}>
                 <h4>{elem.feedback}</h4>
                 <p>{Math.floor(computePercentage(elem.count, statistics.incorrect))}% of your mistakes</p>
-                {isLDetail === elem.L ? <Button color='red' action={() => handleLDetail(elem.L)}>Hide details</Button> : <Button color='blue' action={() => handleLDetail(elem.L)}>See details</Button>}
-                {isLDetail === elem.L && 
-                  <div className='error-cards'>
-                    {detailedErrors.map(error => {
-                      return (
-                        <div className="error-card" key={error.error}>
-                          <h5>{error.feedback}</h5>
-                          <p>{Math.floor(computePercentage(error.count, statistics.incorrect))}% of your mistakes</p>
-                          {isErrorDetail ? <Button color='red' action={handleErrorDetail}>Hide operations</Button> : <Button color='blue' action={handleErrorDetail}>See operations</Button>}
-                          {isErrorDetail &&
-                            <div className='operation-cards'>
-                              {error.operations.map(operation => {
-                                return (
-                                  <div className="operation-card" key={operation._id}>
-                                    <img src={operation.cloudinaryPhoto} alt="Operation detail" />
-                                    <Link to={`/operations/${operation._id}`}><Button color='blue'>See operation</Button></Link>
-                                  </div>
-                                )
-                              })}
-                            </div>
-                          }
-                        </div>
-                      )
-                    })}
-                  </div>
-                }
+                <Link to={`/profile/progress/${elem.L}`}><Button color='blue'>See details</Button></Link>
               </div>
-            )
+              )
           })}
         </div>}
-    </div>
+      </div>
+                // {isLDetail === elem.L && 
+                //   <div className='error-cards'>
+                //     {detailedErrors.map(error => {
+                //       return (
+                //         <div className="error-card" key={error.error}>
+                //           <h5>{error.feedback}</h5>
+                //           <p>{Math.floor(computePercentage(error.count, statistics.incorrect))}% of your mistakes</p>
+                //           {isErrorDetail === error.error ? <Button color='red' action={() => handleErrorDetail(error.error)}>Hide operations</Button> : <Button color='blue' action={() => handleErrorDetail(error.error)}>See operations</Button>}
+                //           {isErrorDetail === error.error &&
+                //             <div className='operation-cards'>
+                //               {error.operations.map(operation => {
+                //                 return (
+                //                   <div className="operation-card" key={operation._id}>
+                //                     <img width='100px' src={operation.cloudinaryPhoto} alt="Operation detail" />
+                //                     <Link to={`/operations/${operation._id}`}><Button color='blue'>See operation</Button></Link>
+                //                   </div>
+                //                 )
+                //               })}
+                //             </div>
+                //           }
+                //         </div>
+                //       )
+                //     })}
+                //   </div>
+                // }  
    );
 }
 
