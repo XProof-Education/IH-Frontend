@@ -48,7 +48,7 @@ const OperationDetail = (props) => {
       {operation && 
        <div className='equation'> 
           <Latex>{`$$${operation.mathLatexSimplified}$$`}</Latex>
-          <p>{operation.feedBacks[0].text}</p>
+          {operation.isCorrect ? <p>This operation is correct. Good job!</p> : <p>{operation.feedBacks[0].text}</p>}
         </div>
       }
       <Button color="red" action={handleDelete}>Delete</Button>
