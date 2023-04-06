@@ -19,6 +19,7 @@ const NewExercise = () => {
   const [isAssigning, setIsAssigning] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
   const [imagePreviewSolution, setImagePreviewSolution] = useState(null);
+  const [error, setError] = useState(false);
   const navigate = useNavigate();
 
   // const handleChange = (e) => {
@@ -54,6 +55,7 @@ const NewExercise = () => {
 
   const addStudentAssignation = (studentId, userEmail) => {
     setIsAssigning(true);
+    setError(false);
     setAssignations(prev => [
       ...prev,
       {
@@ -74,9 +76,13 @@ const NewExercise = () => {
     e.preventDefault();
     const studentIds = assignations.map(assignation => assignation.studentId);
     try {
-      const { newExerciseData } = await exercisesService.newExercise(exercise);
-      await exerciseAssignationsService.newExerciseAssignations(newExerciseData._id, {studentIds});
-      navigate('/exercises');
+      if (studentIds.length !== 0) {
+        const { newExerciseData } = await exercisesService.newExercise(exercise);
+        await exerciseAssignationsService.newExerciseAssignations(newExerciseData._id, { studentIds });
+        navigate('/exercises');
+      } else {
+        setError("Please assign this exercise");
+      }
     } catch (error) {
       console.error(error);
     }
@@ -129,6 +135,7 @@ const NewExercise = () => {
           </div>
           )
       })}
+      {error && <p>Please assign this exercise</p>}
       {foundUsers.length !== 0 && foundUsers.map(user => {
         return (
           <div key={user._id ? user._id : user.notFound}>

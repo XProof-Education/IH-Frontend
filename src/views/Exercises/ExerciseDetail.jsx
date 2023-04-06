@@ -39,7 +39,8 @@ const ExerciseDetail = () => {
     <div>
       <Navbar color="#FF6230" content="editProfile" backGround="true"/>
       <h1>Single exercise</h1>
-      <img style={{width:"100%"}} src={exercise.exerciseFile} alt="exercise"/>
+      <img style={{ width: "100%" }} src={exercise.exerciseFile} alt="exercise" />
+      {exercise.solutionFile && <img style={{ width: "100%" }} src={exercise.solutionFile} alt="exercise solution" />}
       {user.role === 'teacher' && 
       <div>
       <Link to={`/edit/${exerciseId}`}><Button color="blue"> Edit </Button></Link>
