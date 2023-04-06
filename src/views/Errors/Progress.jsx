@@ -3,6 +3,7 @@ import Navbar from '../../components/Header/Navbar';
 import operationsService from '../../services/operationsService';
 import { getErrorStatistics, computeL} from '../../utils/progress/getErrorStatistics';
 import Button from '../../components/Button';
+import { Link } from 'react-router-dom';
 
 function Progress() {
   const [operations, setOperations] = useState([]);
@@ -11,6 +12,7 @@ function Progress() {
   const [isLDetail, setIsLDetail] = useState(false);
   const [errorsArray, setErrorsArray] = useState([]);
   const [detailedErrors, setDetailedErrors] = useState([]);
+  const [isErrorDetail, setIsErrorDetail] = useState(false);
 
   const computePercentage = (number, total) => {
     return (number / total * 100).toFixed(2);
@@ -31,9 +33,14 @@ function Progress() {
       setIsLDetail(false);
     } else {
       const filteredErrors = errorsArray.filter(elem => elem.L === l);
+      console.log(filteredErrors);
       setDetailedErrors(filteredErrors);
       setIsLDetail(true);
     }
+  }
+
+  const handleErrorDetail = () => {
+    setIsErrorDetail(prev => !prev);
   }
 
   useEffect(() => {
@@ -101,6 +108,19 @@ function Progress() {
                         <div className="error-card" key={error.error}>
                           <h5>{error.feedback}</h5>
                           <p>{Math.floor(computePercentage(error.count, statistics.incorrect))}% of your mistakes</p>
+                          {isErrorDetail ? <Button color='red' action={handleErrorDetail}>Hide operations</Button> : <Button color='blue' action={handleErrorDetail}>See operations</Button>}
+                          {isErrorDetail &&
+                            <div className='operation-cards'>
+                              {error.operations.map(operation => {
+                                return (
+                                  <div className="operation-card" key={operation._id}>
+                                    <img src={operation.cloudinaryPhoto} alt="Operation detail" />
+                                    <Link to={`/operations/${operation._id}`}><Button color='blue'>See operation</Button></Link>
+                                  </div>
+                                )
+                              })}
+                            </div>
+                          }
                         </div>
                       )
                     })}
