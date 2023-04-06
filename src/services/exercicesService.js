@@ -27,6 +27,10 @@ class ExercicesService {
     return this.api.post('/', body).then(({ data }) => data).catch(err => console.error(err));
   }
 
+  uploadExerciseFile(file) {
+    return this.api.post('/upload', file).then(({ data }) => data).catch(err => console.error(err));
+  }
+
   editExercise(exerciseId, body) {
     return this.api.put(`/${exerciseId}`, body).then(({ data }) => data).catch(err => console.error(err));
   }

@@ -17,19 +17,39 @@ const NewExercise = () => {
   const [query, setQuery] = useState('');
   const [foundUsers, setFoundUsers] = useState([]);
   const [isAssigning, setIsAssigning] = useState(false);
+  const [imagePreview, setImagePreview] = useState(null);
+  const [imagePreviewSolution, setImagePreviewSolution] = useState(null);
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    setExercise(prev => {
-      return {
-        ...prev,
-        [e.target.name] : e.target.value
-      }
-    })
-  }
+  // const handleChange = (e) => {
+  //   setExercise(prev => {
+  //     return {
+  //       ...prev,
+  //       [e.target.name] : e.target.value
+  //     }
+  //   })
+  // }
 
   const handleQueryChange = async (e) => {
     setQuery(e.target.value);
+  }
+
+  const handleFileUpload = async (e) => {
+    const uploadData = new FormData();
+    uploadData.append('imageUrl', e.target.files[0]);
+    try {
+      const response = await exercisesService.uploadExerciseFile(uploadData);
+      setExercise(prev => {
+        return {
+          ...prev,
+          [e.target.name]: response.fileUrl
+        }
+      })
+    // eslint-disable-next-line
+     {e.target.name === "exerciseFile" ? setImagePreview(response.fileUrl) : setImagePreviewSolution(response.fileUrl)} ;
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   const addStudentAssignation = (studentId, userEmail) => {
@@ -92,9 +112,11 @@ const NewExercise = () => {
       <h1>New exercise</h1>
       <form onSubmit={handleSubmit}>
         <label>Upload exercise file</label>
-        <input type="text" name="exerciseFile" onChange={handleChange} value={exercise.exerciseFile} required />
+        <input type="file" name="exerciseFile" onChange={(e) => handleFileUpload(e)} required />
+        {imagePreview && <img src={imagePreview} alt="preview file" /> }
         <label>Upload exercise solution</label>
-        <input type="text" name="solutionFile" onChange={handleChange} value={exercise.solutionFile} />
+        <input type="file" name="solutionFile" onChange={(e) => handleFileUpload(e)} />
+        {imagePreviewSolution && <img src={imagePreviewSolution} alt="preview file" /> }
         <label>Who do you want to assign this exercise to?</label>
         <input type="text" name="student" onChange={handleQueryChange} value={query}/>
         <Button color="blue" type="submit">Submit exercise</Button>
