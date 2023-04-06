@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Navbar from '../../components/Header/Navbar';
 import operationsService from '../../services/operationsService';
 import { getErrorStatistics, computeL} from '../../utils/progress/getErrorStatistics';
@@ -9,7 +9,7 @@ function Progress() {
   const [operations, setOperations] = useState([]);
   const [statistics, setStatistics] = useState(undefined);
   const [lArray, setLArray] = useState([]);
-  const [isLDetail, setIsLDetail] = useState(false);
+  const [isLDetail, setIsLDetail] = useState(null);
   const [errorsArray, setErrorsArray] = useState([]);
   const [detailedErrors, setDetailedErrors] = useState([]);
   const [isErrorDetail, setIsErrorDetail] = useState(false);
@@ -30,12 +30,12 @@ function Progress() {
   const handleLDetail = (l) => {
     if (isLDetail) {
       setDetailedErrors([]);
-      setIsLDetail(false);
+      setIsLDetail(null);
     } else {
       const filteredErrors = errorsArray.filter(elem => elem.L === l);
       console.log(filteredErrors);
       setDetailedErrors(filteredErrors);
-      setIsLDetail(true);
+      setIsLDetail(l);
     }
   }
 
@@ -100,8 +100,8 @@ function Progress() {
               <div className="l-card" key={elem.L}>
                 <h4>{elem.feedback}</h4>
                 <p>{Math.floor(computePercentage(elem.count, statistics.incorrect))}% of your mistakes</p>
-                {isLDetail ? <Button color='red' action={() => handleLDetail(elem.L)}>Hide details</Button> : <Button color='blue' action={() => handleLDetail(elem.L)}>See details</Button>}
-                {isLDetail && 
+                {isLDetail === elem.L ? <Button color='red' action={() => handleLDetail(elem.L)}>Hide details</Button> : <Button color='blue' action={() => handleLDetail(elem.L)}>See details</Button>}
+                {isLDetail === elem.L && 
                   <div className='error-cards'>
                     {detailedErrors.map(error => {
                       return (
