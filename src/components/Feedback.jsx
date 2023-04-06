@@ -3,6 +3,7 @@ import handleOperation from '../utils/handleOperation';
 import Latex from 'react-latex';
 import operationsService from '../services/operationsService';
 import { Link } from 'react-router-dom';
+import filterFeedBacks from '../utils/filterFeedbacks';
 
 
 function Feedback({ operation, imageUrl }) {
@@ -11,29 +12,23 @@ function Feedback({ operation, imageUrl }) {
     const [prompt, setPrompt] = useState(undefined);
     const [feedBacks, setFeedBacks] = useState(undefined);
 
-    const filterFeedBacks = (feedBacks) => {
-        const confidentFeedBacks = feedBacks.filter(elem => elem.confidence > 90);
-        if (confidentFeedBacks.length >= 1) {
-            return [confidentFeedBacks[0]];
-        } else {
-            return feedBacks;
-        }
-    }
-
     const getFeedback = useCallback(async () => {
         try {
             const response = await operationsService.newOperation({
                 prompt: prompt,
                 mathLatex: operation.join(' \\\\ '),
                 mathLatexSimplified: clouredOperation.join(' \\\\ '),
-                cloudinaryPhoto: imageUrl
+                cloudinaryPhoto: imageUrl,
+                isCorrect: isCorrect
             });
-            const filteredFeedBacks = filterFeedBacks(response.newMathOperation.feedBacks);
-            setFeedBacks(filteredFeedBacks);
+            if (response.newMathOperation.feedBacks) {
+                const filteredFeedBacks = filterFeedBacks(response.newMathOperation.feedBacks);
+                setFeedBacks(filteredFeedBacks);
+            }
         } catch (error) {
             console.error(error);
         }
-    }, [prompt, operation, clouredOperation, imageUrl]);
+    }, [prompt, operation, clouredOperation, imageUrl, isCorrect]);
 
     useEffect(() => {
         const result = handleOperation(operation);
@@ -44,7 +39,7 @@ function Feedback({ operation, imageUrl }) {
     }, [operation]);
 
     useEffect(() => {
-        if (!isCorrect && clouredOperation !== undefined && prompt !== undefined) {
+        if (isCorrect !== undefined && clouredOperation !== undefined && prompt !== undefined) {
             getFeedback();
         }
     }, [isCorrect, clouredOperation, prompt, getFeedback]);
