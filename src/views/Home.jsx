@@ -14,7 +14,7 @@ export default function Home() {
       <Navbar color="blue"/>
       <h1>Home</h1>
       <Slider images={[ins1, ins2, ins3]} />
-      <Link to={'/camera'}><CameraIcon size='70px' color='pink' /></Link>
+      <CameraIcon size='70px' color='pink' />
     </div>
   )
 }
