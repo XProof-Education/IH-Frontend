@@ -4,11 +4,24 @@ import operationsService from '../../services/operationsService';
 import { getErrorStatistics, computeL } from '../../utils/progress/getErrorStatistics';
 import { useParams } from 'react-router-dom';
 import lToFeedback from '../../utils/progress/lToFeedback';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Button from '../../components/Button';
+import filterOperations from '../../utils/filterOperationsByTime';
 
 function LDetail() {
   const { l } = useParams();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const timeFilterQuery = searchParams.get('timeFilter');
+  // eslint-disable-next-line
+  const [timeFilter, setTimeFilter] = useState(timeFilterQuery);
+  const timeFilterText = {
+    'all': 'all operations',
+    'today' : 'operations from today',
+    'yesterday': 'operations from yesterday',
+    'lastWeek' : 'operations from last week',
+    'lastMonth': 'operations from last month'
+  }
   const title = lToFeedback(l);
   const [operations, setOperations] = useState([]);
   const [statistics, setStatistics] = useState(undefined);
@@ -21,7 +34,8 @@ function LDetail() {
   const getOperations = async () => {
     try {
       const response = await operationsService.getAllOperations();
-      setOperations(response.mathOperations);
+      const filteredOperations = filterOperations(response.mathOperations, timeFilter);
+      setOperations(filteredOperations);    
     } catch (error) {
       console.error(error);
     }
@@ -29,6 +43,7 @@ function LDetail() {
 
   useEffect(() => {
     getOperations();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -53,12 +68,13 @@ function LDetail() {
     <div>
       <Navbar color="#FF6230" content="editProfile" backGround="true"/>
       <h1>{title}</h1>
+      <p>Viewing {timeFilterText[timeFilter]}</p>
       {errors && errors.map(error => {
         return (
           <div className="error-card" key={error.error}>
             <h5>{error.feedback.split('.')[0]}</h5>
             <p>{Math.floor(computePercentage(error.count, statistics.incorrect))}% of your mistakes</p>
-            <Link to={`/profile/progress/${l}/${error.error}`}><Button color='blue'>See operations</Button></Link>
+            <Link to={`/profile/progress/${l}/${error.error}?timeFilter=${timeFilter}`}><Button color='blue'>See operations</Button></Link>
           </div>
         )
       })}

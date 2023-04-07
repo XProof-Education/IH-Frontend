@@ -3,19 +3,33 @@ import Navbar from '../../components/Header/Navbar';
 import operationsService from '../../services/operationsService';
 import { getErrorStatistics, computeL } from '../../utils/progress/getErrorStatistics';
 import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Button from '../../components/Button';
+import filterOperations from '../../utils/filterOperationsByTime';
 
 function ErrorDetail() {
   const { l, error } = useParams();
-  const [title, setTitle] = useState('')
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const timeFilterQuery = searchParams.get('timeFilter');
+  // eslint-disable-next-line
+  const [timeFilter, setTimeFilter] = useState(timeFilterQuery);
+  const timeFilterText = {
+    'all': 'all operations',
+    'today' : 'operations from today',
+    'yesterday': 'operations from yesterday',
+    'lastWeek' : 'operations from last week',
+    'lastMonth': 'operations from last month'
+  }
+  const [title, setTitle] = useState('');
   const [operations, setOperations] = useState([]);
   const [filteredOperations, setFilteredOperations] = useState([]);
 
   const getOperations = async () => {
     try {
       const response = await operationsService.getAllOperations();
-      setOperations(response.mathOperations);
+      const timeFilteredOperations = filterOperations(response.mathOperations, timeFilter);
+      setOperations(timeFilteredOperations);
     } catch (error) {
       console.error(error);
     }
@@ -23,6 +37,7 @@ function ErrorDetail() {
 
   useEffect(() => {
     getOperations();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -40,6 +55,7 @@ function ErrorDetail() {
     <div>
       <Navbar color="#FF6230" content="editProfile" backGround="true"/>
       <h3>{title}</h3>
+      <p>Viewing {timeFilterText[timeFilter]}</p>
       {filteredOperations && filteredOperations.map(operation => {
         return (
           <div className="operation-card" key={operation._id}>

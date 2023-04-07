@@ -10,10 +10,10 @@ function Progress() {
   const [operations, setOperations] = useState([]);
   const [statistics, setStatistics] = useState(undefined);
   const [lArray, setLArray] = useState([]);
-  const [filterType, setFilterType] = useState('all');
+  const [timeFilter, setTimeFilter] = useState('all');
 
   const handleFilterChange = (e) => {
-    setFilterType(e.target.value);
+    setTimeFilter(e.target.value);
   };  
 
   const computePercentage = (number, total) => {
@@ -28,7 +28,7 @@ function Progress() {
   const getOperations = async () => {
     try {
       const response = await operationsService.getAllOperations();
-      const filteredOperations = filterOperations(response.mathOperations, filterType);
+      const filteredOperations = filterOperations(response.mathOperations, timeFilter);
       setOperations(filteredOperations);
     } catch (error) {
       console.error(error);
@@ -38,7 +38,7 @@ function Progress() {
   useEffect(() => {
     getOperations();
     // eslint-disable-next-line
-  }, [filterType]);
+  }, [timeFilter]);
 
   useEffect(() => {
     const stats = getErrorStatistics(operations);
@@ -60,7 +60,7 @@ function Progress() {
     <div>
       <Navbar color="#FF6230" content="editProfile" backGround="true"/>
       <h1>Your Progress</h1>
-      <select value={filterType} onChange={handleFilterChange}>
+      <select value={timeFilter} onChange={handleFilterChange}>
         <option value="all">All operations</option>
         <option value="today">View operations from today</option>
         <option value="yesterday">View operations from yesterday</option>
@@ -93,7 +93,7 @@ function Progress() {
               <div className="l-card" key={elem.L}>
                 <h4>{elem.feedback}</h4>
                 <p>{Math.floor(computePercentage(elem.count, statistics.incorrect))}% of your mistakes</p>
-                <Link to={`/profile/progress/${elem.L}`}><Button color='blue'>See details</Button></Link>
+                <Link to={`/profile/progress/${elem.L}?timeFilter=${timeFilter}`}><Button color='blue'>See details</Button></Link>
               </div>
               )
           })}
