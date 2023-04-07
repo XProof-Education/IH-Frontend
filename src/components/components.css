@@ -58,29 +58,16 @@
 
 /*--------------------INSTRUCTIONS-------------------------*/
 
-
-.slider-track {
-  position: relative;
-  width: 100%;
-  height: 300px;
-  overflow: hidden;
+.buttonR {
+  position: absolute;
+  right: 0;
+  z-index: 2;
+  margin-top: 17rem;
 }
 
-.slider-images {
-  display: flex;
-  width: calc(100% * 4);
-  height: 100%;
-  transition: transform 0.3s ease-in-out;
-}
-
-.slider-image {
-  flex: 1 0 auto;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  cursor: grab;
-}
-
-.slider-image.active {
-  cursor: grabbing;
+.buttonL {
+  position: absolute;
+  left: 0;
+  z-index: 2;
+  margin-top: 17rem;
 }

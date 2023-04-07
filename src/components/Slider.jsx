@@ -2,95 +2,37 @@ import React, { useState, useRef, useEffect } from "react";
 import './components.css';
 
 function Slider({ images }) {
-   const [activeIndex, setActiveIndex] = useState(0);
-  const [dragging, setDragging] = useState(false);
-  const [startX, setStartX] = useState(null);
-  const trackRef = useRef(null);
-  const minDragWidth = 50;
-
-  const handleMouseDown = (event) => {
-    event.preventDefault();
-    setDragging(true);
-    setStartX(event.pageX);
-  };
-
-  const handleTouchStart = (event) => {
-    event.preventDefault();
-    setDragging(true);
-    setStartX(event.touches[0].pageX);
-  };
-
-  const handleMouseMove = (event) => {
-    if (dragging) {
-      const dx = event.pageX - startX;
-      if (dx < -minDragWidth) {
-        setActiveIndex(Math.min(activeIndex + 1, images.length - 1));
-        setStartX(startX - minDragWidth);
-      } else if (dx > minDragWidth) {
-        setActiveIndex(Math.max(activeIndex - 1, 0));
-        setStartX(startX + minDragWidth);
-      }
-    }
-  };
-
-  const handleTouchMove = (event) => {
-    if (dragging) {
-      const dx = event.touches[0].pageX - startX;
-      if (dx < -minDragWidth) {
-        setActiveIndex(Math.min(activeIndex + 1, images.length - 1));
-        setStartX(startX - minDragWidth);
-      } else if (dx > minDragWidth) {
-        setActiveIndex(Math.max(activeIndex - 1, 0));
-        setStartX(startX + minDragWidth);
-      }
-    }
-  };
-
-  const handleMouseUp = () => {
-    setDragging(false);
-  };
-
-  const handleTouchEnd = () => {
-    setDragging(false);
-  };
-
+const randomNum = Math.floor(Math.random() * 4);
+  const [indexImg, setIndexImg] = useState(randomNum);
+  const [image, setImage] = useState(images[indexImg]);
+  
   useEffect(() => {
-    if (dragging) {
-      document.addEventListener("mousemove", handleMouseMove, { passive: false });
-      document.addEventListener("mouseup", handleMouseUp, { passive: false });
-      document.addEventListener("touchmove", handleTouchMove, { passive: false });
-      document.addEventListener("touchend", handleTouchEnd, { passive: false });
+    setImage(images[indexImg])
+  }, [images, indexImg])
+
+  const handleLeftButton = () => {
+    if (indexImg > 0) {
+      setIndexImg(prev => prev - 1)
     } else {
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseup", handleMouseUp);
-      document.removeEventListener("touchmove", handleTouchMove);
-      document.removeEventListener("touchend", handleTouchEnd);
+      setIndexImg(images.length - 1)
     }
-    // eslint-disable-next-line
-  }, [dragging]);
+  };
+
+  const handleRigthButton = () => {
+    if (indexImg < images.length - 1) {
+      setIndexImg(prev => prev + 1)
+    } else {
+      setIndexImg(0)
+    }
+  };
 
   return (
-    <div
-      ref={trackRef}
-      className="slider-track"
-      onMouseDown={handleMouseDown}
-      onTouchStart={handleTouchStart}
-    >
-      <div
-        className="slider-images"
-        style={{ transform: `translateX(-${activeIndex * 100}%)` }}
-      >
-        {images.map((image, index) => (
-          <img
-            key={index}
-            src={image}
-            alt={`Slider ${index}`}
-            className="slider-image"
-          />
-        ))}
-      </div>
-    </div>
-  );
+    <section className="section-carousel">
+      <button className="buttonL" onClick={handleLeftButton}>◀︎</button>
+      <img className="carousel-image" src={image} alt="people" style={{width: "100%"}} />
+      <button className="buttonR" onClick={handleRigthButton}>▶︎</button>
+    </section>
+  )
 }
 
 export default Slider;
