@@ -40,9 +40,19 @@ const EditProfile = () => {
     getUserInfo();
   }, []);
 
-  // useEffect(() => {
-  //   isValid !== true ? setErrorMessage(errorMessage) : setErrorMessage(null);
-  // }, [errorMessage, isValid]);
+  useEffect(() => {
+    if (isValid.name === false) {
+      setErrorMessage("Name just allows letters")
+    } else if (isValid.lastName === false) {
+      setErrorMessage("Lastname just allows letters")
+    } else if (isValid.color === false) {
+      setErrorMessage("Choose between pink, yellow or blue colors")
+    } else if (isValid.email === false) {
+      setErrorMessage("Invalid email format")
+    } else {
+      setErrorMessage(null)
+    }
+  }, [isValid]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -59,7 +69,6 @@ const EditProfile = () => {
           name: validation(value, "name")
         }
       });
-      isValid.name === false ? setErrorMessage("Name just allows letters") : setErrorMessage(null);
     } else if (name === "lastName") {
       setIsValid(prev => {
         return {
@@ -67,7 +76,6 @@ const EditProfile = () => {
           lastName: validation(value, "lastName")
         }
       });
-      isValid.lastName === false ? setErrorMessage("Lastname just allows letters") : setErrorMessage(null);
     } else if (name === "color") {
       setIsValid(prev => {
         return {
@@ -75,7 +83,6 @@ const EditProfile = () => {
           color: validation(value, "color")
         }
       });
-      isValid.color === false ? setErrorMessage("Choose between pink, yellow or blue colors") : setErrorMessage(null);
     } else {
       setIsValid(prev => {
         return {
@@ -83,7 +90,6 @@ const EditProfile = () => {
           email: validation(value, "email")
         }
       });
-      isValid.email === false ? setErrorMessage("Invalid email format") : setErrorMessage(null);
     }
   }
 
@@ -176,7 +182,7 @@ const EditProfile = () => {
           <Button type="submit" color="blue">Edit</Button>
         </div>
       </form>}
-      {!loading && <Button color="red" action={handleDelete}>Delete</Button>}
+      {!loading && <Button color="pink" action={handleDelete}>Delete</Button>}
       {errorMessage && <Error error={errorMessage} />}
     </div>
   );
