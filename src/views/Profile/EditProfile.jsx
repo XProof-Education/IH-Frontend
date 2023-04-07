@@ -40,9 +40,9 @@ const EditProfile = () => {
     getUserInfo();
   }, []);
 
-  useEffect(() => {
-    isValid !== true ? setErrorMessage(errorMessage) : setErrorMessage(null);
-  }, [errorMessage, isValid]);
+  // useEffect(() => {
+  //   isValid !== true ? setErrorMessage(errorMessage) : setErrorMessage(null);
+  // }, [errorMessage, isValid]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

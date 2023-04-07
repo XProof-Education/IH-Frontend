@@ -103,6 +103,7 @@ console.log(editedExercise)
       if(studentIds.length !== 0) {
         await exercisesService.editExercise(exerciseId, editedExercise);
         await exerciseAssignationsService.editExerciseAssignations(exerciseId, { studentIds });
+        setQuery('');
         navigate('/exercises');
       } else {
         setError('Please assign this exercise');

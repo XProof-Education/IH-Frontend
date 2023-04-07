@@ -72,7 +72,7 @@ const NewExercise = () => {
     const newAssignations = assignations.filter(user => user.studentId !== studentId);
     setAssignations(newAssignations);
   }
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const studentIds = assignations.map(assignation => assignation.studentId);
@@ -80,6 +80,7 @@ const NewExercise = () => {
       if (studentIds.length !== 0) {
         const { newExerciseData } = await exercisesService.newExercise(exercise);
         await exerciseAssignationsService.newExerciseAssignations(newExerciseData._id, { studentIds });
+        setQuery('');
         navigate('/exercises');
       } else {
         setError("Please assign this exercise");
