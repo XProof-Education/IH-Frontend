@@ -4,28 +4,41 @@ import operationsService from '../../services/operationsService';
 import { getErrorStatistics } from '../../utils/progress/getErrorStatistics';
 import Button from '../../components/Button';
 import { Link } from 'react-router-dom';
+import filterOperations from '../../utils/filterOperationsByTime';
 
 function Progress() {
   const [operations, setOperations] = useState([]);
   const [statistics, setStatistics] = useState(undefined);
   const [lArray, setLArray] = useState([]);
+  const [filterType, setFilterType] = useState('all');
+
+  const handleFilterChange = (e) => {
+    setFilterType(e.target.value);
+  };  
 
   const computePercentage = (number, total) => {
-    return (number / total * 100).toFixed(2);
-  } 
+    const percentage = (number / total * 100).toFixed(2);
+    if (percentage !== 'NaN') {
+      return percentage;
+    } else {
+      return 'No data'
+    }
+  };
 
   const getOperations = async () => {
     try {
       const response = await operationsService.getAllOperations();
-      setOperations(response.mathOperations);
+      const filteredOperations = filterOperations(response.mathOperations, filterType);
+      setOperations(filteredOperations);
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   useEffect(() => {
     getOperations();
-  }, []);
+    // eslint-disable-next-line
+  }, [filterType]);
 
   useEffect(() => {
     const stats = getErrorStatistics(operations);
@@ -47,21 +60,32 @@ function Progress() {
     <div>
       <Navbar color="#FF6230" content="editProfile" backGround="true"/>
       <h1>Your Progress</h1>
+      <select value={filterType} onChange={handleFilterChange}>
+        <option value="all">All operations</option>
+        <option value="today">View operations from today</option>
+        <option value="yesterday">View operations from yesterday</option>
+        <option value="lastWeek">View operations from last week</option>
+        <option value="lastMonth">View operations from last month</option>
+      </select>
       {statistics && 
         <div className="stats">
           <div className="total">
             <h4>Total Operations:</h4>
             <p>{statistics.total}</p>
           </div>
-          <div className="percentages">
-            <h5>Correct Operations:</h5>
-            <p>{Math.ceil(computePercentage(statistics.correct, statistics.total))}%</p>
-            <h5>Incorrect Operations:</h5>
-            <p>{Math.floor(computePercentage(statistics.incorrect, statistics.total))}%</p>
-            <p>Keep up the good work!</p>
-          </div>
+          {statistics.total === 0 ? 
+              <div className="percentages">
+                <h5>Still no data from this period</h5>
+              </div> 
+            : <div className="percentages">
+                <h5>Correct Operations:</h5>
+                <p>{Math.ceil(computePercentage(statistics.correct, statistics.total))}%</p>
+                <h5>Incorrect Operations:</h5>
+                <p>{Math.floor(computePercentage(statistics.incorrect, statistics.total))}%</p>
+                <p>Keep up the good work!</p>
+            </div>}
         </div>}
-      <h2>Your most frequent mistakes</h2>
+      {statistics && statistics.total > 0 && <h2>Your most frequent mistakes</h2>}
       {lArray && 
         <div className='l-cards'>
           {lArray.map(elem => {
