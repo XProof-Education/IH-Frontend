@@ -1,4 +1,6 @@
-/* ---------------- Loading ------------------ */
+
+
+/* ---------------- LOADING ------------------ */
 
 .loading-container {
   display: flex;
@@ -11,7 +13,7 @@
   width: 200px;
 }
 
-/* ---------------- Button ------------------ */
+/* ---------------- BUTTON ------------------ */
 
 .button-style {
   border-radius: 20px;
@@ -52,4 +54,33 @@
 .button-color-pink:hover {
   background-color: #ff5be1;
   color: #fbfbfb;
+}
+
+/*--------------------INSTRUCTIONS-------------------------*/
+
+
+.slider-track {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.slider-images {
+  display: flex;
+  width: calc(100% * 4);
+  height: 100%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.slider-image {
+  flex: 1 0 auto;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: grab;
+}
+
+.slider-image.active {
+  cursor: grabbing;
 }
