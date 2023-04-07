@@ -2,7 +2,6 @@ import React from 'react';
 import Navbar from '../components/Header/Navbar';
 import { Link } from 'react-router-dom';
 import CameraIcon from '../components/CameraIcon';
-import InstructionsCard from '../components/InstructionsCard';
 import Slider from '../components/Slider';
 import ins1 from '../assets/images/ins1.jpg';
 import ins2 from '../assets/images/ins2.jpg';

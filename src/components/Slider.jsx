@@ -66,6 +66,7 @@ function Slider({ images }) {
       document.removeEventListener("touchmove", handleTouchMove);
       document.removeEventListener("touchend", handleTouchEnd);
     }
+    // eslint-disable-next-line
   }, [dragging]);
 
   return (
