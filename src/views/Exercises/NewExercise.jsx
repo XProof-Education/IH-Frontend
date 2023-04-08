@@ -23,38 +23,39 @@ const NewExercise = () => {
   const [error, setError] = useState(false);
   const navigate = useNavigate();
 
-  // const handleChange = (e) => {
-  //   setExercise(prev => {
-  //     return {
-  //       ...prev,
-  //       [e.target.name] : e.target.value
-  //     }
-  //   })
-  // }
-
   const handleQueryChange = async (e) => {
     setQuery(e.target.value);
   }
 
   const handleFileUpload = async (e) => {
-    const uploadData = new FormData();
-    uploadData.append('imageUrl', e.target.files[0]);
-    try {
-      const response = await exercisesService.uploadExerciseFile(uploadData);
-      setExercise(prev => {
-        return {
-          ...prev,
-          [e.target.name]: response.fileUrl
-        }
-      })
-    // eslint-disable-next-line
-     {e.target.name === "exerciseFile" ? setImagePreview(response.fileUrl) : setImagePreviewSolution(response.fileUrl)} ;
-    } catch (error) {
-      console.log(error.response.status)
-      if (error.response.status === 400) {
-        setError('Invalid file')
+    let fileExtension = '';
+    const allowedFiles = ["jpg", "png"];
+    if (e.target.files[0]) {
+      fileExtension = e.target.files[0].name.split('.')[1];
+    } else {
+      setError('Please upload an exercise file');
+    }
+    if (allowedFiles.includes(fileExtension)) {
+      const uploadData = new FormData();
+      uploadData.append('imageUrl', e.target.files[0]);
+      try {
+        const response = await exercisesService.uploadExerciseFile(uploadData);
+        setExercise(prev => {
+          return {
+            ...prev,
+            [e.target.name]: response.fileUrl
+          }
+        })
+       e.target.name === "exerciseFile" ? setImagePreview(response.fileUrl) : setImagePreviewSolution(response.fileUrl);
+       setError(null);
+      } catch (error) {
+        console.error(error);
+        const invalidField = e.target.name === "exerciseFile" ? 'exercise file' : 'solutions file';
+        setError(`Something went wrong uploading the ${invalidField}, try again please.`);
       }
-      console.error(error)
+    } else {
+      const invalidField = e.target.name === "exerciseFile" ? 'exercise file' : 'solutions file';
+      setError(`Invalid ${invalidField}`);
     }
   }
 
@@ -141,7 +142,7 @@ const NewExercise = () => {
           </div>
           )
       })}
-      {error && <p>Please assign this exercise</p>}
+      {error && <p>{error}</p>}
       {foundUsers.length !== 0 && foundUsers.map(user => {
         return (
           <div key={user._id ? user._id : user.notFound}>
