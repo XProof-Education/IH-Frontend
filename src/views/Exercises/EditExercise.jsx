@@ -14,7 +14,6 @@ const EditExercise = () => {
     solutionFile: ""
   }
   const [editedExercise, setEditedExercise] = useState(initialStateEditExercise);
-  // const [isExercise, setIsExercise] = useState(false);
   const [assignations, setAssignations] = useState([]);
   const [query, setQuery] = useState('');
   const [foundUsers, setFoundUsers] = useState([]);
@@ -23,8 +22,6 @@ const EditExercise = () => {
   const [imagePreviewSolution, setImagePreviewSolution] = useState(null);
   const [error, setError] = useState(false);
   const navigate = useNavigate();
-
-console.log(editedExercise)
 
   const getData = async () => {
     try {
@@ -46,34 +43,39 @@ console.log(editedExercise)
     }
   }
 
-  // const handleChange = (e) => {
-  //   setEditedExercise(prev => {
-  //     return {
-  //       ...prev,
-  //       [e.target.name] : e.target.value
-  //     }
-  //   })
-  // }
-
   const handleQueryChange = async (e) => {
     setQuery(e.target.value);
   }
 
   const handleFileUpload = async (e) => {
-    const uploadData = new FormData();
-    uploadData.append('imageUrl', e.target.files[0]);
-    try {
-      const response = await exercisesService.uploadExerciseFile(uploadData);
-      setEditedExercise(prev => {
-        return {
-          ...prev,
-          [e.target.name]: response.fileUrl
-        }
-      })
-    // eslint-disable-next-line
-     {e.target.name === "exerciseFile" ? setImagePreview(response.fileUrl) : setImagePreviewSolution(response.fileUrl)} ;
-    } catch (error) {
-      console.error(error)
+    let fileExtension = '';
+    const allowedFiles = ["jpg", "png"];
+    if (e.target.files[0]) {
+      fileExtension = e.target.files[0].name.split('.')[1];
+    } else {
+      setError('Please upload an exercise file');
+    }
+    if (allowedFiles.includes(fileExtension)) {
+      const uploadData = new FormData();
+      uploadData.append('imageUrl', e.target.files[0]);
+      try {
+        const response = await exercisesService.uploadExerciseFile(uploadData);
+        setEditedExercise(prev => {
+          return {
+            ...prev,
+            [e.target.name]: response.fileUrl
+          }
+        })
+       e.target.name === "exerciseFile" ? setImagePreview(response.fileUrl) : setImagePreviewSolution(response.fileUrl);
+       setError(null);
+      } catch (error) {
+        console.error(error);
+        const invalidField = e.target.name === "exerciseFile" ? 'exercise file' : 'solutions file';
+        setError(`Something went wrong uploading the ${invalidField}, try again please.`);
+      }
+    } else {
+      const invalidField = e.target.name === "exerciseFile" ? 'exercise file' : 'solutions file';
+      setError(`Invalid ${invalidField}`);
     }
   }
 
@@ -165,7 +167,7 @@ console.log(editedExercise)
           </div>
           )
       })}
-      {error && <p>Please assign this exercise</p>}
+      {error && <p>{error}</p>}
       {foundUsers.length !== 0 && foundUsers.map(user => {
         return (
           <div key={user._id ? user._id : user.notFound}>
