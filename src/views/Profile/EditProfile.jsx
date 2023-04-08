@@ -9,6 +9,7 @@ import Button from '../../components/Button';
 import Error from '../../components/Error.jsx';
 import validation from '../../utils/validations';
 import Loading from '../../components/Loading';
+import Footer from '../../components/Footer';
 
 const EditProfile = () => {
   const { storeToken, logOutUser, removeToken, authenticateUser} = useAuth();
@@ -149,7 +150,9 @@ const EditProfile = () => {
   return (
     <div>
       <Navbar color="#FF6230" content="editProfile" backGround="true" />
-      <h1>Edit your Profile </h1>
+      <div className='form-title'>
+        <h1>Edit your Profile </h1>
+      </div>
       <ToastContainer
         position="top-center"
         autoClose={5000}
@@ -164,27 +167,39 @@ const EditProfile = () => {
       />
       {loading && <Loading />}
       {!loading && userInfo &&
-        <form onSubmit={handleSubmit}>
-        <label> Name </label>
-        <input style={inputStyleName} type="text" name="name" value={userInfo.name} onChange={handleChange} required />
-        <label> Lastname </label>
-        <input style={inputStylelastName} type="text" name="lastName" value={userInfo.lastName} onChange={handleChange} required />
-        <label> Email </label>
-        <input style={inputStyleEmail} type="email" name="email" value={userInfo.email} onChange={handleChange} required />
-        <label> Color </label>
-        <select name="color" value={userInfo.color} onChange={handleChange} required>
-          <option>Choose color</option>
-          <option value="blue">Blue</option>
-          <option value="pink">Pink</option>
-          <option value="yellow">Yellow</option>
-        </select>
-        <div>
-          <Button type="submit" color="blue">Edit</Button>
-        </div>
-      </form>}
-      {!loading && <Button color="pink" action={handleDelete}>Delete</Button>}
+        <div className='form-container'>
+          <form className='form' onSubmit={handleSubmit}>
+            <div className='input-label'>
+              <label> Name </label>
+              <input style={inputStyleName} type="text" name="name" value={userInfo.name} onChange={handleChange} required />
+            </div>
+            <div className='input-label'>
+              <label> Lastname </label>
+              <input style={inputStylelastName} type="text" name="lastName" value={userInfo.lastName} onChange={handleChange} required />
+            </div>
+            <div className='input-label'>
+              <label> Email </label>
+              <input style={inputStyleEmail} type="email" name="email" value={userInfo.email} onChange={handleChange} required />
+            </div>
+            <div className='input-label'>
+              <label> Color </label>
+              <select name="color" value={userInfo.color} onChange={handleChange} required>
+                <option>Choose color</option>
+                <option value="blue">Blue</option>
+                <option value="pink">Pink</option>
+                <option value="yellow">Yellow</option>
+              </select>
+            </div>
+            <div name='button-form-div'>
+              <Button type="submit" color="blue">Edit</Button>
+            </div>
+          </form>
+          {!loading && <Button color="pink" action={handleDelete}>Delete</Button>}
+        </div>}
       {errorMessage && <Error error={errorMessage} />}
+    <Footer />
     </div>
+    
   );
 }
 

@@ -52,8 +52,6 @@ const Navbar = (props) => {
             {isLoggedIn && props.content === "profile" && <DropdownMenu links={["Home", "Log out", "Contact"]} />}
           </div>
         </nav>}
-      {user && <p>Hello {user.name}</p>}
-      
     </div>
   )
   

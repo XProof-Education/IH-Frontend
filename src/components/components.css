@@ -1,4 +1,13 @@
+/*------------------- COLORS ----------------------*/
 
+:root {
+  --primary-yellow: #F7CF5C;
+  --primary-pink: #E7327B;
+  --primary-violet: #420ED0;
+  --primary--blue: #61D4F7;
+  --primary--white: #fbfbfb;
+  --primary--black: #131313;
+}
 
 /* ---------------- LOADING ------------------ */
 
@@ -36,10 +45,6 @@
   border: 1px solid #ff5be1;
 }
 
-/* .button-color-white {
-  border: 1px solid #000;
-  background-color: #fbfbfb;
-} */
 
 .button-color-red:hover {
   background-color: #FF6230;
@@ -61,13 +66,30 @@
 .buttonR {
   position: absolute;
   right: 0;
-  z-index: 2;
+  z-index: 0;
   margin-top: 17rem;
 }
 
 .buttonL {
   position: absolute;
   left: 0;
-  z-index: 2;
+  z-index: 0;
   margin-top: 17rem;
 }
+
+/*--------------------FOOTER-------------------------*/
+
+footer.footer {
+width: 100vw;
+padding: 0.8rem;;
+background-color: var(--primary--white);
+position: fixed;
+bottom: 0;
+border-top: solid 0.5px;
+border-color: var(--primary--black);
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+

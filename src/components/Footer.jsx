@@ -1,7 +1,9 @@
+import CameraIcon from "./CameraIcon";
+
 const Footer = () => {
   return (
-    <footer>
-
+    <footer className="footer">
+      <CameraIcon size='70px' color='pink' />
     </footer>
   )
 }

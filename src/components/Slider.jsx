@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import './components.css';
 
 function Slider({ images }) {
@@ -33,6 +33,6 @@ const randomNum = Math.floor(Math.random() * 4);
       <button className="buttonR" onClick={handleRigthButton}>▶︎</button>
     </section>
   )
-}
+};
 
 export default Slider;
