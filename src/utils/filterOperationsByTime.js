@@ -1,6 +1,6 @@
 const filterOperations = (operations, filterType) => {
   const now = new Date();
-  const dayInMillis = 12 * 60 * 60 * 1000;
+  const dayInMillis = 24 * 60 * 60 * 1000;
   const weekInMillis = 7 * dayInMillis;
   const monthInMillis = 30 * dayInMillis;
 
