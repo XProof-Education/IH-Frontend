@@ -50,6 +50,10 @@ const NewExercise = () => {
     // eslint-disable-next-line
      {e.target.name === "exerciseFile" ? setImagePreview(response.fileUrl) : setImagePreviewSolution(response.fileUrl)} ;
     } catch (error) {
+      console.log(error.response.status)
+      if (error.response.status === 400) {
+        setError('Invalid file')
+      }
       console.error(error)
     }
   }
