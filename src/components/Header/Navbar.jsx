@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import './navbar.css';
@@ -13,17 +13,27 @@ import HalfDotColor from '../HalfDot';
 const Navbar = (props) => {
   const { isLoggedIn, user} = useContext(AuthContext);
   const [menuVisible, setMenuVisible] = useState(false);
+  const [backUrl, setBackUrl] = useState(null);
   const navigate = useNavigate();
 
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
   }
 
+  useEffect(() => {
+    if (props.backUrl) {
+      setBackUrl(props.backUrl);
+    } else {
+      setBackUrl(-1);
+    }
+    // eslint-disable-next-line
+  },[]);
+
   return (
     <div>
       {props.content === "editProfile"
         ? <nav className={props.backGround ? "nav nav-background" : "nav-background-transparent"}>
-            <img src={backIcon} onClick={() => navigate(-1)} alt="back"/>
+            <img src={backIcon} onClick={() => navigate(backUrl)} alt="back"/>
           <div className="logo">
             {user.color !== "false" ? <HalfDotColor color={user.color} size="40" text={user.name} /> : <ProfileIcon />}
           </div>

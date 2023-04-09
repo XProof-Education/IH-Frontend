@@ -60,7 +60,7 @@ function ErrorDetail() {
         return (
           <div className="operation-card" key={operation._id}>
             <img width='100px' src={operation.cloudinaryPhoto} alt="Operation detail" />
-            <Link to={`/operations/${operation._id}`}><Button color='blue'>See operation detail</Button></Link>
+            <Link to={`/operations/${operation._id}?timeFilter=${timeFilter}`}><Button color='blue'>See operation detail</Button></Link>
           </div>
         )
       })}

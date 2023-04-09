@@ -58,7 +58,7 @@ function Progress() {
 
   return ( 
     <div>
-      <Navbar color="#FF6230" content="editProfile" backGround="true"/>
+      <Navbar color="#FF6230" content="editProfile" backGround="true" backUrl="/profile"/>
       <h1>Your Progress</h1>
       <select value={timeFilter} onChange={handleFilterChange}>
         <option value="all">All operations</option>

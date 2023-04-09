@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import operationsService from '../../services/operationsService';
 import Navbar from '../../components/Header/Navbar';
 import Latex from 'react-latex';
@@ -9,6 +9,14 @@ import Button from '../../components/Button';
 const OperationDetail = (props) => {
   const navigate = useNavigate();
   const params = useParams();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  let timeFilterQuery = '';
+  try {
+    timeFilterQuery = searchParams.get('timeFilter');
+  } catch {
+    timeFilterQuery = null;
+  }
   let operationId;
   if (props.operationId) {
     operationId = props.operationId;
@@ -37,7 +45,11 @@ const OperationDetail = (props) => {
     } catch (error) {
       console.error(error);
     } finally {
-      navigate('/operations-history');
+      if (timeFilterQuery) {
+        navigate(`/profile/progress/?timeFilter=${timeFilterQuery}`)
+      } else {
+        navigate('/operations-history');
+      }
     }
   }
 

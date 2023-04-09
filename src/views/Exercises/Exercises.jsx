@@ -35,7 +35,7 @@ const Exercises = () => {
 
   return (
     <div>
-      <Navbar color="#FF6230" content="editProfile" backGround="true" />
+      <Navbar color="#FF6230" content="editProfile" backGround="true" backUrl="/profile"/>
       {loading && <Loading />}
       {!loading && exercises &&
         <ListCard props={exercises} typeData={user.role === 'teacher' ? "exercises" : "studentExercises"} />

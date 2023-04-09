@@ -22,12 +22,10 @@ const OperationsHistory = () => {
 
   return (
     <div>
-      <Navbar color="#FF6230" content="editProfile" backGround="true"/>
+      <Navbar color="#FF6230" content="editProfile" backGround="true" backUrl="/profile"/>
       <h1>My Operations history</h1>
       <Link to={'/profile/progress'}>See your progress</Link>
       <ListCard props={operations} typeData="operations"/>
-      
-    
     </div>
   )
   
