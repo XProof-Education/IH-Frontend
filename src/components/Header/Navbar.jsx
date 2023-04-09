@@ -14,13 +14,21 @@ const Navbar = (props) => {
   const { isLoggedIn, user} = useContext(AuthContext);
   const [menuVisible, setMenuVisible] = useState(false);
   const [backUrl, setBackUrl] = useState(null);
+  const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
 
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
   }
 
-  const [isScrolled, setIsScrolled] = useState(false);
+  useEffect(() => {
+    if (props.backUrl) {
+      setBackUrl(props.backUrl);
+    } else {
+      setBackUrl(-1);
+    }
+    // eslint-disable-next-line
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,7 +47,7 @@ const Navbar = (props) => {
     <div>
       {props.content === "editProfile"
         ? <nav className={`${props.backGround ? "nav nav-background" : "nav-background-transparent"} ${navClassName}`}>
-            <img src={backIcon} onClick={() => navigate(-1)} alt="back"/>
+            <img src={backIcon} onClick={() => navigate(backUrl)} alt="back"/>
           <div className="logo">
             {user.color !== "false" ? <HalfDotColor color={user.color} size="40" text={user.name} /> : <ProfileIcon />}
           </div>
