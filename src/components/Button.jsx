@@ -26,7 +26,7 @@ const Button = (props) => {
   //   margin: "20px 5px 20px 5px",
   //   padding: "6px 25px",
   // }
-  console.log("props", props)
+ 
   return (
     <>
       {/* { props.action !== undefined

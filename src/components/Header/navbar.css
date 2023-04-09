@@ -3,6 +3,16 @@
   box-sizing: border-box;
 }
 
+:root {
+  --primary-yellow: #F7CF5C;
+  --primary-blue: #61D4F7;
+  --primary-pink: #E7327B;
+  --primary-violet: #420ED0;
+  --primary-white: #fbfbfb;
+  --primary-black: #131313;
+
+}
+
 /* ---------------- Navbar and burguer menu ------------------ */
 nav {
   width: 100%;
@@ -10,6 +20,7 @@ nav {
   display: flex;
   align-items: center;
   padding: 1em;
+  border-bottom: 1px solid var(--primary-black);
 }
 
 .nav-background {
@@ -36,7 +47,7 @@ nav {
   position: absolute;
   width: 50px;
   right: 10px;
-  color: #131313;
+  color: var(--primary-black);
 }
 
 .cancel-icon .hidden {
@@ -59,17 +70,17 @@ nav {
   font-size: 18px;
   width: 30%;
   height: 100%;
-  background-color: #fbfbfb;
+  background-color: var(--primary-white);
   position: absolute;
   top: 0;
   left: -100%;
   z-index: 1;
   transition: left 0.3s;
-  border-right: 1px solid #131313;
+  border-right: 1px solid var(--primary-black);
 }
 
 .link-navbar-container {
-  border-bottom: 1px solid #131313;
+  border-bottom: 1px solid var(--primary-black);
   width: 100%;
   height: 35%;
   display: flex;
@@ -79,5 +90,5 @@ nav {
 
 .navbar-link {
   text-decoration: none;
-  color: #131313;
+  color: var(--primary-black);
 }

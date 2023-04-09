@@ -19,16 +19,6 @@ const Navbar = (props) => {
     setMenuVisible(!menuVisible);
   }
 
-  // const styleBackground = {
-  //   width: "100%",
-  //   height: "5em",
-  //   display: "flex",
-  //   alignItems: "center",
-  //   padding: "1em",
-  //   backgroundColor: props.backGround ? "#fbfbfb" : "transparent",
-  // }
-  console.log(props)
-
   return (
     <div>
       {props.content === "editProfile"

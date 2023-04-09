@@ -1,0 +1,29 @@
+div.profile-card-container {
+display: flex;
+flex-direction: column;
+text-align: center;
+}
+
+div.profile-card {
+  border-bottom: 1px solid var(--primary--black);
+  padding: 6rem 0rem 4.6rem 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.profile-card-half-dot {
+  position: absolute;
+  top: 0;
+}
+
+.section-link {
+  margin-top: 3rem;
+  z-index: 2;
+}
+
+.section-link a{
+  font-weight: 900;
+  color: var(--primary--black);
+  
+}

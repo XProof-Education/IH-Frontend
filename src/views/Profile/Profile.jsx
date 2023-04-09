@@ -3,6 +3,7 @@ import { useAuth } from '../../hooks/useAuth';
 import Navbar from "../../components/Header/Navbar";
 import ProfileCard from "../../components/Cards/ProfileCard";
 import Loading from "../../components/Loading";
+import Footer from "../../components/Footer";
 
 
 const Profile = () => {
@@ -11,10 +12,10 @@ const Profile = () => {
     <div>
       {isLoading && <Loading/>}
       <Navbar content="profile" backGround="true" />
-      <h1>This is Profile Page</h1>
       {user.role === 'student'
-        ? <ProfileCard sections={[{ title: "my equations history", url: '/operations-history' }, { title: "my progress", url: "/profile/progress" }, { title: "assigned exercises", url: "/exercises" }]} />
-        : <ProfileCard sections={[{ title: "my exercises", url: '/exercises' }, { title: "create new exercise", url: "/new-exercise" }, { title: "my equation history", url: "/operations-history" }]} />} 
+        ? <ProfileCard sections={[{ title: "my equations history", url: '/operations-history', color:'yellow' }, { title: "my progress", url: "/profile/progress", color:'blue' }, { title: "assigned exercises", url: "/exercises", color:'violet' }]} />
+        : <ProfileCard sections={[{ title: "my exercises", url: '/exercises', color:'yellow' }, { title: "create new exercise", url: "/new-exercise", color:'blue' }, { title: "my equation history", url: "/operations-history", color:'violet' }]} />} 
+    <Footer />
     </div> 
   );
   
