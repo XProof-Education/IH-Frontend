@@ -25,15 +25,19 @@
 /* ---------------- BUTTON ------------------ */
 
 .button-style {
-  border-radius: 20px;
+  border-radius: 1.25rem;
+  border: 1px solid var(--primary--black);
   transition: all 0.3s ease-in-out;
-  margin: 20px 5px 20px 5px;
-  padding: 3px 15px;
-  color:#000;
+  margin: 1.25rem 0.3rem 1.25rem 0.3rem;
+  padding: 0.4rem 1rem 0.3rem 0.8rem;
+  color: var(--primary--black);
   background-color: #fbfbfb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.button-color-red {
+/* .button-color-pink {
   border: 1px solid #FF6230;
 }
 
@@ -43,21 +47,26 @@
 
 .button-color-pink {
   border: 1px solid #ff5be1;
-}
+} */
 
 
-.button-color-red:hover {
-  background-color: #FF6230;
+.button-color-yellow:hover {
+  background-color: var(--primary-yellow);
   color: #fbfbfb;
 }
 
 .button-color-blue:hover {
-  background-color: #3073D7;
+  background-color: var(--primary--blue);
   color: #fbfbfb;
 }
 
 .button-color-pink:hover {
-  background-color: #ff5be1;
+  background-color: var(--primary-pink);
+  color: #fbfbfb;
+}
+
+.button-color-violet:hover {
+  background-color: var(--primary-violet);
   color: #fbfbfb;
 }
 
@@ -91,5 +100,9 @@ display: flex;
 justify-content: center;
 align-items: center;
 }
+
+/*-------------------------HALFDOT--------------------------*/
+
+
 
 

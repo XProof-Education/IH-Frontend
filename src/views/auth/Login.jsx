@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { useAuth } from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import authService from '../../services/authService';
+import Navbar from '../../components/Header/Navbar';
+import Button from '../../components/Button';
 
 export default function Login() {
   const { storeToken, authenticateUser, isLoggedIn } = useAuth(); 
@@ -49,16 +51,28 @@ export default function Login() {
   }, [isLoggedIn])
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>Email</label>
-        <input required type="email" name="email" value={user.email} onChange={handleChange} />
-        <label>Password</label>
-        <input required type="password" name="password" value={user.password} onChange={handleChange} />
-        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-        <button type="submit">Log in </button>
-      </form>
-      <Link to="/signup">Sign up</Link>
+    <div className="container">
+      <Navbar color="blue" backGround="true" />
+      <div className="form-main-container">
+        <div className='form-title'>
+          <h1>Login </h1>
+        </div>
+        <div className='form-container'>
+          <form className='form' onSubmit={handleSubmit}>
+            <div className='input-label'>
+              <input required type="email" name="email" value={user.email} onChange={handleChange} placeholder="email" />
+            </div>
+            <div className='input-label'>
+              <input required type="password" name="password" value={user.password} onChange={handleChange} placeholder="password" />
+            </div>
+            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+            <div className='button-form-div'>
+              <Button type="submit" color='yellow'>Log in </Button>
+              <Link to="/signup"><Button type="submit" color='violet'>Sign up</Button></Link>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-  )
+  );
 }

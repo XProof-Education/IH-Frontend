@@ -133,7 +133,7 @@ const EditProfile = () => {
       setErrorMessage(error);
       console.error(error);
     } finally {
-      navigate('/home');
+      navigate('/');
     }
   }
 
@@ -148,56 +148,55 @@ const EditProfile = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <Navbar color="#FF6230" content="editProfile" backGround="true" />
-      <div className='form-title'>
-        <h1>Edit your Profile </h1>
+      <div className="form-main-container">
+        <div className='form-title'>
+          <h1>Edit your Profile </h1>
+        </div>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={true}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+        {loading && <Loading />}
+        {!loading && userInfo &&
+          <div className='form-container'>
+            <form className='form' onSubmit={handleSubmit}>
+              <div className='input-label'>
+                <input style={inputStyleName} type="text" name="name" value={userInfo.name} onChange={handleChange} required />
+              </div>
+              <div className='input-label'>
+                <input style={inputStylelastName} type="text" name="lastName" value={userInfo.lastName} onChange={handleChange} required />
+              </div>
+              <div className='input-label'>
+                <input style={inputStyleEmail} type="email" name="email" value={userInfo.email} onChange={handleChange} required />
+              </div>
+              <div className='input-label'>
+                <select name="color" value={userInfo.color} onChange={handleChange} required>
+                  <option>Choose your profile color</option>
+                  <option value="blue">Blue</option>
+                  <option value="pink">Pink</option>
+                  <option value="yellow">Yellow</option>
+                </select>
+              </div>
+              <div className='button-form-div'>
+                <Button type="submit" color="blue">Edit</Button>
+                <Button color="pink" action={handleDelete}>Delete</Button>
+              </div>
+            </form>
+            {/* {!loading && <Button className="button-edit" color="pink" action={handleDelete}>Delete</Button>} */}
+          </div>}
+        {errorMessage && <Error error={errorMessage} />}
+        <Footer />
       </div>
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={true}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-      {loading && <Loading />}
-      {!loading && userInfo &&
-        <div className='form-container'>
-          <form className='form' onSubmit={handleSubmit}>
-            <div className='input-label'>
-              <label> Name </label>
-              <input style={inputStyleName} type="text" name="name" value={userInfo.name} onChange={handleChange} required />
-            </div>
-            <div className='input-label'>
-              <label> Lastname </label>
-              <input style={inputStylelastName} type="text" name="lastName" value={userInfo.lastName} onChange={handleChange} required />
-            </div>
-            <div className='input-label'>
-              <label> Email </label>
-              <input style={inputStyleEmail} type="email" name="email" value={userInfo.email} onChange={handleChange} required />
-            </div>
-            <div className='input-label'>
-              <label> Color </label>
-              <select name="color" value={userInfo.color} onChange={handleChange} required>
-                <option>Choose color</option>
-                <option value="blue">Blue</option>
-                <option value="pink">Pink</option>
-                <option value="yellow">Yellow</option>
-              </select>
-            </div>
-            <div name='button-form-div'>
-              <Button type="submit" color="blue">Edit</Button>
-            </div>
-          </form>
-          {!loading && <Button color="pink" action={handleDelete}>Delete</Button>}
-        </div>}
-      {errorMessage && <Error error={errorMessage} />}
-    <Footer />
     </div>
     
   );
