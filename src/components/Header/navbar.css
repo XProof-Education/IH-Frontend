@@ -23,6 +23,15 @@ nav {
   border-bottom: 1px solid var(--primary-black);
 }
 
+.nav-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5.3rem;
+  z-index: 999;
+}
+
 .nav-background {
   background-color: #fbfbfb;
 }
@@ -39,7 +48,7 @@ nav {
   height: 30px;
   border: none;
   cursor: pointer;
-  z-index: 2;
+  z-index: 3;
   transition-duration: 0.5s;
 }
 
@@ -74,7 +83,7 @@ nav {
   position: absolute;
   top: 0;
   left: -100%;
-  z-index: 1;
+  z-index: 2;
   transition: left 0.3s;
   border-right: 1px solid var(--primary-black);
 }

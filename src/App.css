@@ -275,3 +275,73 @@ div.button-form-div{
   align-items: center;
   margin: 1.5rem;
 }
+
+/* ---------------- EXERCISES ------------------ */
+
+div.exercise-container {
+  height: 90vh;
+  overflow: auto;
+  padding: 0 2rem 5rem 2rem;
+  overflow-x: hidden;
+}
+
+div.form-exercise-container {
+  display: flex;
+}
+
+form.exercise-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+div.upload-inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3rem;
+}
+
+div.input-label-exercise label.label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+label.assign {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+div.input-label-assign-exercise {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+div.input-label-assign-exercise input {
+  border-radius: 20px;
+  border: 1px solid var(--primary-black);
+  padding: 0.5rem 1rem;
+  width: 20rem;
+}
+
+div.button-assign {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.image-preview {
+  border: 1px solid var(--primary-black);
+  
+}
+
+div.image-preview img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
