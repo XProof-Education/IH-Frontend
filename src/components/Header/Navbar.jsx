@@ -27,6 +27,7 @@ const Navbar = (props) => {
   //   padding: "1em",
   //   backgroundColor: props.backGround ? "#fbfbfb" : "transparent",
   // }
+  console.log(props)
 
   return (
     <div>
@@ -37,8 +38,7 @@ const Navbar = (props) => {
             {user.color !== "false" ? <HalfDotColor color={user.color} size="40" text={user.name} /> : <ProfileIcon />}
           </div>
           </nav>
-        :
-        <nav className={props.backGround ? "nav nav-background" : "nav-background-transparent"}>
+        :<nav className={props.backGround ? "nav nav-background" : "nav-background-transparent"}>
           {menuVisible ? <img src={cancelIcon} alt="cancel" className="burguer-btn" onClick={toggleMenu} /> :
             <img src={burguerIcon} alt="burguer" className="burguer-btn" onClick={toggleMenu} />}
           <div className="logo">

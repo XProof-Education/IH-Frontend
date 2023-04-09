@@ -6,7 +6,7 @@ const HalfDotColor = (props) => {
     color = '#F7CF5C'
   } else if (props.color === 'pink') {
     color = '#E7327B'
-  } else if (props.color === 'purple') {
+  } else if (props.color === 'violet') {
     color = '#420ED0' 
   } else if (props.color === 'blue') {
     color = '#61D4F7' 
