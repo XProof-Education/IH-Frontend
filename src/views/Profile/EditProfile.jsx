@@ -195,7 +195,7 @@ const EditProfile = () => {
             {/* {!loading && <Button className="button-edit" color="pink" action={handleDelete}>Delete</Button>} */}
           </div>}
         {errorMessage && <Error error={errorMessage} />}
-        <Footer />
+        <Footer color="pink" size="70px" />
       </div>
     </div>
     

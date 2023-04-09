@@ -6,6 +6,7 @@ import Navbar from "../../components/Header/Navbar";
 import exerciseAssignationsService from '../../services/exerciseAssignationsService';
 import Button from '../../components/Button';
 import UploadIcon from '../../components/UploadIcon';
+import Footer from '../../components/Footer';
 
 const NewExercise = () => {
   const initialStateExercise = {
@@ -117,46 +118,70 @@ const NewExercise = () => {
       setFoundUsers([]);
     }
     // eslint-disable-next-line
-  },[query, isAssigning]);
+  }, [query, isAssigning]);
 
   return (
     <div>
       <Navbar color="#FF6230" content="editProfile" backGround="true" />
-      <h1>New exercise</h1>
-      <form onSubmit={handleSubmit} style={{display: 'flex', flexDirection: 'column', alignItems:'flex-start', gap: '20px'}}>
-        <label htmlFor="exercise"><UploadIcon color="blue" size='24'/> Upload exercise photo</label>
-        <input type="file" id="exercise" name="exerciseFile" onChange={(e) => handleFileUpload(e)} required hidden/>
-        {imagePreview && <img src={imagePreview} alt="preview file" /> }
-        <label htmlFor="solution"><UploadIcon color="purple" size='24'/> Upload exercise solution</label>
-        <input type="file" id="solution" name="solutionFile" onChange={(e) => handleFileUpload(e)} hidden/>
-        {imagePreviewSolution && <img src={imagePreviewSolution} alt="preview file" /> }
-        <label>Who do you want to assign this exercise to?</label>
-        <input type="text" name="student" onChange={handleQueryChange} value={query}/>
-        <Button color="blue" type="submit">Submit exercise</Button>
-      </form> 
-      {assignations.length !== 0 && assignations.map(user => {
-        return (
-          <div key={user.email}>
-            <p>{user.email}</p>
-            <Button color='pink' action={() => removeStudentAssignation(user.studentId)}>Remove</Button>
-          </div>
-          )
-      })}
-      {error && <p>{error}</p>}
-      {foundUsers.length !== 0 && foundUsers.map(user => {
-        return (
-          <div key={user._id ? user._id : user.notFound}>
-            {user.notFound ? <p>{user.notFound}</p> 
-            : <div>
-              <h5>{user.name}</h5>
+      <div className="exercise-container">
+        <div className="form-title">
+          <h1>Add new exercise</h1>
+        </div>
+        <div className='form-exercise-container'>
+          <form onSubmit={handleSubmit} className="exercise-form">
+            <div className="upload-inputs">
+            <div className="input-label-exercise">
+              <label htmlFor="exercise" className="label"><UploadIcon color="blue" size='30' /> Upload exercise photo</label>
+              <input type="file" id="exercise" name="exerciseFile" onChange={(e) => handleFileUpload(e)} required hidden />
+            </div>
+              {imagePreview &&
+                <div className='image-preview'>
+                  <img src={imagePreview} alt="preview file" />
+                </div>}
+            <div className="input-label-exercise">
+              <label htmlFor="solution" className="label"><UploadIcon color="purple" size='30' /> Upload exercise solution</label>
+              <input type="file" id="solution" name="solutionFile" onChange={(e) => handleFileUpload(e)} hidden />
+            </div>
+              {imagePreviewSolution &&
+                <div className='image-preview'>
+                  <img src={imagePreviewSolution} alt="preview file" />
+                </div>}
+            <div className="input-label-assign-exercise">
+              <label className="assign">Who do you want to assign this exercise to?</label>
+              <input type="text" name="student" onChange={handleQueryChange} value={query} />
+              </div>
+              </div>
+            <div className='button-assign'>
+              {query === "" && <Button color="yellow" type="submit">Submit exercise</Button>}
+              </div>
+              
+          </form>
+        </div>
+        {assignations.length !== 0 && assignations.map(user => {
+          return (
+            <div key={user.email}>
               <p>{user.email}</p>
-              <Button color='blue' action={() => addStudentAssignation(user._id, user.email)}>Add</Button>
-            </div>}   
-          </div>
-        )
-      })}
+              <Button color='pink' action={() => removeStudentAssignation(user.studentId)}>Remove</Button>
+            </div>
+          )
+        })}
+        {error && <p>{error}</p>}
+        {foundUsers.length !== 0 && foundUsers.map(user => {
+          return (
+            <div key={user._id ? user._id : user.notFound}>
+              {user.notFound ? <p>{user.notFound}</p>
+                : <div>
+                  <h5>{user.name}</h5>
+                  <p>{user.email}</p>
+                  <Button color='blue' action={() => addStudentAssignation(user._id, user.email)}>Add</Button>
+                </div>}
+            </div>
+          )
+        })}
+      </div>
+      <Footer color="pink" size="70px" />
     </div>
-  )
+  );
 }
 
 export default NewExercise;

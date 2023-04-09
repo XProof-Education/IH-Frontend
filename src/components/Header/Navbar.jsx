@@ -20,25 +20,31 @@ const Navbar = (props) => {
     setMenuVisible(!menuVisible);
   }
 
+  const [isScrolled, setIsScrolled] = useState(false);
+
   useEffect(() => {
-    if (props.backUrl) {
-      setBackUrl(props.backUrl);
-    } else {
-      setBackUrl(-1);
-    }
-    // eslint-disable-next-line
-  },[]);
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 0);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const navClassName = `nav ${isScrolled ? 'nav-fixed' : ''}`;
 
   return (
     <div>
       {props.content === "editProfile"
-        ? <nav className={props.backGround ? "nav nav-background" : "nav-background-transparent"}>
-            <img src={backIcon} onClick={() => navigate(backUrl)} alt="back"/>
+        ? <nav className={`${props.backGround ? "nav nav-background" : "nav-background-transparent"} ${navClassName}`}>
+            <img src={backIcon} onClick={() => navigate(-1)} alt="back"/>
           <div className="logo">
             {user.color !== "false" ? <HalfDotColor color={user.color} size="40" text={user.name} /> : <ProfileIcon />}
           </div>
           </nav>
-        :<nav className={props.backGround ? "nav nav-background" : "nav-background-transparent"}>
+        :<nav className={`${props.backGround ? "nav nav-background" : "nav-background-transparent"} ${navClassName}`}>
           {menuVisible ? <img src={cancelIcon} alt="cancel" className="burguer-btn" onClick={toggleMenu} /> :
             <img src={burguerIcon} alt="burguer" className="burguer-btn" onClick={toggleMenu} />}
           <div className="logo">

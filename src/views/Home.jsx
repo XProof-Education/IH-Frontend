@@ -12,7 +12,7 @@ export default function Home() {
     <div>
       <Navbar color="blue"/>
       <Slider images={[ins1, ins2, ins3]} />
-      <Footer />
+      <Footer color="yellow" size="70px"/>
     </div>
   )
 }

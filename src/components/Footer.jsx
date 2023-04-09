@@ -1,9 +1,9 @@
 import CameraIcon from "./CameraIcon";
 
-const Footer = () => {
+const Footer = (props) => {
   return (
     <footer className="footer">
-      <CameraIcon size='70px' color='pink' />
+      <CameraIcon size={props.size} color={props.color} />
     </footer>
   )
 }
