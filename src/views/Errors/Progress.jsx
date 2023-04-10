@@ -51,9 +51,10 @@ function Progress() {
         feedback: stats.L[l].feedback
       });
     }
-
+    const sortedArrayOfL = arrayOfL.sort((a, b) => b.count - a.count);
+    
     setStatistics(stats);
-    setLArray(arrayOfL);
+    setLArray(sortedArrayOfL);
   }, [operations]);
 
   return ( 
@@ -85,7 +86,7 @@ function Progress() {
                 <p>Keep up the good work!</p>
             </div>}
         </div>}
-      {statistics && statistics.total > 0 && <h2>Your most frequent mistakes</h2>}
+      {statistics && statistics.incorrect > 0 && <h2>Your most frequent mistakes</h2>}
       {lArray && 
         <div className='l-cards'>
           {lArray.map(elem => {

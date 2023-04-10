@@ -60,8 +60,9 @@ function LDetail() {
         })
       }
     }
+    const sortedArrayOfErrors = arrayOfErrors.sort((a, b) => b.count - a.count);
     setStatistics(stats);
-    setErrors(arrayOfErrors);
+    setErrors(sortedArrayOfErrors);
   }, [operations, l]);
 
   return ( 
