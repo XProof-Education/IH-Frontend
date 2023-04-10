@@ -49,7 +49,7 @@ export default function Signup() {
       <Navbar color="yellow" backGround="true" />
       <div className='form-main-container'>
         <div className='form-title'>
-          <h1>Sign up</h1>
+          <h1 className="title-style-blue">Sign up</h1>
         </div>
         <div className='form-container'>
           <form className='form' onSubmit={handleSubmit}>
@@ -75,7 +75,7 @@ export default function Signup() {
               </select>
             </div>
             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-            <div className='button-form-div'>
+            <div className='buttons-container'>
               <Button color='pink' type="submit">Register</Button>
             </div>
           </form>

@@ -187,12 +187,11 @@ const EditProfile = () => {
                   <option value="yellow">Yellow</option>
                 </select>
               </div>
-              <div className='button-form-div'>
+              <div className='buttons-container'>
                 <Button type="submit" color="blue">Edit</Button>
                 <Button color="pink" action={handleDelete}>Delete</Button>
               </div>
             </form>
-            {/* {!loading && <Button className="button-edit" color="pink" action={handleDelete}>Delete</Button>} */}
           </div>}
         {errorMessage && <Error error={errorMessage} />}
         <Footer color="pink" size="70px" />

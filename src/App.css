@@ -169,13 +169,15 @@ table {
   --primary-violet: #420ED0;
   --primary-white: #fbfbfb;
   --primary-black: #131313;
-
 }
 
+.App {
+  min-height: 100vh;
+  background-color: var(--primary-white);
+}
 
 html, body, a, input, select, button {
   font-family: apercu;
-  background-color: var(--primary-white);
   font-size: 16px;
 }
 
@@ -198,6 +200,23 @@ p, a, input, label{
   font-size: 1.2rem;
   text-decoration: none;
 }
+
+h1.title-style-pink {
+  color: var(--primary-pink);
+}
+
+h1.title-style-blue {
+  color: var(--primary-blue);
+}
+
+h1.title-style-violet {
+  color: var(--primary-violet);
+}
+
+h1.title-style-yellow {
+  color: var(--primary-yellow);
+}
+
 /* ---------------- FORMS ------------------ */
 
 div.container{
@@ -269,7 +288,7 @@ select {
   padding-right: 10px;
 }
 
-div.button-form-div{
+div.buttons-container{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -278,10 +297,16 @@ div.button-form-div{
 
 /* ---------------- EXERCISES ------------------ */
 
+div div.title-div {
+  display: flex; 
+  justify-content: center;
+  padding: 2rem 0 1rem 0;
+}
+
 div.exercise-container {
   height: 90vh;
   overflow: auto;
-  padding: 0 2rem 5rem 2rem;
+  padding: 0 2rem 6rem 2rem;
   overflow-x: hidden;
 }
 
@@ -292,7 +317,7 @@ div.form-exercise-container {
 form.exercise-form {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 div.upload-inputs {
@@ -302,15 +327,16 @@ div.upload-inputs {
   gap: 3rem;
 }
 
-div.input-label-exercise label.label {
+div.input-label-exercise label.label{
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
 label.assign {
-  font-size: 1.5rem;
-  text-align: center;
+  font-weight: 900;
+  color: var(--primary-violet);
+  padding: 0.3rem; 
 }
 
 div.input-label-assign-exercise {
@@ -318,7 +344,7 @@ div.input-label-assign-exercise {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 div.input-label-assign-exercise input {
@@ -336,7 +362,6 @@ div.button-assign {
 
 div.image-preview {
   border: 1px solid var(--primary-black);
-  
 }
 
 div.image-preview img {
@@ -345,3 +370,38 @@ div.image-preview img {
   display: block;
 }
 
+div.assign-students-div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+/* ---------------- DETAIL VIEWS ------------------ */
+
+div.container-detail {
+  overflow: scroll;
+  height: 90vh;
+  padding-bottom: 5rem;
+}
+
+div.img-container {
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+div.img-container img{
+  border: 1px solid var(--primary-black);
+  width: 100%;
+}
+
+div.not-found-div {
+  display: flex;
+  justify-content: center;
+}
+
+div.not-found-div p {
+  color: var(--primary-pink);
+}

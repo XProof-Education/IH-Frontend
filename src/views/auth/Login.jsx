@@ -55,7 +55,7 @@ export default function Login() {
       <Navbar color="blue" backGround="true" />
       <div className="form-main-container">
         <div className='form-title'>
-          <h1>Login </h1>
+          <h1 className="title-style-pink">Login </h1>
         </div>
         <div className='form-container'>
           <form className='form' onSubmit={handleSubmit}>
@@ -66,7 +66,7 @@ export default function Login() {
               <input required type="password" name="password" value={user.password} onChange={handleChange} placeholder="password" />
             </div>
             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-            <div className='button-form-div'>
+            <div className='buttons-container'>
               <Button type="submit" color='yellow'>Log in </Button>
               <Link to="/signup"><Button type="submit" color='violet'>Sign up</Button></Link>
             </div>

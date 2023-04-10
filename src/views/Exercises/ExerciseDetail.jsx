@@ -4,6 +4,7 @@ import { useAuth } from '../../hooks/useAuth';
 import Navbar from '../../components/Header/Navbar';
 import exercisesService from '../../services/exercicesService';
 import Button from '../../components/Button';
+import Footer from '../../components/Footer';
 
 const ExerciseDetail = () => {
   const { user } = useAuth();
@@ -37,17 +38,24 @@ const ExerciseDetail = () => {
 
   return (
     <div>
-      <Navbar color="#FF6230" content="editProfile" backGround="true"/>
-      <h1>Single exercise</h1>
-      <img style={{ width: "100%" }} src={exercise.exerciseFile} alt="exercise" />
-      {exercise.solutionFile && <img style={{ width: "100%" }} src={exercise.solutionFile} alt="exercise solution" />}
-      {user.role === 'teacher' && 
-      <div>
-      <Link to={`/edit/${exerciseId}`}><Button color="yellow"> Edit </Button></Link>
-          <Button color="pink" action={handleDelete}> Delete </Button>
-      </div>}
+      <Navbar color="#FF6230" content="editProfile" backGround="true" />
+      <div className="container-detail">
+        <div className="title-div">
+          <h1 className="title-style-blue">Single exercise</h1>
+        </div>
+        <div className="img-container">
+          <img src={exercise.exerciseFile} alt="exercise" />
+          {exercise.solutionFile && <img style={{ width: "100%" }} src={exercise.solutionFile} alt="exercise solution" />}
+        </div>
+        {user.role === 'teacher' &&
+          <div className="buttons-container">
+            <Link to={`/edit/${exerciseId}`}><Button color="yellow"> Edit </Button></Link>
+            <Button color="pink" action={handleDelete}> Delete </Button>
+          </div>}
+        <Footer color="yellow" size="70px" />
+      </div>
     </div>
-  )
+  );
 }
 
 export default ExerciseDetail;
