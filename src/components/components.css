@@ -71,6 +71,14 @@
 }
 
 /*--------------------INSTRUCTIONS-------------------------*/
+section.section-carousel{
+  height: 100vh;
+  border: 2px solid red;
+}
+
+img.carousel-image {
+  width: 100%;
+}
 
 .buttonR {
   position: absolute;

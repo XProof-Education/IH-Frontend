@@ -29,7 +29,7 @@ const randomNum = Math.floor(Math.random() * 4);
   return (
     <section className="section-carousel">
       <button className="buttonL" onClick={handleLeftButton}>◀︎</button>
-      <img className="carousel-image" src={image} alt="people" style={{width: "100%"}} />
+      <source className="carousel-image" src={image} alt="people" type="video/mp4" />
       <button className="buttonR" onClick={handleRigthButton}>▶︎</button>
     </section>
   )
