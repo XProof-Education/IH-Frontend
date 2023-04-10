@@ -36,7 +36,10 @@ const Exercises = () => {
 
   return (
     <div>
-      <Navbar color="#FF6230" content="editProfile" backGround="true" backUrl="/profile"/>
+      <Navbar color="#FF6230" content="editProfile" backGround="true" backUrl="/profile" />
+      <div className="title-div">
+        <h1 className="title-style-yellow">My Exercises</h1>
+      </div>
       {loading && <Loading />}
       {!loading && exercises &&
         <div className="lists-container">
