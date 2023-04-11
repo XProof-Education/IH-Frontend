@@ -24,6 +24,9 @@ function Camera(props) {
             if (photosInStorage.length !== 0) {
                 navigate(props.forwardUrl);
             } else {
+                if (props.atCloseAction) {
+                    props.atCloseAction();
+                }
                 navigate(props.backwardUrl);
                 // handleTakePhoto();
             }

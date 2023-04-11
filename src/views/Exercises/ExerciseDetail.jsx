@@ -6,12 +6,14 @@ import exercisesService from '../../services/exercicesService';
 import exerciseAssignationsService from '../../services/exerciseAssignationsService';
 import Button from '../../components/Button';
 import Footer from '../../components/Footer';
+import Camera from '../../components/Camera/Camera';
 
 const ExerciseDetail = () => {
   const { user } = useAuth();
   const { exerciseId } = useParams();
   const [exercise, setExercise] = useState({});
   const [assignations, setAssignations] = useState(null);
+  const [camera, setCamera] = useState(false);
   const navigate = useNavigate();
 
   const getOneExercise = async () => {
@@ -27,14 +29,22 @@ const ExerciseDetail = () => {
   }
 
   const handleDelete = async () => {
-  try {
-    await exercisesService.deleteExercise(exerciseId);
-  } catch (error) {
-    console.error(error);
-  } finally {
-    navigate('/exercises');
+    try {
+      await exercisesService.deleteExercise(exerciseId);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      navigate('/exercises');
+    }
   }
-}
+
+  const openCamera = () => {
+    setCamera(true);
+  }
+
+  const closeCamera = () => {
+    setCamera(false);
+  }
 
   useEffect(() => {
     getOneExercise();
@@ -68,8 +78,9 @@ const ExerciseDetail = () => {
           })
         }
         {user.role === 'student' && 
-          <Link to={'/camera'}>Submit exercise</Link>
+          <Button color="blue" action={openCamera}>Submit exercise</Button>
         }
+        {camera && <Camera backwardUrl={`/exercises/${exercise._id}`} forwardUrl='/' atCloseAction={closeCamera}></Camera>}
         <Footer color="yellow" size="70px" />
       </div>
     </div>
