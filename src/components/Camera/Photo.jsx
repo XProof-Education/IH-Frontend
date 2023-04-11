@@ -7,7 +7,7 @@ import uploadToMathpix from '../../utils/uploadToMathpix';
 import Latex from 'react-latex';
 import { Link } from 'react-router-dom';
 
-function Photo() {
+function Photo(props) {
     const navigate = useNavigate();
     const [imageUrl, setImageUrl] = useState(null);
     const [operation, setOperation] = useState(null);
@@ -18,7 +18,7 @@ function Photo() {
         try {
             const photosInStorage = await loadPhotos();
             if (photosInStorage.length === 0) {
-                navigate('/camera');
+                navigate(-1);
             } else {
                 const imageURL = await uploadImageToCloudinary(photosInStorage[0].webviewPath);
                 // const imageURL = 'www.something...';
@@ -59,7 +59,7 @@ function Photo() {
         setValidatedPhoto(true);
     }
     const handleInvalid = () => {
-        navigate('/camera');
+        navigate(-1);
     }
     useEffect(() => {
         processPhoto();
@@ -87,7 +87,8 @@ function Photo() {
                 <button onClick={handleValid}>All OK</button>
                 <button onClick={handleInvalid}>Retake photo</button>
             </div>}
-            {validatedPhoto && <Feedback operation={operation} imageUrl={imageUrl}/>}
+            {validatedPhoto && !props.isSubmittingExercise && <Feedback operation={operation} imageUrl={imageUrl}/>}
+            {validatedPhoto && props.isSubmittingExercise && <p>Submitted exercise</p>}
         </div>
      );
 }

@@ -22,7 +22,12 @@ function Camera(props) {
             await takePhoto();
             const photosInStorage = await loadPhotos();
             if (photosInStorage.length !== 0) {
-                navigate(props.forwardUrl);
+                if (props.forwardUrl) {
+                    navigate(props.forwardUrl);
+                }
+                if (props.atTakePhoto) {
+                    props.atTakePhoto();
+                }
             } else {
                 if (props.atCloseAction) {
                     props.atCloseAction();
