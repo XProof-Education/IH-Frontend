@@ -5,6 +5,7 @@ import { AuthProviderWrapper } from './context/AuthContext';
 import './index.css';
 import App from './App';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
+import * as serviceWorker from './services/serviceWorker';
 
 // Call the element loader after the platform has been bootstrapped
 defineCustomElements(window);
@@ -17,3 +18,9 @@ root.render(
       </AuthProviderWrapper>
   </Router>
 );
+
+if (process.env.NODE_ENV === 'production') {
+  serviceWorker.register();
+} else {
+  serviceWorker.unregister();
+}

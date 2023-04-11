@@ -9,7 +9,6 @@ import steps3D from '../assets/images/steps3D.mp4';
 // import ins3 from '../assets/images/ins3.jpg';
 
 export default function Home() {
-  
   return (
     <div className="home">
       <Navbar color="blue"/>
