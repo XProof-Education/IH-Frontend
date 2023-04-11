@@ -94,7 +94,6 @@ function Photo(props) {
                 <button onClick={handleInvalid}>Retake photo</button>
             </div>}
             {validatedPhoto && !props.isSubmittingExercise && <Feedback operation={operation} imageUrl={imageUrl}/>}
-            {/* {validatedPhoto && props.isSubmittingExercise && props.handleSubmitExercise()} */}
         </div>
      );
 }
