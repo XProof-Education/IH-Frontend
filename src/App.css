@@ -138,12 +138,6 @@ table {
   color: green;
 }
 
-.equation {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 /* ---------------- GENERAL ------------------ */
 
 * {
@@ -173,6 +167,7 @@ table {
 
 .App {
   min-height: 100vh;
+  width: 100vw;
   background-color: var(--primary-white);
 }
 
@@ -201,6 +196,10 @@ p, a, input, label{
   text-decoration: none;
 }
 
+a{
+  color: var(--primary-black)
+}
+
 h1.title-style-pink {
   color: var(--primary-pink);
 }
@@ -215,6 +214,11 @@ h1.title-style-violet {
 
 h1.title-style-yellow {
   color: var(--primary-yellow);
+}
+
+.katex {
+  font-family: apercu, sans-serif;
+  font-size: 2rem;
 }
 
 /* ---------------- HOME ------------------ */
@@ -306,6 +310,13 @@ div.buttons-container{
   justify-content: center;
   align-items: center;
   margin: 1.5rem;
+}
+
+div.button-container {
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
 }
 
 /* ---------------- EXERCISES ------------------ */
@@ -418,3 +429,107 @@ div.not-found-div {
 div.not-found-div p {
   color: var(--primary-pink);
 }
+
+/* ---------------- DETAIL VIEW OPERATION------------------ */
+
+div.operation-detail-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-left: 1px solid var(--primary-blue);
+  border-right: 1px solid var(--primary-blue);
+  margin: 0 1.5rem;
+}
+
+div.operation-detail-container-red {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-left: 1px solid var(--primary-pink);
+  border-right: 1px solid var(--primary-pink);
+  margin: 0 1.5rem;
+}
+
+div.equation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+div.operation-feedback {
+  margin: 1rem 2rem;
+  padding: 1rem
+}
+
+/* ---------------- PROGRESS VIEW ------------------ */
+
+div.progress-input-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0 2rem 0;
+}
+
+select.progress-input {
+  border-radius: 20px;
+  border: 1px solid var(--primary-black);
+  padding: 0.5rem 1rem;
+}
+
+div.stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+div.stats div.total {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+div.percentages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  margin: 1rem 0;
+}
+
+div.l-cards {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  gap: 1rem;
+  padding: 1rem
+}
+
+div.l-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 33%;
+  text-align: center;
+}
+
+div.l-card-feedback {
+  display: flex;
+  align-items: flex-start;
+  height: 4rem;
+}
+
+
+
