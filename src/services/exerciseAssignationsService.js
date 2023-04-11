@@ -19,7 +19,7 @@ class ExerciseAssignationsService {
     return this.api.get('/').then(({ data }) => data).catch(err => console.error(err));
   }
 
-  getSingleAssignation(exerciseId) {
+  getExerciseAssignations(exerciseId) {
     return this.api.get(`/${exerciseId}`).then(({ data }) => data).catch(err => console.error(err));
   }
 

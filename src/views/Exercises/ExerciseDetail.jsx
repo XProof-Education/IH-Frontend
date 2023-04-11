@@ -3,6 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import Navbar from '../../components/Header/Navbar';
 import exercisesService from '../../services/exercicesService';
+import exerciseAssignationsService from '../../services/exerciseAssignationsService';
 import Button from '../../components/Button';
 import Footer from '../../components/Footer';
 
@@ -14,8 +15,10 @@ const ExerciseDetail = () => {
 
   const getOneExercise = async () => {
     try {
-      const response = await exercisesService.getOneExercise(exerciseId);
-      setExercise(response.exerciseData);
+      const { exerciseData } = await exercisesService.getOneExercise(exerciseId);
+      const response = await exerciseAssignationsService.getExerciseAssignations(exerciseId);
+      console.log(response);
+      setExercise(exerciseData);
     } catch (error) {
       console.error(error);
     }

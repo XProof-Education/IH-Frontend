@@ -29,7 +29,7 @@ const EditExercise = () => {
   const getData = async () => {
     try {
       const { exerciseData } = await exercisesService.getOneExercise(exerciseId);
-      const assignationsDB = await exerciseAssignationsService.getSingleAssignation( exerciseId );
+      const assignationsDB = await exerciseAssignationsService.getExerciseAssignations( exerciseId );
       const assignations = assignationsDB.assignations.map(elem => {
         return {
           exerciseId: elem.exerciseId._id,
