@@ -11,14 +11,16 @@ const ExerciseDetail = () => {
   const { user } = useAuth();
   const { exerciseId } = useParams();
   const [exercise, setExercise] = useState({});
+  const [assignations, setAssignations] = useState(null);
   const navigate = useNavigate();
 
   const getOneExercise = async () => {
     try {
       const { exerciseData } = await exercisesService.getOneExercise(exerciseId);
-      const response = await exerciseAssignationsService.getExerciseAssignations(exerciseId);
-      console.log(response);
+      const { assignations } = await exerciseAssignationsService.getExerciseAssignations(exerciseId);
       setExercise(exerciseData);
+      setAssignations(assignations);
+      console.log(assignations);
     } catch (error) {
       console.error(error);
     }
@@ -55,6 +57,16 @@ const ExerciseDetail = () => {
             <Link to={`/edit/${exerciseId}`}><Button color="yellow"> Edit </Button></Link>
             <Button color="pink" action={handleDelete}> Delete </Button>
           </div>}
+        {user.role === 'teacher' && assignations &&
+          assignations.map(elem => {
+            return (
+              <div key={elem._id}>
+                <p>{elem.studentId.name} {elem.studentId.lastName}</p>
+                {elem.isCompleted ? <p>completed</p> : <p>pending</p>}
+              </div>
+            )
+          })
+        }
         <Footer color="yellow" size="70px" />
       </div>
     </div>
