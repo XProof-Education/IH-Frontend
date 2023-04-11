@@ -200,19 +200,19 @@ a{
   color: var(--primary-black)
 }
 
-h1.title-style-pink {
+.title-style-pink {
   color: var(--primary-pink);
 }
 
-h1.title-style-blue {
+.title-style-blue {
   color: var(--primary-blue);
 }
 
-h1.title-style-violet {
+.title-style-violet {
   color: var(--primary-violet);
 }
 
-h1.title-style-yellow {
+.title-style-yellow {
   color: var(--primary-yellow);
 }
 
@@ -532,4 +532,49 @@ div.l-card-feedback {
 }
 
 
+/* ---------------- ERRORS DETAIL VIEW ------------------ */
 
+div.detail-errors-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 1.5rem;
+  gap: 1rem;
+}
+
+div.error-card {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-bottom: 1rem;
+}
+
+div.percentage-link-div {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+}
+
+/* span.divider {
+border-bottom: 3px solid var(--primary-blue);
+width: 50%;
+margin: 0 auto
+} */
+
+/* ---------------- ERROR DETAIL VIEW ------------------ */
+
+div.operation-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+  margin: 1rem;
+}
+
+div.operation-card img {
+  width: 250px;
+  border: 1px solid var(--primary-pink);
+}

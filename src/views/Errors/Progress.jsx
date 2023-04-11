@@ -82,18 +82,18 @@ function Progress() {
           </div>
           {statistics.total === 0 ?
             <div className="percentages">
-              <h3>Still no data from this period</h3>
+              <h3 className="title-style-blue">Still no data from this period</h3>
             </div>
             : <div className="percentages-container">
               <div className="percentages">
                 <div>
                   <h3>Correct</h3>
                   {/* <p>{Math.ceil(computePercentage(statistics.correct, statistics.total))}%</p> */}
-                  <Percentage percentage={Math.ceil(computePercentage(statistics.correct, statistics.total))} colorToPaint="blue" fontSize="24px" size="80px"/>
+                  <Percentage percentage={Math.ceil(computePercentage(statistics.correct, statistics.total))} colorToPaint="blue" fontSize="20px" size="80px"/>
                 </div>
                 <div>
                   <h3>Incorrect</h3>
-                  <Percentage percentage={Math.ceil(computePercentage(statistics.incorrect, statistics.total))} colorToPaint="pink" fontSize="24px" size="80px"/>
+                  <Percentage percentage={Math.ceil(computePercentage(statistics.incorrect, statistics.total))} colorToPaint="pink" fontSize="20px" size="80px"/>
                   {/* <p>{Math.floor(computePercentage(statistics.incorrect, statistics.total))}%</p> */}
                 </div>
               </div>

@@ -5,6 +5,7 @@ import { getErrorStatistics, computeL } from '../../utils/progress/getErrorStati
 import { useParams } from 'react-router-dom';
 import { Link, useLocation } from 'react-router-dom';
 import Button from '../../components/Button';
+import Footer from '../../components/Footer';
 import filterOperations from '../../utils/filterOperationsByTime';
 
 function ErrorDetail() {
@@ -53,18 +54,23 @@ function ErrorDetail() {
   }, [operations, l, error]);
   return ( 
     <div>
-      <Navbar color="#FF6230" content="editProfile" backGround="true"/>
+      <Navbar color="#FF6230" content="editProfile" backGround="true" />
+      <div className="container-detail">
+        <div className="detail-errors-container">
+          <p>Viewing {timeFilterText[timeFilter]}</p>
       <h3>{title}</h3>
-      <p>Viewing {timeFilterText[timeFilter]}</p>
       {filteredOperations && filteredOperations.map(operation => {
         return (
           <div className="operation-card" key={operation._id}>
-            <img width='100px' src={operation.cloudinaryPhoto} alt="Operation detail" />
-            <Link to={`/operations/${operation._id}?timeFilter=${timeFilter}`}><Button color='blue'>See operation detail</Button></Link>
+            <img src={operation.cloudinaryPhoto} alt="Operation detail" />
+            <Link to={`/operations/${operation._id}?timeFilter=${timeFilter}`}><Button color='pink'>See operation detail</Button></Link>
           </div>
         )
       })}
-    </div>
+        </div>
+      </div>
+      <Footer color="blue" size="70px" />
+      </div>
    );
 }
 

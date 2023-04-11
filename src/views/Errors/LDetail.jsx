@@ -7,6 +7,8 @@ import lToFeedback from '../../utils/progress/lToFeedback';
 import { Link, useLocation } from 'react-router-dom';
 import Button from '../../components/Button';
 import filterOperations from '../../utils/filterOperationsByTime';
+import Percentage from '../../components/Percentage';
+import Footer from '../../components/Footer';
 
 function LDetail() {
   const { l } = useParams();
@@ -65,22 +67,33 @@ function LDetail() {
     setErrors(sortedArrayOfErrors);
   }, [operations, l]);
 
-  return ( 
+  return (
     <div>
-      <Navbar color="#FF6230" content="editProfile" backGround="true"/>
-      <h1>{title}</h1>
-      <p>Viewing {timeFilterText[timeFilter]}</p>
-      {errors && errors.map(error => {
-        return (
-          <div className="error-card" key={error.error}>
-            <h5>{error.feedback.split('.')[0]}</h5>
-            <p>{Math.floor(computePercentage(error.count, statistics.incorrect))}% of your mistakes</p>
-            <Link to={`/profile/progress/${l}/${error.error}?timeFilter=${timeFilter}`}><Button color='blue'>See operations</Button></Link>
+      <Navbar color="#FF6230" content="editProfile" backGround="true" />
+      <div className="container-detail">
+        <div className="detail-errors-container">
+          <div className="title-div">
+            <h1 className="title-style-blue">{title}</h1>
           </div>
-        )
-      })}
+          <h3>Viewing {timeFilterText[timeFilter]}</h3>
+          {errors && errors.map(error => {
+            return (
+              <div className="error-card" key={error.error}>
+                <p>{error.feedback.split('.')[0]}</p>
+                <div className="percentage-link-div">
+                  <Percentage percentage={Math.floor(computePercentage(error.count, statistics.incorrect))} colorToPaint="pink" fontSize="20px" size="80px" />
+                  {/* <p>{Math.floor(computePercentage(error.count, statistics.incorrect))}% of your mistakes</p> */}
+                  <Link to={`/profile/progress/${l}/${error.error}?timeFilter=${timeFilter}`}><Button color='blue'>See operations</Button></Link>
+                </div>
+                <span className="divider"></span>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+      <Footer color="yellow" size="70px" />
     </div>
-   );
+  );
 }
 
 export default LDetail;
