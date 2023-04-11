@@ -25,7 +25,6 @@ const OperationDetail = (props) => {
     operationId = params.operationId
   }
   const [operation, setOperation] = useState(null);
-  console.log(operation)
 
   const getOneOperation = async () => {
     try {

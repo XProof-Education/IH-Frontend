@@ -87,7 +87,6 @@ const NewExercise = () => {
     const studentIds = assignations.map(assignation => assignation.studentId);
     try {
       if (studentIds.length !== 0 && exercise.exerciseFile.length !== 0) {
-        console.log(exercise.exerciseFile.length)
         const { newExerciseData } = await exercisesService.newExercise(exercise);
         await exerciseAssignationsService.newExerciseAssignations(newExerciseData._id, { studentIds });
         setQuery('');

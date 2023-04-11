@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../hooks/useAuth';
+import { Link } from 'react-router-dom';
 import Navbar from '../../components/Header/Navbar';
 import exercisesService from '../../services/exercicesService';
 import exerciseAssignationsService from '../../services/exerciseAssignationsService';
 import Loading from '../../components/Loading';
 import ListCard from '../../components/Cards/ListCard';
 import Footer from '../../components/Footer';
-
+import Button from '../../components/Button';
 
 const Exercises = () => {
   const { user } = useAuth();
@@ -40,6 +41,9 @@ const Exercises = () => {
       <div className="title-div">
         <h1 className="title-style-yellow">My Exercises</h1>
       </div>
+      {user.role === 'teacher' && <div className='button-container'>
+        <Button color="yellow"><Link to={'/new-exercise'}>Create new exercise</Link></Button>
+      </div>}
       {loading && <Loading />}
       {!loading && exercises &&
         <div className="lists-container">
