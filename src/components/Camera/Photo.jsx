@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Feedback from '../../components/Feedback';
+import Feedback from '../Feedback';
 import { useNavigate } from 'react-router-dom';
 import loadPhotos from '../../utils/camera/loadPhoto';
 import uploadImageToCloudinary from '../../utils/uploadToCloudinary';

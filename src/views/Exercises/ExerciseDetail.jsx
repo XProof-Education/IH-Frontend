@@ -20,7 +20,7 @@ const ExerciseDetail = () => {
       const { assignations } = await exerciseAssignationsService.getExerciseAssignations(exerciseId);
       setExercise(exerciseData);
       setAssignations(assignations);
-      console.log(assignations);
+      // console.log(assignations);
     } catch (error) {
       console.error(error);
     }
@@ -66,6 +66,9 @@ const ExerciseDetail = () => {
               </div>
             )
           })
+        }
+        {user.role === 'student' && 
+          <Link to={'/camera'}>Submit exercise</Link>
         }
         <Footer color="yellow" size="70px" />
       </div>

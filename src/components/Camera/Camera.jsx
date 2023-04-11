@@ -4,7 +4,7 @@ import loadPhotos from '../../utils/camera/loadPhoto';
 import deletePhoto from '../../utils/camera/deletePhoto';
 import takePhoto from '../../utils/camera/takePhoto';
 
-function Camera() {
+function Camera(props) {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
 
@@ -22,9 +22,9 @@ function Camera() {
             await takePhoto();
             const photosInStorage = await loadPhotos();
             if (photosInStorage.length !== 0) {
-                navigate('/camera/result');
+                navigate(props.forwardUrl);
             } else {
-                navigate('/');
+                navigate(props.backwardUrl);
                 // handleTakePhoto();
             }
         } catch (error) {
