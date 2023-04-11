@@ -31,6 +31,10 @@ class ExerciseAssignationsService {
     return this.api.put(`/${exerciseId}`, body).then(({ data }) => data).catch(err => console.error(err));
   }
 
+  completeAssignation(assignationId, operationId) {
+    return this.api.put(`/complete/${assignationId}/${operationId}`).then(({ data }) => data).catch(err => console.error(err));
+  }
+
   deleteAllExerciseAssignation(exerciseId) {
     return this.api.delete(`/deleteAll/${exerciseId}`).then((response) => response.data).catch(err => console.error(err));
   }

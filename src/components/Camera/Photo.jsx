@@ -66,6 +66,12 @@ function Photo(props) {
         // eslint-disable-next-line
     }, []);
 
+    useEffect(() => {
+        if (validatedPhoto && props.isSubmittingExercise) {
+            props.handleSubmitExercise(operation, imageUrl);
+        }
+    }, [validatedPhoto]);
+
     return ( 
         <div className="photo-view">
             {!operation && <div className='loading-mathpix'>
@@ -88,7 +94,7 @@ function Photo(props) {
                 <button onClick={handleInvalid}>Retake photo</button>
             </div>}
             {validatedPhoto && !props.isSubmittingExercise && <Feedback operation={operation} imageUrl={imageUrl}/>}
-            {validatedPhoto && props.isSubmittingExercise && <p>Submitted exercise</p>}
+            {/* {validatedPhoto && props.isSubmittingExercise && props.handleSubmitExercise()} */}
         </div>
      );
 }
