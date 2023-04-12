@@ -38,6 +38,7 @@ const Exercises = () => {
   return (
     <div>
       <Navbar color="#FF6230" content="editProfile" backGround="true" backUrl="/profile" />
+      
       <div className="title-div">
         <h1 className="title-style-yellow">My Exercises</h1>
       </div>
@@ -51,7 +52,8 @@ const Exercises = () => {
         </div>
       }
       <Footer color="pink" size="70px"/>
-    </div>
+      </div>
+     
   )
 }
 

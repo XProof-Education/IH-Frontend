@@ -52,26 +52,28 @@ function ErrorDetail() {
       }
     }
   }, [operations, l, error]);
-  return ( 
+  return (
     <div>
       <Navbar color="#FF6230" content="editProfile" backGround="true" />
-      <div className="container-detail">
+      <div className="container-error-detail">
         <div className="detail-errors-container">
           <p>Viewing {timeFilterText[timeFilter]}</p>
-      <h3>{title}</h3>
-      {filteredOperations && filteredOperations.map(operation => {
-        return (
-          <div className="operation-card" key={operation._id}>
-            <img src={operation.cloudinaryPhoto} alt="Operation detail" />
-            <Link to={`/operations/${operation._id}?timeFilter=${timeFilter}`}><Button color='pink'>See operation detail</Button></Link>
-          </div>
-        )
-      })}
+          <h3>{title}</h3>
+          {filteredOperations && filteredOperations.map(operation => {
+            return (
+              <div className="operation-card" key={operation._id}>
+                <div className="operation-card-img">
+                  <img src={operation.cloudinaryPhoto} alt="Operation detail" />
+                </div>
+                <Link to={`/operations/${operation._id}?timeFilter=${timeFilter}`}><Button color='pink'>See operation detail</Button></Link>
+              </div>
+            )
+          })}
         </div>
       </div>
       <Footer color="blue" size="70px" />
-      </div>
-   );
+    </div>
+  );
 }
 
 export default ErrorDetail;

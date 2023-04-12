@@ -86,7 +86,7 @@ const ExerciseDetail = () => {
   return (
     <div>
       <Navbar color="#FF6230" content="editProfile" backGround="true" />
-      <div className="container-detail">
+      <div className="container-exercise-detail">
         <div className="title-div">
           <h1 className="title-style-blue">Single exercise</h1>
         </div>

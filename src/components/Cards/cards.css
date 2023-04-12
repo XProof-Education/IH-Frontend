@@ -1,9 +1,9 @@
 /*--------------------- PROFFILE CARD --------------------*/
 
 div.profile-card-container {
-display: flex;
-flex-direction: column;
-text-align: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
 
 div.profile-card {
@@ -35,14 +35,16 @@ div.profile-card {
 div.lists-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  padding: 1.5rem 1.5rem 7rem 1.5rem;
+  height: 93%;
+  overflow-y: auto;
 }
 
 div.single-item-list-container {
   display: flex;
   flex-direction: column;
   gap: 1.3rem;
-  margin: 1.5rem 1.5rem 7rem 1.5rem;
 }
 
 div.div-map-single-item-list {
@@ -54,6 +56,6 @@ div.div-map-single-item-list {
 
 img.img-list {
   width: 100%;
-  height: auto;
-  display: block;
+  height: 100%;
+  object-fit: cover;
 }

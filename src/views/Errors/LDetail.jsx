@@ -72,7 +72,7 @@ function LDetail() {
       <Navbar color="#FF6230" content="editProfile" backGround="true" />
       <div className="container-detail">
         <div className="detail-errors-container">
-          <div className="title-div title-error">
+          <div className="title-div-error">
             <h1 className="title-style-blue">{title}</h1>
           </div>
           <h3>Viewing {timeFilterText[timeFilter]}</h3>
