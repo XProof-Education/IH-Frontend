@@ -107,7 +107,7 @@ function Photo(props) {
                 </div>
             </div>}
             {validatedPhoto && !props.isSubmittingExercise && <Feedback operation={operation} imageUrl={imageUrl} />}
-        <Footer color="blue" size="70px" />
+            <Footer color="blue" size="70px" />
         </div>
     );
 }
