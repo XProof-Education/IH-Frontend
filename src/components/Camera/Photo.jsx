@@ -59,7 +59,11 @@ function Photo(props) {
         setValidatedPhoto(true);
     }
     const handleInvalid = () => {
-        navigate(-1);
+        if (props.isSubmittingExercise && props.handleInvalid) {
+            props.handleInvalid();
+        } else {
+            navigate(-1);
+        }
     }
     useEffect(() => {
         processPhoto();
@@ -70,6 +74,7 @@ function Photo(props) {
         if (validatedPhoto && props.isSubmittingExercise) {
             props.handleSubmitExercise(operation, imageUrl);
         }
+        // eslint-disable-next-line
     }, [validatedPhoto]);
 
     return ( 
@@ -95,7 +100,7 @@ function Photo(props) {
             </div>}
             {validatedPhoto && !props.isSubmittingExercise && <Feedback operation={operation} imageUrl={imageUrl}/>}
         </div>
-     );
+    );
 }
 
 export default Photo;

@@ -10,8 +10,6 @@ import Footer from '../../components/Footer';
 import Camera from '../../components/Camera/Camera';
 import Photo from '../../components/Camera/Photo';
 import handleOperation from '../../utils/handleOperation';
-import filterFeedBacks from '../../utils/filterFeedbacks';
-
 
 const ExerciseDetail = () => {
   const { user } = useAuth();
@@ -50,6 +48,7 @@ const ExerciseDetail = () => {
   }
 
   const openCamera = () => {
+    setPhoto(false);
     setCamera(true);
   }
 
@@ -117,7 +116,7 @@ const ExerciseDetail = () => {
           <p>Completed</p>
         }
         {camera && <Camera backwardUrl={`/exercises/${exercise._id}`} atCloseAction={closeCamera} atTakePhoto={showPhoto}></Camera>}
-        {photo && <Photo isSubmittingExercise={true} handleSubmitExercise={handleSubmitExercise}></Photo>}
+        {photo && <Photo isSubmittingExercise={true} handleSubmitExercise={handleSubmitExercise} handleInvalid={openCamera}></Photo>}
         <Footer color="yellow" size="70px" />
       </div>
     </div>
