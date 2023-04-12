@@ -72,7 +72,7 @@ function LDetail() {
       <Navbar color="#FF6230" content="editProfile" backGround="true" />
       <div className="container-detail">
         <div className="detail-errors-container">
-          <div className="title-div">
+          <div className="title-div title-error">
             <h1 className="title-style-blue">{title}</h1>
           </div>
           <h3>Viewing {timeFilterText[timeFilter]}</h3>
@@ -82,10 +82,8 @@ function LDetail() {
                 <p>{error.feedback.split('.')[0]}</p>
                 <div className="percentage-link-div">
                   <Percentage percentage={Math.floor(computePercentage(error.count, statistics.incorrect))} colorToPaint="pink" fontSize="20px" size="80px" />
-                  {/* <p>{Math.floor(computePercentage(error.count, statistics.incorrect))}% of your mistakes</p> */}
                   <Link to={`/profile/progress/${l}/${error.error}?timeFilter=${timeFilter}`}><Button color='blue'>See operations</Button></Link>
                 </div>
-                <span className="divider"></span>
               </div>
             )
           })}

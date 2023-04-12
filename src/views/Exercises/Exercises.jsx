@@ -44,7 +44,7 @@ const Exercises = () => {
       {user.role === 'teacher' && <div className='button-container'>
         <Button color="yellow"><Link to={'/new-exercise'}>Create new exercise</Link></Button>
       </div>}
-      {loading && <Loading />}
+      {loading && <div className="loading-div"><Loading /></div>}
       {!loading && exercises &&
         <div className="lists-container">
         <ListCard props={exercises} typeData={user.role === 'teacher' ? "exercises" : "studentExercises"} />

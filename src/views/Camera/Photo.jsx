@@ -65,7 +65,8 @@ function Photo() {
         processPhoto();
         // eslint-disable-next-line
     }, []);
-
+    console.log("operation", operation)
+    console.log("imageUrl", imageUrl)
     return ( 
         <div className="photo-view">
             {!operation && <div className='loading-mathpix'>
