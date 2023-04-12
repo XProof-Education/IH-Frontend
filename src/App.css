@@ -459,7 +459,7 @@ div.equation {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 
 div.operation-feedback {
@@ -578,7 +578,7 @@ div.operation-card img {
   border: 1px solid var(--primary-pink);
 }
 
-/* ---------------- PHOTO VIEW ------------------ */
+/* ---------------- PHOTO ------------------ */
 
 div.photo-view {
   height: 100vh;
@@ -604,9 +604,91 @@ div.mathpix-error {
 
 div.mathpix-result {
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 2rem;
+  text-align: center;
+  border-right: 1px solid var(--primary-black);
+  border-left: 1px solid var(--primary-black);
+}
+
+/* ---------------- FEEDBACK ------------------ */
+
+div.loading-feedback-div {
+  height: 90%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
+div.feedback-div {
+  height: 100vh;
+    width: 100vw;
+    padding-bottom: 6rem;
+}
+
+div.feedback-container {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 2rem;
+  padding: 0 1rem;
+  text-align: center;
+  border-right: 1px solid var(--primary-blue);
+  border-left: 1px solid var(--primary-blue);
+}
+
+div.feedback-container-mistake {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 2rem;
+  padding: 0 1rem;
+  text-align: center;
+  border-right: 1px solid var(--primary-pink);
+  border-left: 1px solid var(--primary-pink);
+}
+
+div.feedback-title{
+  padding-bottom: 1rem;
+}
+
+div.feedback-title h2 {
+  padding: 0 0 1.5rem 0;
+}
+
+div.equation-feedback {
+  margin-top: 1rem;
+}
+
+div.loading-feedback{
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+div.error-feedbacks {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1rem 1rem 1rem;
+  gap: 1rem;
+}
+
+h2.feedback-error-h2 {
+  color: var(--primary-pink);
+}
+
+h2.feedback-ok-h2 {
+  color: var(--primary-blue);
+}
+
+div.buttons-feedback-container {
+  display: flex;
+}

@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Feedback from '../Feedback';
+import Navbar from '../Header/Navbar';
+import Footer from '../Footer';
+import Button from '../Button';
+import Loading from '../Loading';
 import { useNavigate } from 'react-router-dom';
 import loadPhotos from '../../utils/camera/loadPhoto';
 import uploadImageToCloudinary from '../../utils/uploadToCloudinary';
@@ -77,14 +81,16 @@ function Photo(props) {
         // eslint-disable-next-line
     }, [validatedPhoto]);
 
-    return ( 
+    return (
         <div className="photo-view">
+            <Navbar color="pink" />
             {!operation && <div className='loading-mathpix'>
                 <h2>Reading operation</h2>
+                <Loading />
             </div>}
             {mathpixError && <div className='mathpix-error'>
                 <p>There was a problem reading this photo.</p>
-                <button><Link to={'/camera'}>Try again</Link></button>
+                <Button color="pink"><Link to={'/camera'}>Try again</Link></Button>
             </div>}
             {operation && !validatedPhoto && <div className="mathpix-result">
                 <h2>Have I properly read the exercise?</h2>
@@ -95,10 +101,13 @@ function Photo(props) {
                         </div>
                     );
                 })}
-                <button onClick={handleValid}>All OK</button>
-                <button onClick={handleInvalid}>Retake photo</button>
+                <div className="buttons-container">
+                    <Button color="blue" action={handleValid}>All OK</Button>
+                    <Button color="pink" action={handleInvalid}>Retake photo</Button>
+                </div>
             </div>}
-            {validatedPhoto && !props.isSubmittingExercise && <Feedback operation={operation} imageUrl={imageUrl}/>}
+            {validatedPhoto && !props.isSubmittingExercise && <Feedback operation={operation} imageUrl={imageUrl} />}
+        <Footer color="blue" size="70px" />
         </div>
     );
 }
