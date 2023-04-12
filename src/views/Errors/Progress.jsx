@@ -88,13 +88,11 @@ function Progress() {
               <div className="percentages">
                 <div>
                   <h3>Correct</h3>
-                  {/* <p>{Math.ceil(computePercentage(statistics.correct, statistics.total))}%</p> */}
                   <Percentage percentage={Math.ceil(computePercentage(statistics.correct, statistics.total))} colorToPaint="blue" fontSize="20px" size="80px"/>
                 </div>
                 <div>
                   <h3>Incorrect</h3>
                   <Percentage percentage={Math.ceil(computePercentage(statistics.incorrect, statistics.total))} colorToPaint="pink" fontSize="20px" size="80px"/>
-                  {/* <p>{Math.floor(computePercentage(statistics.incorrect, statistics.total))}%</p> */}
                 </div>
               </div>
               <p>Keep up the good work!</p>
@@ -115,7 +113,6 @@ function Progress() {
                 <div>
                 <Percentage percentage={Math.floor(computePercentage(elem.count, statistics.incorrect))} colorToPaint="pink" fontSize="14px" size="60px"/>
                 </div>
-                    {/* <p>{Math.floor(computePercentage(elem.count, statistics.incorrect))}% of your mistakes</p> */}
                 <div>
                   <Link to={`/profile/progress/${elem.L}?timeFilter=${timeFilter}`}><Button color='yellow'>Details</Button></Link>
               </div>
