@@ -4,12 +4,12 @@ import Latex from "react-latex";
 
 
 const OperationCard = (props) => {
-  const { operation, handleDelete } = props;
+  const { operation, handleDelete, isCompletion } = props;
   return (
     <div className={operation && operation.isCorrect ? "operation-detail-container" : "operation-detail-container-red"}>
-      <div className="title-div">
+      {!isCompletion && <div className="title-div">
         <h1 className="title-style-yellow">Operation detail</h1>
-      </div>
+      </div>}
       {operation &&
         <div className='equation'>
           <Latex>{`$$${operation.mathLatexSimplified}$$`}</Latex>
@@ -22,9 +22,9 @@ const OperationCard = (props) => {
             </div>}
         </div>
       }
-      <div className="button-container">
+      {handleDelete && <div className="button-container">
         <Button color="pink" action={handleDelete}>Delete</Button>
-      </div>
+      </div>}
     </div>
   );
 }

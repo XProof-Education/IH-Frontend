@@ -10,12 +10,14 @@ import Footer from '../../components/Footer';
 import Camera from '../../components/Camera/Camera';
 import Photo from '../../components/Camera/Photo';
 import handleOperation from '../../utils/handleOperation';
+import OperationCard from '../../components/Cards/OperationCard';
 
 const ExerciseDetail = () => {
   const { user } = useAuth();
   const { exerciseId } = useParams();
   const [exercise, setExercise] = useState({});
   const [assignations, setAssignations] = useState(null);
+  const [seeCompletion, setSeeCompletion] = useState(false);
   const [singleStudentAssignation, setSingleStudentAssignation] = useState({});
   const [camera, setCamera] = useState(false);
   const [photo, setPhoto] = useState(false);
@@ -78,6 +80,11 @@ const ExerciseDetail = () => {
     }
   }
 
+  const handleSeeStudentCompletion = (assignation) => {
+    if (assignation.isCompleted) {
+      setSeeCompletion(prev => !prev);
+    }
+  }
   useEffect(() => {
     getOneExercise();
     // eslint-disable-next-line
@@ -102,9 +109,10 @@ const ExerciseDetail = () => {
         {user.role === 'teacher' && assignations &&
           assignations.map(elem => {
             return (
-              <div key={elem._id}>
+              <div key={elem._id} onClick={() => handleSeeStudentCompletion(elem)}>
                 <p>{elem.studentId.name} {elem.studentId.lastName}</p>
-                {elem.isCompleted ? <p>completed</p> : <p>pending</p>}
+                {elem.isCompleted ? <p>completed {seeCompletion ? 'Hide' : 'Show'}</p> : <p>pending</p>}
+                {elem.isCompleted && seeCompletion && <OperationCard operation={elem.completion} isCompletion={true}/>}
               </div>
             )
           })
