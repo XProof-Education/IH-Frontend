@@ -17,7 +17,7 @@ const ExerciseDetail = () => {
   const { exerciseId } = useParams();
   const [exercise, setExercise] = useState({});
   const [assignations, setAssignations] = useState(null);
-  const [seeCompletion, setSeeCompletion] = useState(false);
+  const [seeCompletions, setSeeCompletions] = useState([]);
   const [singleStudentAssignation, setSingleStudentAssignation] = useState({});
   const [camera, setCamera] = useState(false);
   const [photo, setPhoto] = useState(false);
@@ -81,8 +81,11 @@ const ExerciseDetail = () => {
   }
 
   const handleSeeStudentCompletion = (assignation) => {
-    if (assignation.isCompleted) {
-      setSeeCompletion(prev => !prev);
+    if (assignation.isCompleted && seeCompletions.includes(assignation._id)) {
+      const filteredArray = seeCompletions.filter(elem => elem !== assignation._id);
+      setSeeCompletions(filteredArray);
+    } else if (assignation.isCompleted && !seeCompletions.includes(assignation._id)) {
+      setSeeCompletions(prev => [...prev, assignation._id]);
     }
   }
   useEffect(() => {
@@ -115,8 +118,8 @@ const ExerciseDetail = () => {
             {assignations && assignations.map(elem => (
               <div key={elem._id} onClick={() => handleSeeStudentCompletion(elem)}>
                 <p>{elem.studentId.name} {elem.studentId.lastName}</p>
-                {elem.isCompleted ? <p>completed {seeCompletion ? 'Hide' : 'Show'}</p> : <p>pending</p>}
-                {elem.isCompleted && seeCompletion && <OperationCard operation={elem.completion} isCompletion={true} />}
+                {elem.isCompleted ? <p>completed {seeCompletions.includes(elem._id) ? 'Hide' : 'Show'}</p> : <p>pending</p>}
+                {elem.isCompleted && seeCompletions.includes(elem._id) && <OperationCard operation={elem.completion} isCompletion={true} />}
               </div>
             ))}
           </>
