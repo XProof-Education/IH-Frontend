@@ -105,7 +105,7 @@ const ExerciseDetail = () => {
           {(user.role === 'teacher' || (user.role === 'student' && singleStudentAssignation.isCompleted)) && exercise.solutionFile && (
             <>
               <p>Solution:</p>
-              <img style={{ width: "100%" }} src={exercise.solutionFile} alt="exercise solution" />
+              <img src={exercise.solutionFile} alt="exercise solution" />
             </>
           )}
         </div>

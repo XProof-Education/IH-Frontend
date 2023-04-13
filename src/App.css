@@ -446,7 +446,7 @@ div.assign-students-div {
 /* ---------------- DETAIL VIEWS ------------------ */
 
 div.container-exercise-detail {
-  padding-bottom: 7rem;
+  padding-bottom: 5rem;
   margin: 10px 0;
 }
 
@@ -457,9 +457,10 @@ div.img-container {
   gap: 1rem;
 }
 
-div.img-container img{
+div.img-container img {
   border: 1px solid var(--primary-black);
   width: 100%;
+  border-radius: 5px;
 }
 
 div.not-found-div {

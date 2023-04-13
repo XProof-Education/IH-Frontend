@@ -85,7 +85,7 @@ function Photo(props) {
     }, [validatedPhoto]);
 
     return (
-        <div className="photo-view">
+        <div className={props.isSubmittingExercise ? "photo-view height-auto no-padding-bottom" : "photo-view"}>
             {!props.isSubmittingExercise && <Navbar color="pink" />}
             {!operation && !mathpixError && <div className='loading-mathpix'>
                 <h2>Reading operation</h2>
@@ -95,7 +95,7 @@ function Photo(props) {
                 <p>There was a problem reading this photo.</p>
                 <Button color="pink"><Link to={props.isSubmittingExercise ? `/exercises/${exerciseId}` : '/camera'}>Try again</Link></Button>
             </div>}
-            {operation && !validatedPhoto && <div className="mathpix-result">
+            {operation && !validatedPhoto && <div className={props.isSubmittingExercise ? "mathpix-result height-auto" : "mathpix-result"}>
                 <h2>Have I properly read the exercise?</h2>
                 {operation.map((elem, idx) => {
                     return (

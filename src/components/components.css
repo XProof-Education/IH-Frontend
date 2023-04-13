@@ -151,6 +151,14 @@ div.mathpix-result {
   border-left: 1px solid var(--primary-black);
 }
 
+.height-auto {
+  height: auto !important;
+}
+
+.no-padding-bottom {
+  padding-bottom: 0rem !important;
+}
+
 /* ---------------- FEEDBACK ------------------ */
 
 div.loading-feedback-div {
