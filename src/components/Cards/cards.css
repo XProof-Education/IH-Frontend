@@ -41,8 +41,9 @@ div.single-item-list-container {
 div.div-map-single-item-list {
   width: 21rem;
   height: 10rem;
-  border: 1px solid var(--primary--black);
+  border: 1.5px solid var(--primary--black);
   overflow: hidden;
+  border-radius: 10px;
 }
 
 img.img-list {
