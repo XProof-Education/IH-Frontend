@@ -96,8 +96,9 @@ const EditProfile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    try {
+    if (isValid.name && isValid.lastName && isValid.email && isValid.color) {
+      setLoading(true);
+      try {
         const response = await userService.editUserData(userInfo);
         if (response.authToken) {
           removeToken();
@@ -120,8 +121,9 @@ const EditProfile = () => {
           setErrorMessage('Unable to update user!');
         }
       } catch (error) {
-      setErrorMessage('Unable to update user');
-      console.error(error);
+        setErrorMessage('Unable to update user');
+        console.error(error);
+      }
     }
   }
 
