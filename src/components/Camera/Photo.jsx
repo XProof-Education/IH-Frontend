@@ -4,7 +4,7 @@ import Navbar from '../Header/Navbar';
 import Footer from '../Footer';
 import Button from '../Button';
 import Loading from '../Loading';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import loadPhotos from '../../utils/camera/loadPhoto';
 import uploadImageToCloudinary from '../../utils/uploadToCloudinary';
 import uploadToMathpix from '../../utils/uploadToMathpix';
@@ -14,6 +14,7 @@ import '../components.css'
 
 function Photo(props) {
     const navigate = useNavigate();
+    const {exerciseId} = useParams();
     const [imageUrl, setImageUrl] = useState(null);
     const [operation, setOperation] = useState(null);
     const [validatedPhoto, setValidatedPhoto] = useState(false);
@@ -85,14 +86,14 @@ function Photo(props) {
 
     return (
         <div className="photo-view">
-            <Navbar color="pink" />
+            {!props.isSubmittingExercise && <Navbar color="pink" />}
             {!operation && !mathpixError && <div className='loading-mathpix'>
                 <h2>Reading operation</h2>
                 <Loading />
             </div>}
             {mathpixError && <div className='mathpix-error'>
                 <p>There was a problem reading this photo.</p>
-                <Button color="pink"><Link to={props.isSubmittingExercise ? '/exercises' : '/camera'}>Try again</Link></Button>
+                <Button color="pink"><Link to={props.isSubmittingExercise ? `/exercises/${exerciseId}` : '/camera'}>Try again</Link></Button>
             </div>}
             {operation && !validatedPhoto && <div className="mathpix-result">
                 <h2>Have I properly read the exercise?</h2>
