@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import filterFeedBacks from '../utils/filterFeedbacks';
 import Button from './Button';
 import Loading from './Loading';
+import './components.css'
 
 
 function Feedback({ operation, imageUrl }) {

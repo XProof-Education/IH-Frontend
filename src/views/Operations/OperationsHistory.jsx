@@ -22,17 +22,18 @@ const OperationsHistory = () => {
   }, []);
 
   return (
-    <div>
+    <div className="container-all-elements">
       <Navbar color="#FF6230" content="editProfile" backGround="true" backUrl="/profile" />
-      <div className="title-div">
-        <h1 className="title-style-violet">My Operations history</h1>
-      </div>
-      <div className="lists-container">
-        <ListCard props={operations} typeData="operations" />
+      <div className="all-elements-content">
+        <div className="title-div">
+          <h1 className="title-style-violet">My Operations history</h1>
         </div>
-      <Footer color="pink" size="70px"/>
+        <div className="lists-container">
+          <ListCard props={operations} typeData="operations" />
+        </div>
+      </div>
+      <Footer color="pink" size="70px" />
     </div>
-  )
-  
+  );
 }
 export default OperationsHistory;

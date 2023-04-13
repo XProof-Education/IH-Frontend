@@ -10,6 +10,7 @@ import uploadImageToCloudinary from '../../utils/uploadToCloudinary';
 import uploadToMathpix from '../../utils/uploadToMathpix';
 import Latex from 'react-latex';
 import { Link } from 'react-router-dom';
+import '../components.css'
 
 function Photo(props) {
     const navigate = useNavigate();

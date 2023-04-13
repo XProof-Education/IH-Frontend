@@ -140,12 +140,6 @@ table {
 
 /* ---------------- GENERAL ------------------ */
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
 @font-face {
   font-family: apercu;
   src: url("./assets/fonts/Apercu\ Light.otf");
@@ -163,6 +157,17 @@ table {
   --primary-violet: #420ED0;
   --primary-white: #fbfbfb;
   --primary-black: #131313;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
 }
 
 .App {
@@ -222,6 +227,7 @@ a{
 }
 
 /* ---------------- HOME ------------------ */
+
 .video-container {
   display: flex;
   flex-direction: column;
@@ -319,12 +325,27 @@ div.button-container {
     margin: 0.5rem;
 }
 
-/* ---------------- EXERCISES ------------------ */
+/* ---------------- ALL EXERCISES & OPERATIONS ------------------ */
 
-/* div.container-all-exercises {
-  padding-bottom: 7rem;
+div.container-all-elements {
+  padding-bottom: 5.8rem;
   height: 100vh;
-} */
+  width: 100vw;
+  box-sizing: border-box;
+}
+
+div.all-elements-content {
+width: 100%;
+padding: 0 2rem 0 2rem;
+}
+
+div.lists-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 1.5rem 0 7rem 0;
+  height: 100%;
+}
 
 div div.title-div {
   display: flex; 
@@ -332,11 +353,21 @@ div div.title-div {
   padding: 2rem 0 1rem 0;
 }
 
-div.exercise-container {
-  height: 90vh;
-  overflow: auto;
-  padding: 0 2rem 6rem 2rem;
-  overflow-x: hidden;
+/*-----------NEW EXERCISE & EDIT EXERCISE --------------*/
+
+div.exercise-create-container {
+  height: 100%;
+  width: 100vw;
+}
+
+div.exercise-new-container {
+  height: 100%;
+  padding: 0 2rem 8rem 2rem;
+}
+
+div.exercise-edit-container {
+  height: 100%;
+  padding: 0 2rem 8rem 2rem;
 }
 
 div.form-exercise-container {
@@ -408,12 +439,6 @@ div.assign-students-div {
 
 /* ---------------- DETAIL VIEWS ------------------ */
 
-div.container-detail {
-  overflow: scroll;
-  height: 90vh;
-  padding-bottom: 5rem;
-}
-
 div.container-exercise-detail {
   padding-bottom: 7rem;
 }
@@ -441,42 +466,18 @@ div.not-found-div p {
 
 /* ---------------- DETAIL VIEW OPERATION------------------ */
 
-div.operation-detail-container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-left: 1px solid var(--primary-blue);
-  border-right: 1px solid var(--primary-blue);
-  margin: 0 1.5rem;
-}
-
-div.operation-detail-container-red {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-left: 1px solid var(--primary-pink);
-  border-right: 1px solid var(--primary-pink);
-  margin: 0 1.5rem;
-}
-
-div.equation {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2rem;
-}
-
-div.operation-feedback {
-  margin: 1rem 2rem;
-  padding: 1rem
+div.container-detail-operation {
+  padding-bottom: 5.8rem;
+  height: 100vh;
+  width: 100vw; 
 }
 
 /* ---------------- PROGRESS VIEW ------------------ */
+
+div.progress-content {
+  padding-bottom: 5.8rem;
+  background-color: var(--primary-white);
+}
 
 div.progress-input-div {
   display: flex;
@@ -516,7 +517,7 @@ div.percentages {
   margin: 1rem 0;
 }
 
-div.percentages div h3{
+div.percentages div h3 {
   margin-bottom: 0.8rem;
 }
 
@@ -526,7 +527,7 @@ div.l-cards {
   align-items: flex-start;
   width: 100%;
   gap: 1rem;
-  padding: 1rem 1rem 6rem 1rem;
+  padding: 1rem 1rem 4rem 1rem;
   flex-wrap: wrap;
 }
 
@@ -548,8 +549,10 @@ div.l-card-feedback {
 
 /* ---------------- ERRORS DETAIL VIEW ------------------ */
 
-div.container-error-detail {
-  padding: 2rem 1rem 5rem 1rem;
+div.container-detail {
+  overflow: scroll;
+  height: 90vh;
+  padding-bottom: 5rem;
 }
 
 div.detail-errors-container {
@@ -587,6 +590,10 @@ div.percentage-link-div {
 
 /* ---------------- ERROR DETAIL VIEW ------------------ */
 
+div.container-error-detail {
+  padding: 2rem 1rem 5rem 1rem;
+}
+
 div.operation-card {
   display: flex;
   flex-direction: column;
@@ -607,119 +614,4 @@ div.operation-card-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-/* ---------------- PHOTO ------------------ */
-
-div.photo-view {
-  height: 100vh;
-  width: 100vw;
-  padding-bottom: 6rem;
-}
-
-div.loading-mathpix {
-  height: 90%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-div.mathpix-error {
-  height: 90%;
-  flex-direction: column;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-div.mathpix-result {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0 2rem;
-  text-align: center;
-  border-right: 1px solid var(--primary-black);
-  border-left: 1px solid var(--primary-black);
-}
-
-/* ---------------- FEEDBACK ------------------ */
-
-div.loading-feedback-div {
-  height: 90%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-div.feedback-div {
-  height: 100vh;
-    width: 100vw;
-    padding-bottom: 6rem;
-}
-
-div.feedback-container {
-  height: 90%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0 2rem;
-  padding: 0 1rem;
-  text-align: center;
-  border-right: 1px solid var(--primary-blue);
-  border-left: 1px solid var(--primary-blue);
-}
-
-div.feedback-container-mistake {
-  height: 90%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0 2rem;
-  padding: 0 1rem;
-  text-align: center;
-  border-right: 1px solid var(--primary-pink);
-  border-left: 1px solid var(--primary-pink);
-}
-
-div.feedback-title{
-  padding-bottom: 1rem;
-}
-
-div.feedback-title h2 {
-  padding: 0 0 1.5rem 0;
-}
-
-div.equation-feedback {
-  margin-top: 1rem;
-}
-
-div.loading-feedback{
-  display: flex;
-  flex-direction: column;
-  padding: 2rem;
-}
-
-div.error-feedbacks {
-  display: flex;
-  flex-direction: column;
-  padding: 2rem 1rem 1rem 1rem;
-  gap: 1rem;
-}
-
-h2.feedback-error-h2 {
-  color: var(--primary-pink);
-}
-
-h2.feedback-ok-h2 {
-  color: var(--primary-blue);
-}
-
-div.buttons-feedback-container {
-  display: flex;
 }

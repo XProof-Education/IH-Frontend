@@ -124,9 +124,9 @@ const NewExercise = () => {
   }, [query, isAssigning]);
 
   return (
-    <div>
+    <div className="exercise-create-container">
       <Navbar color="#FF6230" content="editProfile" backGround="true" />
-      <div className="exercise-container">
+      <div className="exercise-new-container">
         <div className="form-title">
           <h1 className="title-style-pink">Add new exercise</h1>
         </div>
@@ -173,7 +173,7 @@ const NewExercise = () => {
         {foundUsers.length !== 0 && foundUsers.map(user => {
           return (
             <div key={user._id ? user._id : user.notFound}>
-              {user.notFound ? 
+              {user.notFound ?
                 <div className="not-found-div">
                   <p>{user.notFound}</p>
                 </div>

@@ -54,11 +54,9 @@ const OperationDetail = (props) => {
   }
 
   return (
-    <div>
+    <div className="container-detail-operation">
       <Navbar color="#FF6230" content="editProfile" backGround="true" />
-      <div className="container-detail">
         <OperationCard operation={operation} handleDelete={handleDelete} />
-      </div>
       <Footer color="blue" size="70px" />
     </div>
   );

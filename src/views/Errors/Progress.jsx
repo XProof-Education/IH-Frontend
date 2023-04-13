@@ -60,8 +60,9 @@ function Progress() {
   }, [operations]);
 
   return (
-    <div>
+    <div className="container-detail-operation">
       <Navbar color="#FF6230" content="editProfile" backGround="true" backUrl="/profile" />
+      <div className="progress-content">
       <div className="title-div">
         <h1 className="title-style-pink">Your Progress</h1>
       </div>
@@ -88,11 +89,11 @@ function Progress() {
               <div className="percentages">
                 <div>
                   <h3>Correct</h3>
-                  <Percentage percentage={Math.ceil(computePercentage(statistics.correct, statistics.total))} colorToPaint="blue" fontSize="20px" size="80px"/>
+                  <Percentage percentage={Math.ceil(computePercentage(statistics.correct, statistics.total))} colorToPaint="blue" fontSize="20px" size="80px" />
                 </div>
                 <div>
                   <h3>Incorrect</h3>
-                  <Percentage percentage={Math.ceil(computePercentage(statistics.incorrect, statistics.total))} colorToPaint="pink" fontSize="20px" size="80px"/>
+                  <Percentage percentage={Math.ceil(computePercentage(statistics.incorrect, statistics.total))} colorToPaint="pink" fontSize="20px" size="80px" />
                 </div>
               </div>
               <p>Keep up the good work!</p>
@@ -111,17 +112,18 @@ function Progress() {
                   <p>{elem.feedback}</p>
                 </div>
                 <div>
-                <Percentage percentage={Math.floor(computePercentage(elem.count, statistics.incorrect))} colorToPaint="pink" fontSize="14px" size="60px"/>
+                  <Percentage percentage={Math.floor(computePercentage(elem.count, statistics.incorrect))} colorToPaint="pink" fontSize="14px" size="60px" />
                 </div>
                 <div>
                   <Link to={`/profile/progress/${elem.L}?timeFilter=${timeFilter}`}><Button color='yellow'>Details</Button></Link>
-              </div>
                 </div>
+              </div>
             )
           })}
         </div>}
       <Footer color="blue" size="70px" />
-    </div>
+      </div>
+      </div>
   );
 }
 

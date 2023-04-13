@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "../Button";
 import Latex from "react-latex";
+import './cards.css';
 
 
 const OperationCard = (props) => {

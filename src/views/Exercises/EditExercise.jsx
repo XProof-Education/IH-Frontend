@@ -149,11 +149,11 @@ const EditExercise = () => {
   },[query, isAssigning]);
 
   return (
-    <div>
+    <div className="exercise-create-container">
       <Navbar color="#FF6230" content="editProfile" backGround="true" />
-      <div className="exercise-container">
+      <div className="exercise-edit-container">
         <div className="form-title">
-          <h1>Edit Exercise</h1>
+          <h1 className="title-style-pink">Edit Exercise</h1>
         </div>
         <div className='form-exercise-container'>
           <form onSubmit={handleSubmit} className="exercise-form">

@@ -36,25 +36,25 @@ const Exercises = () => {
   }, [])
 
   return (
-    <div>
+    <div className="container-all-elements">
       <Navbar color="#FF6230" content="editProfile" backGround="true" backUrl="/profile" />
-      
-      <div className="title-div">
-        <h1 className="title-style-yellow">My Exercises</h1>
-      </div>
-      {user.role === 'teacher' && <div className='button-container'>
-        <Button color="yellow"><Link to={'/new-exercise'}>Create new exercise</Link></Button>
-      </div>}
-      {loading && <div className="loading-div"><Loading /></div>}
-      {!loading && exercises &&
-        <div className="lists-container">
-        <ListCard props={exercises} typeData={user.role === 'teacher' ? "exercises" : "studentExercises"} />
+      <div className="all-elements-content">
+        <div className="title-div">
+          <h1 className="title-style-yellow">My Exercises</h1>
         </div>
-      }
-      <Footer color="pink" size="70px"/>
+        {user.role === 'teacher' && <div className='button-container'>
+          <Button color="yellow"><Link to={'/new-exercise'}>Create new exercise</Link></Button>
+        </div>}
+        {loading && <div className="loading-div"><Loading /></div>}
+        {!loading && exercises &&
+          <div className="lists-container">
+            <ListCard props={exercises} typeData={user.role === 'teacher' ? "exercises" : "studentExercises"} />
+          </div>
+        }
       </div>
-     
-  )
+      <Footer color="pink" size="70px" />
+    </div>
+  );
 }
 
 export default Exercises;
