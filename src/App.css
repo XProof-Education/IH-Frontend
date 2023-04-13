@@ -615,3 +615,34 @@ div.operation-card-img img {
   height: 100%;
   object-fit: cover;
 }
+
+
+/* ---------------- NOT FOUND VIEW ------------------ */
+
+div.not-found-container {
+  padding-bottom: 5.8rem;
+  height: 100vh;
+  width: 100vw;
+}
+
+div.not-found-message-div {
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  padding: 0 2rem;
+  align-items: center;
+}
+
+div.not-found-message-div h2 {
+  line-height: 1.8rem;
+}
+
+span.path {
+  color: var(--primary-pink)
+}
+
+a.main-site {
+  color: var(--primary-violet);
+  font-family: raisonne;
+  font-size: 1.5rem;
+}
