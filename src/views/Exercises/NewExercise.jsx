@@ -155,7 +155,7 @@ const NewExercise = () => {
               </div>
             </div>
             <div className='button-assign'>
-              {query === "" && <Button color="yellow" type="submit">Submit exercise</Button>}
+              {query === "" && <Button color="yellow" type="submit">Create exercise</Button>}
             </div>
           </form>
         </div>

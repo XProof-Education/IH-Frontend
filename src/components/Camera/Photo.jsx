@@ -35,6 +35,7 @@ function Photo(props) {
                 //     },
                 // ];
                 if (mathpixResult.error) {
+                    setOperation(null);
                     setMathpixError(true);
                     return;
                 }
@@ -84,13 +85,13 @@ function Photo(props) {
     return (
         <div className="photo-view">
             <Navbar color="pink" />
-            {!operation && <div className='loading-mathpix'>
+            {!operation && !mathpixError && <div className='loading-mathpix'>
                 <h2>Reading operation</h2>
                 <Loading />
             </div>}
             {mathpixError && <div className='mathpix-error'>
                 <p>There was a problem reading this photo.</p>
-                <Button color="pink"><Link to={'/camera'}>Try again</Link></Button>
+                <Button color="pink"><Link to={props.isSubmittingExercise ? '/exercises' : '/camera'}>Try again</Link></Button>
             </div>}
             {operation && !validatedPhoto && <div className="mathpix-result">
                 <h2>Have I properly read the exercise?</h2>
