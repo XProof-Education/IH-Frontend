@@ -472,6 +472,10 @@ div.not-found-div p {
   color: var(--primary-pink);
 }
 
+div.exercise-student-list {
+  margin-bottom: 3rem;
+}
+
 /* ---------------- DETAIL VIEW OPERATION------------------ */
 
 div.container-detail-operation {

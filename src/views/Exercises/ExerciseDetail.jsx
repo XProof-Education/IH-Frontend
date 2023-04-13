@@ -115,20 +115,22 @@ const ExerciseDetail = () => {
               <Link to={`/edit/${exerciseId}`}><Button color="yellow"> Edit </Button></Link>
               <Button color="pink" action={handleDelete}> Delete </Button>
             </div>
-            {assignations && assignations.map(elem => (
-              <div key={elem._id} onClick={() => handleSeeStudentCompletion(elem)}>
-                <p>{elem.studentId.name} {elem.studentId.lastName}</p>
-                {elem.isCompleted ? <p>completed {seeCompletions.includes(elem._id) ? 'Hide' : 'Show'}</p> : <p>pending</p>}
-                {elem.isCompleted && seeCompletions.includes(elem._id) && <OperationCard operation={elem.completion} isCompletion={true} />}
-              </div>
-            ))}
+            <div className="exercise-student-list">
+              {assignations && assignations.map(elem => (
+                <div key={elem._id} onClick={() => handleSeeStudentCompletion(elem)}>
+                  <p>{elem.studentId.name} {elem.studentId.lastName}</p>
+                  {elem.isCompleted ? <p>completed {seeCompletions.includes(elem._id) ? 'Hide' : 'Show'}</p> : <p>pending</p>}
+                  {elem.isCompleted && seeCompletions.includes(elem._id) && <OperationCard operation={elem.completion} isCompletion={true} />}
+                </div>
+              ))}
+            </div>
           </>
         )}
         {user.role === 'student' && !photo && (
-          <>
+          <div>
             {!singleStudentAssignation.isCompleted && <Button color="blue" action={openCamera}>Upload exercise</Button>}
             {singleStudentAssignation.isCompleted && <p>Completed</p>}
-          </>
+          </div>
         )}
         {camera && <Camera backwardUrl={`/exercises/${exercise._id}`} atCloseAction={closeCamera} atTakePhoto={showPhoto}></Camera>}
         {photo && <Photo isSubmittingExercise={true} handleSubmitExercise={handleSubmitExercise} handleInvalid={openCamera}></Photo>}
