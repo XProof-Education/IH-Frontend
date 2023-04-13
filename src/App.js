@@ -21,6 +21,7 @@ import EditExercise from './views/Exercises/EditExercise';
 import Progress from './views/Errors/Progress';
 import LDetail from './views/Errors/LDetail';
 import ErrorDetail from './views/Errors/ErrorDetail';
+import Contact from './views/Contact';
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
         <Route path="/error" element={<ErrorPage />} />
         <Route path='/camera' element={<Camera forwardUrl='/camera/result' backwardUrl='/'/>} />
         <Route path='/camera/result' element={<Photo />} />
+        <Route path='/contact' element={<Contact />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

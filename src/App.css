@@ -176,7 +176,7 @@ body {
   background-color: var(--primary-white);
 }
 
-html, body, a, input, select, button {
+html, body, a, input, select, textarea, button {
   font-family: apercu;
   font-size: 16px;
 }
@@ -292,6 +292,12 @@ div.form-container form.form .input-label input {
 }
 
 div.form-container form.form .input-label select {
+  border-radius: 20px;
+  border: 1px solid var(--primary-black);
+  padding: 0.5rem 1rem;
+}
+
+div.form-container form.form .input-label textarea {
   border-radius: 20px;
   border: 1px solid var(--primary-black);
   padding: 0.5rem 1rem;
