@@ -9,6 +9,7 @@ import UploadIcon from '../../components/UploadIcon';
 import Footer from '../../components/Footer';
 import AddIcon from '../../components/AddIcon';
 import DeleteIcon from '../../components/DeleteIcon';
+import Error from '../../components/Error';
 
 const EditExercise = () => {
   const { exerciseId } = useParams(); 
@@ -194,7 +195,7 @@ const EditExercise = () => {
             </div>
           )
         })}
-        {error && <p>{error}</p>}
+        {error && <Error align="column" error={error}/>}
         {foundUsers.length !== 0 && foundUsers.map(user => {
           return (
             <div key={user._id ? user._id : user.notFound}>

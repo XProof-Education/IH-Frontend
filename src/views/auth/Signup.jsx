@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import authService from '../../services/authService';
 import Navbar from '../../components/Header/Navbar';
 import Button from '../../components/Button';
+import Error from '../../components/Error';
 
 export default function Signup() {
   const [user, setUser] = useState({
@@ -74,7 +75,7 @@ export default function Signup() {
                 <option value='teacher'>teacher</option>
               </select>
             </div>
-            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+            {errorMessage && <Error error={errorMessage} />}
             <div className='buttons-container'>
               <Button color='pink' type="submit">Register</Button>
             </div>

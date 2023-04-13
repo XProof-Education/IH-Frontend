@@ -231,4 +231,25 @@ div.buttons-feedback-container {
 }
 
 
+/* ---------------- GLOBAL ERROR MESSAGE ------------------ */
 
+div.error-component-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  padding-top: 1rem;
+}
+
+div.error-component-div-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  padding-top: 1rem;
+}
+
+h3.error-message-h3{
+  color: var(--primary-pink);
+}

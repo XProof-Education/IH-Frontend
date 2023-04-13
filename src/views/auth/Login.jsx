@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import authService from '../../services/authService';
 import Navbar from '../../components/Header/Navbar';
 import Button from '../../components/Button';
+import Error from '../../components/Error';
 
 export default function Login() {
   const { storeToken, authenticateUser, isLoggedIn } = useAuth(); 
@@ -65,7 +66,7 @@ export default function Login() {
             <div className='input-label'>
               <input required type="password" name="password" value={user.password} onChange={handleChange} placeholder="password" />
             </div>
-            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+            {errorMessage && <Error error={errorMessage} />}
             <div className='buttons-container'>
               <Button type="submit" color='yellow'>Log in </Button>
               <Link to="/signup"><Button type="submit" color='violet'>Sign up</Button></Link>
