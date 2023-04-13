@@ -99,30 +99,31 @@ const ExerciseDetail = () => {
         </div>
         <div className="img-container">
           <img src={exercise.exerciseFile} alt="exercise" />
-          {exercise.solutionFile && <img style={{ width: "100%" }} src={exercise.solutionFile} alt="exercise solution" />}
+          {(user.role === 'teacher' || (user.role === 'student' && singleStudentAssignation.isCompleted)) && exercise.solutionFile && (
+            <img style={{ width: "100%" }} src={exercise.solutionFile} alt="exercise solution" />
+          )}
         </div>
-        {user.role === 'teacher' &&
-          <div className="buttons-container">
-            <Link to={`/edit/${exerciseId}`}><Button color="yellow"> Edit </Button></Link>
-            <Button color="pink" action={handleDelete}> Delete </Button>
-          </div>}
-        {user.role === 'teacher' && assignations &&
-          assignations.map(elem => {
-            return (
+        {user.role === 'teacher' && (
+          <>
+            <div className="buttons-container">
+              <Link to={`/edit/${exerciseId}`}><Button color="yellow"> Edit </Button></Link>
+              <Button color="pink" action={handleDelete}> Delete </Button>
+            </div>
+            {assignations && assignations.map(elem => (
               <div key={elem._id} onClick={() => handleSeeStudentCompletion(elem)}>
                 <p>{elem.studentId.name} {elem.studentId.lastName}</p>
                 {elem.isCompleted ? <p>completed {seeCompletion ? 'Hide' : 'Show'}</p> : <p>pending</p>}
-                {elem.isCompleted && seeCompletion && <OperationCard operation={elem.completion} isCompletion={true}/>}
+                {elem.isCompleted && seeCompletion && <OperationCard operation={elem.completion} isCompletion={true} />}
               </div>
-            )
-          })
-        }
-        {user.role === 'student' && !photo && !singleStudentAssignation.isCompleted &&
-          <Button color="blue" action={openCamera}>Upload exercise</Button>
-        }
-        {user.role === 'student' && !photo && singleStudentAssignation.isCompleted &&
-          <p>Completed</p>
-        }
+            ))}
+          </>
+        )}
+        {user.role === 'student' && !photo && (
+          <>
+            {!singleStudentAssignation.isCompleted && <Button color="blue" action={openCamera}>Upload exercise</Button>}
+            {singleStudentAssignation.isCompleted && <p>Completed</p>}
+          </>
+        )}
         {camera && <Camera backwardUrl={`/exercises/${exercise._id}`} atCloseAction={closeCamera} atTakePhoto={showPhoto}></Camera>}
         {photo && <Photo isSubmittingExercise={true} handleSubmitExercise={handleSubmitExercise} handleInvalid={openCamera}></Photo>}
         <Footer color="yellow" size="70px" />
