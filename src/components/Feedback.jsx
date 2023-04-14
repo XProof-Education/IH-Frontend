@@ -4,6 +4,9 @@ import Latex from 'react-latex';
 import operationsService from '../services/operationsService';
 import { Link } from 'react-router-dom';
 import filterFeedBacks from '../utils/filterFeedbacks';
+import Button from './Button';
+import Loading from './Loading';
+import './components.css'
 
 
 function Feedback({ operation, imageUrl }) {
@@ -44,36 +47,42 @@ function Feedback({ operation, imageUrl }) {
         }
     }, [isCorrect, clouredOperation, prompt, getFeedback]);
 
-    return ( 
-        <div>
-            {!setColouredOperation && <h2>Loading...</h2>}
-            {clouredOperation && <div>
-                {isCorrect ? <h2>It is correct</h2> : <h2>There is a mistake</h2>}
-                {clouredOperation.map((elem, idx) => {
-                    return (
-                        <div className='equation' key={idx}>
-                            <Latex>{`$$${elem}$$`}</Latex>
-                        </div>
-                    );
-                })}
-            </div>}
-            {!feedBacks && !isCorrect && <div className='loading-feedback'>
-                <p>Figuring out the mistake...</p>
-            </div>}
-            {feedBacks && <div>
-                {feedBacks.length > 1 ? <h3>This is a tricky one... My best guesses are:</h3> : <h3>Here is my guess of what is incorrect</h3>}
-                {feedBacks.map((elem, elemIdx) => {
-                    return (
-                        <p key={elemIdx}>{elem.text}</p>
-                    )
-                })}
-            </div>}
-            {clouredOperation && <div>
-                <button><Link to={'/camera'}>Take another photo</Link></button>
-                <button><Link to={'/'}>Home</Link></button>
-            </div>}
+    return (
+        <div className="feedback-div">
+            {!setColouredOperation &&
+                <div className="loading-feedback-div">
+                    <Loading />
+                </div>}
+            <div className={isCorrect ? "feedback-container" : "feedback-container-mistake"}>
+                {clouredOperation && <div className="feedback-title">
+                    {isCorrect ? <h2 className="feedback-ok-h2">It is correct</h2> : <h2 className="feedback-error-h2">There is a mistake</h2>}
+                    {clouredOperation.map((elem, idx) => {
+                        return (
+                            <div className='equation-feedback' key={idx}>
+                                <Latex>{`$$${elem}$$`}</Latex>
+                            </div>
+                        );
+                    })}
+                </div>}
+                {!feedBacks && !isCorrect &&
+                    <div className='loading-feedback'>
+                        <p>Figuring out the mistake...</p>
+                    </div>}
+                {feedBacks && <div className="error-feedbacks">
+                    {feedBacks.length > 1 ? <h3>This is a tricky one... My best guesses are:</h3> : <h3>Here is my guess of what is incorrect</h3>}
+                    {feedBacks.map((elem, elemIdx) => {
+                        return (
+                            <p key={elemIdx}>{elem.text}</p>
+                        )
+                    })}
+                </div>}
+                {clouredOperation && <div className="buttons-feedback-container">
+                    <Button color="blue"><Link to={'/camera'}>New photo</Link></Button>
+                    <Button color="yellow"><Link to={'/'}>Home</Link></Button>
+                </div>}
+            </div>
         </div>
-     );
+    );
 }
 
 export default Feedback;

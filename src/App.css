@@ -1,18 +1,144 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
 .active {
   color: green;
 }
 
-.equation {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 /* ---------------- GENERAL ------------------ */
-
-* {
-  box-sizing: border-box;
-}
 
 @font-face {
   font-family: apercu;
@@ -31,41 +157,120 @@
   --primary-violet: #420ED0;
   --primary-white: #fbfbfb;
   --primary-black: #131313;
-
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-html, body {
-  font-family: apercu;
+body {
+  height: 100vh;
+  width: 100vw;
+}
+
+.App {
+  min-height: 100vh;
+  width: 100vw;
   background-color: var(--primary-white);
+}
+
+html, body, a, input, select, textarea, button {
+  font-family: apercu;
+  font-size: 16px;
 }
 
 h1 {
   font-family: raisonne;
+  font-size: 2rem;
+}
+
+h2 {
+  font-family: raisonne;
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-family: raisonne;
+  font-size: 1.3rem;
+}
+
+p, a, input, label{
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+a{
+  color: var(--primary-black)
+}
+
+.title-style-pink {
+  color: var(--primary-pink);
+}
+
+.title-style-blue {
+  color: var(--primary-blue);
+}
+
+.title-style-violet {
+  color: var(--primary-violet);
+}
+
+.title-style-yellow {
+  color: var(--primary-yellow);
+}
+
+.katex {
+  font-family: apercu, sans-serif;
+  font-size: 2rem;
+}
+
+/* ---------------- HOME ------------------ */
+
+.video-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: calc(100vh - 9.5rem);
+}
+
+.video-container video {
+  max-width: 100%;
+  max-height: 100%;
 }
 
 /* ---------------- FORMS ------------------ */
 
+div.container{
+  height: 100vh;
+  overflow-y: auto;
+}
+
+div.form-main-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 80%;
+}
+
 div.form-title {
   display: flex;
   justify-content: center;
-  padding-top: 3rem;
+  padding: 3rem 0;
 }
 
 div.form-container {
-  min-height: 70vh;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
 }
 
-
 div.form-container form.form {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  height: 100%;
   width: 100%;
   padding: 0 2rem
 }
@@ -83,11 +288,377 @@ div.form-container form.form .input-label label{
 div.form-container form.form .input-label input {
   border-radius: 20px;
   border: 1px solid var(--primary-black);
-  padding: 8px 5px
+  padding: 0.5rem 1rem;
 }
 
 div.form-container form.form .input-label select {
   border-radius: 20px;
   border: 1px solid var(--primary-black);
-  padding: 8px 5px
+  padding: 0.5rem 1rem;
+}
+
+div.form-container form.form .input-label textarea {
+  border-radius: 20px;
+  border: 1px solid var(--primary-black);
+  padding: 0.5rem 1rem;
+}
+
+div.form-container form.form .input-label input:focus {
+  border: 1px solid var(--primary-blue);
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url('../src/assets/images/back.png');
+  background-repeat: no-repeat;
+  background-size: 5px;
+  background-position: right 20px center;
+  padding-right: 10px;
+}
+
+div.buttons-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.5rem;
+}
+
+div.button-container {
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+}
+
+/* ---------------- ALL EXERCISES & OPERATIONS ------------------ */
+
+div.container-all-elements {
+  padding-bottom: 5.8rem;
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+}
+
+div.all-elements-content {
+width: 100%;
+padding: 0 2rem 0 2rem;
+}
+
+div.lists-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 1.5rem 0 7rem 0;
+  height: 100%;
+}
+
+div.upper-container {
+  padding-bottom: 3rem;
+}
+
+div div.title-div {
+  display: flex; 
+  justify-content: center;
+  padding: 2rem 0 1rem 0;
+}
+
+/*-----------NEW EXERCISE & EDIT EXERCISE --------------*/
+
+div.exercise-create-container {
+  height: 100%;
+  width: 100vw;
+}
+
+div.exercise-new-container {
+  height: 100%;
+  padding: 0 2rem 8rem 2rem;
+}
+
+div.exercise-edit-container {
+  height: 100%;
+  padding: 0 2rem 8rem 2rem;
+}
+
+div.form-exercise-container {
+  display: flex;
+}
+
+form.exercise-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+div.upload-inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3rem;
+}
+
+div.input-label-exercise label.label{
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+label.assign {
+  font-weight: 900;
+  color: var(--primary-violet);
+  padding: 0.3rem; 
+}
+
+div.input-label-assign-exercise {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+div.input-label-assign-exercise input {
+  border-radius: 20px;
+  border: 1px solid var(--primary-black);
+  padding: 0.5rem 1rem;
+  width: 20rem;
+}
+
+div.button-assign {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.image-preview {
+  border: 1px solid var(--primary-black);
+}
+
+div.image-preview img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+div.assign-students-div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+/* ---------------- DETAIL VIEWS ------------------ */
+
+div.container-exercise-detail {
+  padding-bottom: 5rem;
+  margin: 10px 0;
+}
+
+div.img-container {
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+div.img-container img {
+  border: 1px solid var(--primary-black);
+  width: 100%;
+  border-radius: 5px;
+}
+
+div.not-found-div {
+  display: flex;
+  justify-content: center;
+}
+
+div.not-found-div p {
+  color: var(--primary-pink);
+}
+
+div.exercise-student-list {
+  margin-bottom: 3rem;
+}
+
+/* ---------------- DETAIL VIEW OPERATION------------------ */
+
+div.container-detail-operation {
+  padding-bottom: 5.8rem;
+  height: 100vh;
+  width: 100vw; 
+}
+
+/* ---------------- PROGRESS VIEW ------------------ */
+
+div.progress-content {
+  padding-bottom: 5.8rem;
+  background-color: var(--primary-white);
+}
+
+div.progress-input-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0 2rem 0;
+}
+
+select.progress-input {
+  border-radius: 20px;
+  border: 1px solid var(--primary-black);
+  padding: 0.5rem 1rem;
+}
+
+div.stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+div.stats div.total {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+div.percentages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  margin: 1rem 0;
+}
+
+div.percentages div h3 {
+  margin-bottom: 0.8rem;
+}
+
+div.l-cards {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  gap: 1rem;
+  padding: 1rem 1rem 4rem 1rem;
+  flex-wrap: wrap;
+}
+
+div.l-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 33%;
+  text-align: center;
+}
+
+div.l-card-feedback {
+  display: flex;
+  align-items: flex-start;
+  height: 4rem;
+}
+
+
+/* ---------------- ERRORS DETAIL VIEW ------------------ */
+
+div.container-detail {
+  overflow: scroll;
+  height: 90vh;
+  padding-bottom: 5rem;
+}
+
+div.detail-errors-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 1.5rem;
+  gap: 1rem;
+}
+
+div.title-div-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0 1rem 0;
+  text-align: center;
+}
+
+div.error-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0 1rem 1rem 1rem;
+}
+
+div.percentage-link-div {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+}
+
+/* ---------------- ERROR DETAIL VIEW ------------------ */
+
+div.container-error-detail {
+  padding: 2rem 1rem 5rem 1rem;
+}
+
+div.operation-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+  margin: 1rem;
+}
+
+div.operation-card-img {
+  width: 21rem;
+  height: 10rem;
+  border: 1px solid var(--primary-pink);
+  overflow: hidden;
+}
+
+div.operation-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* ---------------- NOT FOUND VIEW ------------------ */
+
+div.not-found-container {
+  padding-bottom: 5.8rem;
+  height: 100vh;
+  width: 100vw;
+}
+
+div.not-found-message-div {
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  padding: 0 2rem;
+  align-items: center;
+}
+
+div.not-found-message-div h2 {
+  line-height: 1.8rem;
+}
+
+span.path {
+  color: var(--primary-pink)
+}
+
+a.main-site {
+  color: var(--primary-violet);
+  font-family: raisonne;
+  font-size: 1.5rem;
 }

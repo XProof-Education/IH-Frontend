@@ -10,8 +10,8 @@ import PrivateView from './views/PrivateView';
 import IsPrivate from './components/IsPrivate';
 import Profile from './views/Profile/Profile';
 import EditProfile from './views/Profile/EditProfile';
-import Camera from './views/Camera/Camera';
-import Photo from './views/Camera/Photo';
+import Camera from './components/Camera/Camera';
+import Photo from './components/Camera/Photo';
 import OperationsHistory from './views/Operations/OperationsHistory';
 import OperationDetail from './views/Operations/OperationDetail';
 import Exercises from './views/Exercises/Exercises';
@@ -21,6 +21,7 @@ import EditExercise from './views/Exercises/EditExercise';
 import Progress from './views/Errors/Progress';
 import LDetail from './views/Errors/LDetail';
 import ErrorDetail from './views/Errors/ErrorDetail';
+import Contact from './views/Contact';
 
 function App() {
   return (
@@ -42,8 +43,9 @@ function App() {
         <Route path="/edit/:exerciseId" element={<IsPrivate><EditExercise /></IsPrivate>} />
         <Route path="/private" element={<IsPrivate><PrivateView /></IsPrivate>} />
         <Route path="/error" element={<ErrorPage />} />
-        <Route path='/camera' element={<Camera />} />
+        <Route path='/camera' element={<Camera forwardUrl='/camera/result' backwardUrl='/'/>} />
         <Route path='/camera/result' element={<Photo />} />
+        <Route path='/contact' element={<Contact />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

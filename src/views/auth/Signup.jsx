@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import authService from '../../services/authService';
+import Navbar from '../../components/Header/Navbar';
+import Button from '../../components/Button';
+import Error from '../../components/Error';
 
 export default function Signup() {
   const [user, setUser] = useState({
@@ -43,26 +46,42 @@ export default function Signup() {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>Name</label>
-        <input required type="text" name="name" value={user.name} onChange={handleChange} />
-        <label>Lastname</label>
-        <input required type="text" name="lastName" value={user.lastName} onChange={handleChange} />
-        <label>Email</label>
-        <input required type="email" name="email" value={user.email} onChange={handleChange} />
-        <label>Password</label>
-        <input required type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value) } />
-        <label>Repeat the password</label>
-        <input required type="password" name="passwordControl" value={passwordControl} onChange={(e) => setPasswordControl(e.target.value)} />
-        <label>Select role</label>
-        <select name="role" value={user.role} onChange={handleChange}>
-          <option value='student'>student</option>
-          <option value='teacher'>teacher</option>
-        </select>
-        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-        <button type="submit">Register</button>
-      </form>
+    <div className="container">
+      <Navbar color="yellow" backGround="true" />
+      <div className='form-main-container'>
+        <div className='form-title'>
+          <h1 className="title-style-blue">Sign up</h1>
+        </div>
+        <div className='form-container'>
+          <form className='form' onSubmit={handleSubmit}>
+            <div className='input-label'>
+              <input required type="text" name="name" value={user.name} onChange={handleChange} placeholder="name" />
+            </div>
+            <div className='input-label'>
+              <input required type="text" name="lastName" value={user.lastName} onChange={handleChange} placeholder="lastname" />
+            </div>
+            <div className='input-label'>
+              <input required type="email" name="email" value={user.email} onChange={handleChange} placeholder="email" />
+            </div>
+            <div className='input-label'>
+              <input required type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="password" />
+            </div>
+            <div className='input-label'>
+              <input required type="password" name="passwordControl" value={passwordControl} onChange={(e) => setPasswordControl(e.target.value)} placeholder="repeat password" />
+            </div>
+            <div className='input-label'>
+              <select name="role" value={user.role} onChange={handleChange}>
+                <option value='student'>student</option>
+                <option value='teacher'>teacher</option>
+              </select>
+            </div>
+            {errorMessage && <Error error={errorMessage} />}
+            <div className='buttons-container'>
+              <Button color='pink' type="submit">Register</Button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-  )
+  );
 }

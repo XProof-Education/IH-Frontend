@@ -4,16 +4,16 @@ import { Link } from "react-router-dom";
 
 const ListCard = ({ props, typeData }) => {
   return (
-    <div>
+    <div className="single-item-list-container">
       {props.map((prop) => {
         return (
-          <div key={prop._id}>
+          <div key={prop._id} className="div-map-single-item-list">
             <Link to={typeData === 'exercises'
               ? `/exercises/${prop._id}`
               : typeData === 'studentExercises'
               ? `/exercises/${prop.exerciseId._id}`
               : `/operations/${prop._id}`}>
-              <img style={{ width: "100%" }} src={typeData === 'operations'
+              <img className="img-list" src={typeData === 'operations'
                 ? prop.cloudinaryPhoto
                 : typeData === 'studentExercises'
                 ? prop.exerciseId.exerciseFile

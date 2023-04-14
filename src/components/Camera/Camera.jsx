@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import loadPhotos from '../../utils/camera/loadPhoto';
 import deletePhoto from '../../utils/camera/deletePhoto';
 import takePhoto from '../../utils/camera/takePhoto';
+import Loading from '../Loading';
 
-function Camera() {
+function Camera(props) {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
 
@@ -22,9 +23,17 @@ function Camera() {
             await takePhoto();
             const photosInStorage = await loadPhotos();
             if (photosInStorage.length !== 0) {
-                navigate('/camera/result');
+                if (props.forwardUrl) {
+                    navigate(props.forwardUrl);
+                }
+                if (props.atTakePhoto) {
+                    props.atTakePhoto();
+                }
             } else {
-                navigate('/');
+                if (props.atCloseAction) {
+                    props.atCloseAction();
+                }
+                navigate(props.backwardUrl);
                 // handleTakePhoto();
             }
         } catch (error) {
@@ -41,7 +50,7 @@ function Camera() {
 
     return ( 
         <div className="camera-view">
-            {loading ? <h1>Loading</h1> : <div className='upload-camera-file'>
+            {loading ? <Loading /> : <div className='upload-camera-file'>
                 <p>Looks like I have no access to the camera. Click here to upload a picture.</p>
                 <button onClick={handleTakePhoto}>Upload</button>
             </div>}

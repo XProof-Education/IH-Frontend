@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import Feedback from '../../components/Feedback';
-import { useNavigate } from 'react-router-dom';
+import Feedback from '../Feedback';
+import Navbar from '../Header/Navbar';
+import Footer from '../Footer';
+import Button from '../Button';
+import Loading from '../Loading';
+import { useNavigate, useParams } from 'react-router-dom';
 import loadPhotos from '../../utils/camera/loadPhoto';
 import uploadImageToCloudinary from '../../utils/uploadToCloudinary';
 import uploadToMathpix from '../../utils/uploadToMathpix';
 import Latex from 'react-latex';
 import { Link } from 'react-router-dom';
+import '../components.css'
 
-function Photo() {
+function Photo(props) {
     const navigate = useNavigate();
+    const {exerciseId} = useParams();
     const [imageUrl, setImageUrl] = useState(null);
     const [operation, setOperation] = useState(null);
     const [validatedPhoto, setValidatedPhoto] = useState(false);
@@ -18,7 +24,7 @@ function Photo() {
         try {
             const photosInStorage = await loadPhotos();
             if (photosInStorage.length === 0) {
-                navigate('/camera');
+                navigate(-1);
             } else {
                 const imageURL = await uploadImageToCloudinary(photosInStorage[0].webviewPath);
                 // const imageURL = 'www.something...';
@@ -31,6 +37,7 @@ function Photo() {
                 //     },
                 // ];
                 if (mathpixResult.error) {
+                    setOperation(null);
                     setMathpixError(true);
                     return;
                 }
@@ -59,23 +66,36 @@ function Photo() {
         setValidatedPhoto(true);
     }
     const handleInvalid = () => {
-        navigate('/camera');
+        if (props.isSubmittingExercise && props.handleInvalid) {
+            props.handleInvalid();
+        } else {
+            navigate(-1);
+        }
     }
     useEffect(() => {
         processPhoto();
         // eslint-disable-next-line
     }, []);
 
-    return ( 
-        <div className="photo-view">
-            {!operation && <div className='loading-mathpix'>
+    useEffect(() => {
+        if (validatedPhoto && props.isSubmittingExercise) {
+            props.handleSubmitExercise(operation, imageUrl);
+        }
+        // eslint-disable-next-line
+    }, [validatedPhoto]);
+
+    return (
+        <div className={props.isSubmittingExercise ? "photo-view height-auto no-padding-bottom" : "photo-view"}>
+            {!props.isSubmittingExercise && <Navbar color="pink" />}
+            {!operation && !mathpixError && <div className='loading-mathpix'>
                 <h2>Reading operation</h2>
+                <Loading />
             </div>}
             {mathpixError && <div className='mathpix-error'>
                 <p>There was a problem reading this photo.</p>
-                <button><Link to={'/camera'}>Try again</Link></button>
+                <Button color="pink"><Link to={props.isSubmittingExercise ? `/exercises/${exerciseId}` : '/camera'}>Try again</Link></Button>
             </div>}
-            {operation && !validatedPhoto && <div className="mathpix-result">
+            {operation && !validatedPhoto && <div className={props.isSubmittingExercise ? "mathpix-result height-auto" : "mathpix-result"}>
                 <h2>Have I properly read the exercise?</h2>
                 {operation.map((elem, idx) => {
                     return (
@@ -84,12 +104,15 @@ function Photo() {
                         </div>
                     );
                 })}
-                <button onClick={handleValid}>All OK</button>
-                <button onClick={handleInvalid}>Retake photo</button>
+                <div className="buttons-container">
+                    <Button color="blue" action={handleValid}>All OK</Button>
+                    <Button color="pink" action={handleInvalid}>Retake photo</Button>
+                </div>
             </div>}
-            {validatedPhoto && <Feedback operation={operation} imageUrl={imageUrl}/>}
+            {validatedPhoto && !props.isSubmittingExercise && <Feedback operation={operation} imageUrl={imageUrl} />}
+            <Footer color="blue" size="70px" />
         </div>
-     );
+    );
 }
 
 export default Photo;

@@ -1,14 +1,22 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import operationsService from '../../services/operationsService';
 import Navbar from '../../components/Header/Navbar';
-import Latex from 'react-latex';
-import Button from '../../components/Button';
+import Footer from '../../components/Footer';
+import OperationCard from '../../components/Cards/OperationCard';
 
 
 const OperationDetail = (props) => {
   const navigate = useNavigate();
   const params = useParams();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  let timeFilterQuery = '';
+  try {
+    timeFilterQuery = searchParams.get('timeFilter');
+  } catch {
+    timeFilterQuery = null;
+  }
   let operationId;
   if (props.operationId) {
     operationId = props.operationId;
@@ -37,23 +45,20 @@ const OperationDetail = (props) => {
     } catch (error) {
       console.error(error);
     } finally {
-      navigate('/operations-history');
+      if (timeFilterQuery) {
+        navigate(`/profile/progress/?timeFilter=${timeFilterQuery}`)
+      } else {
+        navigate('/operations-history');
+      }
     }
   }
 
   return (
-    <div>
-      <Navbar color="#FF6230" content="editProfile" backGround="true"/>
-      <h1>Operation detail</h1>
-      {operation && 
-       <div className='equation'> 
-          <Latex>{`$$${operation.mathLatexSimplified}$$`}</Latex>
-          {operation.isCorrect ? <p>This operation is correct. Good job!</p> : <p>{operation.feedBacks[0].text}</p>}
-        </div>
-      }
-      <Button color="pink" action={handleDelete}>Delete</Button>
+    <div className="container-detail-operation">
+      <Navbar color="#FF6230" content="editProfile" backGround="true" />
+        <OperationCard operation={operation} handleDelete={handleDelete} />
+      <Footer color="blue" size="70px" />
     </div>
-  )
-  
+  );
 }
 export default OperationDetail;

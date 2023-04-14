@@ -15,73 +15,95 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 300px;
+  margin-top: 2rem;
 }
 
 .loading {
   width: 200px;
 }
 
+div.loading-div {
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* ---------------- BUTTON ------------------ */
 
 .button-style {
-  border-radius: 20px;
+  border-radius: 1.25rem;
+  border: 1px solid var(--primary--black);
   transition: all 0.3s ease-in-out;
-  margin: 20px 5px 20px 5px;
-  padding: 3px 15px;
-  color:#000;
+  margin: 1.25rem 0.3rem 1.25rem 0.3rem;
+  padding: 0.4rem 1rem 0.3rem 0.8rem;
+  color: var(--primary--black);
   background-color: #fbfbfb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.button-color-red {
-  border: 1px solid #FF6230;
-}
-
-.button-color-blue {
-  border: 1px solid #3073D7;
-}
-
-.button-color-pink {
-  border: 1px solid #ff5be1;
-}
-
-
-.button-color-red:hover {
-  background-color: #FF6230;
+.button-color-yellow:hover {
+  background-color: var(--primary-yellow);
   color: #fbfbfb;
 }
 
 .button-color-blue:hover {
-  background-color: #3073D7;
+  background-color: var(--primary--blue);
   color: #fbfbfb;
 }
 
 .button-color-pink:hover {
-  background-color: #ff5be1;
+  background-color: var(--primary-pink);
+  color: #fbfbfb;
+}
+
+.button-color-violet:hover {
+  background-color: var(--primary-violet);
   color: #fbfbfb;
 }
 
 /*--------------------INSTRUCTIONS-------------------------*/
 
+section.section-carousel{
+  height: 100%;
+}
+
 .buttonR {
   position: absolute;
   right: 0;
   z-index: 0;
-  margin-top: 17rem;
+  margin-top: 2rem;
+  background-color: transparent;
+  border: none;
+  margin-right: 1rem;
 }
 
 .buttonL {
   position: absolute;
   left: 0;
   z-index: 0;
-  margin-top: 17rem;
+  margin-top: 2rem;
+  margin-left: 1rem;
+  background-color: transparent;
+  border: none;
+}
+
+.buttonR img {
+  width: 2rem;
+}
+
+.buttonL img {
+  width: 2rem;
 }
 
 /*--------------------FOOTER-------------------------*/
 
 footer.footer {
 width: 100vw;
-padding: 0.8rem;;
+height: 5.8rem;
+padding: 0.8rem;
 background-color: var(--primary--white);
 position: fixed;
 bottom: 0;
@@ -90,6 +112,152 @@ border-color: var(--primary--black);
 display: flex;
 justify-content: center;
 align-items: center;
+
+}
+
+/* ---------------- PHOTO ------------------ */
+
+div.photo-view {
+  height: 100vh;
+  width: 100vw;
+  padding-bottom: 6rem;
+}
+
+div.loading-mathpix {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+div.mathpix-error {
+  height: 90%;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.mathpix-result {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 2rem;
+  text-align: center;
+  border-right: 1px solid var(--primary-black);
+  border-left: 1px solid var(--primary-black);
+}
+
+.height-auto {
+  height: auto !important;
+}
+
+.no-padding-bottom {
+  padding-bottom: 0rem !important;
+}
+
+/* ---------------- FEEDBACK ------------------ */
+
+div.loading-feedback-div {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+div.feedback-div {
+  height: 100vh;
+  width: 100vw;
+  padding-bottom: 6rem;
+}
+
+div.feedback-container {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 2rem;
+  padding: 0 1rem;
+  text-align: center;
+  border-right: 1px solid var(--primary-blue);
+  border-left: 1px solid var(--primary-blue);
+}
+
+div.feedback-container-mistake {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 2rem;
+  padding: 0 1rem;
+  text-align: center;
+  border-right: 1px solid var(--primary-pink);
+  border-left: 1px solid var(--primary-pink);
+}
+
+div.feedback-title {
+  padding-bottom: 1rem;
+}
+
+div.feedback-title h2 {
+  padding: 0 0 1.5rem 0;
+}
+
+div.equation-feedback {
+  margin-top: 1rem;
+}
+
+div.loading-feedback {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+div.error-feedbacks {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1rem 1rem 1rem;
+  gap: 1rem;
+}
+
+h2.feedback-error-h2 {
+  color: var(--primary-pink);
+}
+
+h2.feedback-ok-h2 {
+  color: var(--primary-blue);
+}
+
+div.buttons-feedback-container {
+  display: flex;
 }
 
 
+/* ---------------- GLOBAL ERROR MESSAGE ------------------ */
+
+div.error-component-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  padding-top: 1rem;
+}
+
+div.error-component-div-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  padding-top: 1rem;
+}
+
+h3.error-message-h3{
+  color: var(--primary-pink);
+}

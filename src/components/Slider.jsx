@@ -1,36 +1,39 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 import './components.css';
+import leftArrow from '../assets/images/left-arrow.png'
+import rightArrow from '../assets/images/right-arrow.png'
 
-function Slider({ images }) {
-const randomNum = Math.floor(Math.random() * 4);
-  const [indexImg, setIndexImg] = useState(randomNum);
-  const [image, setImage] = useState(images[indexImg]);
+function Slider({ steps }) {
+  const [indexStep, setIndexStep] = useState(0);
+  const [step, setStep] = useState(steps[indexStep]);
   
   useEffect(() => {
-    setImage(images[indexImg])
-  }, [images, indexImg])
+    setStep(steps[indexStep]);
+  }, [steps, step, indexStep])
 
   const handleLeftButton = () => {
-    if (indexImg > 0) {
-      setIndexImg(prev => prev - 1)
+    if (indexStep > 0) {
+      setIndexStep(prev => prev - 1);
     } else {
-      setIndexImg(images.length - 1)
+      setIndexStep(steps.length - 1);
     }
   };
 
   const handleRigthButton = () => {
-    if (indexImg < images.length - 1) {
-      setIndexImg(prev => prev + 1)
+    if (indexStep < steps.length - 1) {
+      setIndexStep(prev => prev + 1);
     } else {
-      setIndexImg(0)
+      setIndexStep(0);
     }
   };
 
   return (
     <section className="section-carousel">
-      <button className="buttonL" onClick={handleLeftButton}>◀︎</button>
-      <img className="carousel-image" src={image} alt="people" style={{width: "100%"}} />
-      <button className="buttonR" onClick={handleRigthButton}>▶︎</button>
+      <button className="buttonL" onClick={handleLeftButton}><img src={leftArrow} alt="left-arrow"/></button>
+      <video key={step} loop autoPlay muted playsInline>
+      <source className="carousel-image" src={step} alt="people" type="video/mp4" />
+      </video>
+      <button className="buttonR" onClick={handleRigthButton}><img src={rightArrow} alt="right-arrow"/></button>
     </section>
   )
 };

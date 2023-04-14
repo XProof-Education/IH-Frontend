@@ -1,0 +1,90 @@
+/*--------------------- PROFFILE CARD --------------------*/
+
+div.profile-card-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+div.profile-card {
+  border-bottom: 1px solid var(--primary--black);
+  padding: 6rem 0rem 4.6rem 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.profile-card-half-dot {
+  position: absolute;
+  top: 0;
+  z-index: 0;
+}
+
+.section-link {
+  margin-top: 3rem;
+  z-index: 1;
+}
+
+.section-link a{
+  font-weight: 900;
+  color: var(--primary--black);
+}
+
+/*--------------------- LIST CARD --------------------*/
+
+div.single-item-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+}
+
+div.div-map-single-item-list {
+  width: 21rem;
+  height: 10rem;
+  border: 1.5px solid var(--primary--black);
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+img.img-list {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/*--------------------- OPERATION CARD --------------------*/
+
+div.operation-detail-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-left: 1px solid var(--primary-blue);
+  border-right: 1px solid var(--primary-blue);
+  margin: 0 1.5rem;
+}
+
+div.operation-detail-container-red {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-left: 1px solid var(--primary-pink);
+  border-right: 1px solid var(--primary-pink);
+  margin: 0 1.5rem;
+}
+
+div.equation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+div.operation-feedback {
+  margin: 1rem 2rem;
+  padding: 1rem
+}

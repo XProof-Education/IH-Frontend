@@ -6,6 +6,10 @@ import exerciseAssignationsService from '../../services/exerciseAssignationsServ
 import Navbar from '../../components/Header/Navbar';
 import Button from '../../components/Button';
 import UploadIcon from '../../components/UploadIcon';
+import Footer from '../../components/Footer';
+import AddIcon from '../../components/AddIcon';
+import DeleteIcon from '../../components/DeleteIcon';
+import Error from '../../components/Error';
 
 const EditExercise = () => {
   const { exerciseId } = useParams(); 
@@ -26,7 +30,7 @@ const EditExercise = () => {
   const getData = async () => {
     try {
       const { exerciseData } = await exercisesService.getOneExercise(exerciseId);
-      const assignationsDB = await exerciseAssignationsService.getSingleAssignation( exerciseId );
+      const assignationsDB = await exerciseAssignationsService.getExerciseAssignations( exerciseId );
       const assignations = assignationsDB.assignations.map(elem => {
         return {
           exerciseId: elem.exerciseId._id,
@@ -90,6 +94,7 @@ const EditExercise = () => {
         email: userEmail,
       }
     ]);
+    setQuery('');
   };
 
   const removeStudentAssignation = (studentId) => {
@@ -145,43 +150,73 @@ const EditExercise = () => {
   },[query, isAssigning]);
 
   return (
-    <div>
+    <div className="exercise-create-container">
       <Navbar color="#FF6230" content="editProfile" backGround="true" />
-      <h1>Edit Exercise</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor='exercise'> <UploadIcon color="yellow" size='24'/> Replace exercise </label>
-        <input type="file" id='exercise' name="exerciseFile" onChange={(e) => handleFileUpload(e)} required={imagePreview !== null ? false : true} hidden/>
-         {imagePreview && <img src={imagePreview} alt="preview file" /> }
-        <label htmlFor='solution'> <UploadIcon color="blue" size='24'/> Replace solution</label>
-        <input type="file" id='solution' name="solutionFile" onChange={(e) => handleFileUpload(e)} hidden/>
-        {imagePreviewSolution && <img src={imagePreviewSolution} alt="preview file" /> }
-        <label>Who do you want to assign this exercise to?</label>
-        <input type="text" name="student" onChange={handleQueryChange} value={query}/>
-        <Button color="blue" type="submit">Submit changes</Button>
-      </form> 
-      {assignations.length !== 0 && assignations.map(assignation => {
-        return (
-          <div key={assignation.email}>
-            <p>{assignation.email}</p>
-            <Button color='red' action={() => removeStudentAssignation(assignation.studentId)}>Remove</Button>
-          </div>
+      <div className="exercise-edit-container">
+        <div className="form-title">
+          <h1 className="title-style-pink">Edit Exercise</h1>
+        </div>
+        <div className='form-exercise-container'>
+          <form onSubmit={handleSubmit} className="exercise-form">
+            <div className="upload-inputs">
+              <div className="input-label-exercise">
+                <label htmlFor='exercise' className="label"><UploadIcon color="yellow" size='24' /> Replace exercise </label>
+                <input type="file" id='exercise' name="exerciseFile" onChange={(e) => handleFileUpload(e)} required={imagePreview !== null ? false : true} hidden />
+              </div>
+              {imagePreview &&
+                <div className='image-preview'>
+                  <img src={imagePreview} alt="preview file" />
+                </div>}
+              <div className="input-label-exercise">
+                <label htmlFor='solution' className="label"><UploadIcon color="blue" size='24' /> Replace solution</label>
+                <input type="file" id='solution' name="solutionFile" onChange={(e) => handleFileUpload(e)} hidden />
+              </div>
+              {imagePreviewSolution &&
+                <div className='image-preview'>
+                  <img src={imagePreviewSolution} alt="preview file" />
+                </div>}
+              <div className="input-label-assign-exercise">
+                <label className="assign">Who do you want to assign this exercise to?</label>
+                <input type="text" name="student" onChange={handleQueryChange} value={query} />
+              </div>
+            </div>
+            <div className='button-assign'>
+              {query === "" && <Button color="blue" type="submit">Submit changes</Button>}
+            </div>
+          </form>
+        </div>
+        {assignations.length !== 0 && assignations.map(assignation => {
+          return (
+            <div key={assignation.email} className='assign-students-div'>
+              <div onClick={() => removeStudentAssignation(assignation.studentId)}>
+                <DeleteIcon color='pink' size='25' />
+              </div>
+              <p>{assignation.email}</p>
+            </div>
           )
-      })}
-      {error && <p>{error}</p>}
-      {foundUsers.length !== 0 && foundUsers.map(user => {
-        return (
-          <div key={user._id ? user._id : user.notFound}>
-            {user.notFound ? <p>{user.notFound}</p> 
-            : <div>
-              <h5>{user.name}</h5>
-              <p>{user.email}</p>
-              <Button color='blue' action={() => addStudentAssignation(user._id, user.email)}>Add</Button>
-            </div>}   
-          </div>
-        )
-      })}
+        })}
+        {error && <Error align="column" error={error}/>}
+        {foundUsers.length !== 0 && foundUsers.map(user => {
+          return (
+            <div key={user._id ? user._id : user.notFound}>
+              {user.notFound ?
+                <div className="not-found-div">
+                  <p>{user.notFound}</p>
+                </div>
+                : <div className='assign-students-div'>
+                  <div onClick={() => addStudentAssignation(user._id, user.email)}>
+                    <AddIcon color='blue' size='25' />
+                  </div>
+                  <p>{user.name} - </p>
+                  <p>{user.email}</p>
+                </div>}
+            </div>
+          )
+        })}
+      </div>
+      <Footer color="pink" size="70px" />
     </div>
-  )
+  );
 }
 
 export default EditExercise;

@@ -19,7 +19,7 @@ class ExerciseAssignationsService {
     return this.api.get('/').then(({ data }) => data).catch(err => console.error(err));
   }
 
-  getSingleAssignation(exerciseId) {
+  getExerciseAssignations(exerciseId) {
     return this.api.get(`/${exerciseId}`).then(({ data }) => data).catch(err => console.error(err));
   }
 
@@ -29,6 +29,10 @@ class ExerciseAssignationsService {
 
   editExerciseAssignations(exerciseId, body) {
     return this.api.put(`/${exerciseId}`, body).then(({ data }) => data).catch(err => console.error(err));
+  }
+
+  completeAssignation(assignationId, operationId) {
+    return this.api.put(`/complete/${assignationId}/${operationId}`).then(({ data }) => data).catch(err => console.error(err));
   }
 
   deleteAllExerciseAssignation(exerciseId) {

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import operationsService from '../../services/operationsService';
 import Navbar from '../../components/Header/Navbar';
 import ListCard from '../../components/Cards/ListCard';
-import operationsService from '../../services/operationsService';
-import { Link } from 'react-router-dom';
+import Footer from '../../components/Footer';
+
 
 const OperationsHistory = () => {
   const [operations, setOperations] = useState([]);
@@ -21,15 +22,18 @@ const OperationsHistory = () => {
   }, []);
 
   return (
-    <div>
-      <Navbar color="#FF6230" content="editProfile" backGround="true"/>
-      <h1>My Operations history</h1>
-      <Link to={'/profile/progress'}>See your progress</Link>
-      <ListCard props={operations} typeData="operations"/>
-      
-    
+    <div className="container-all-elements">
+      <Navbar color="#FF6230" content="editProfile" backGround="true" backUrl="/profile" />
+      <div className="all-elements-content">
+        <div className="title-div">
+          <h1 className="title-style-violet">My Operations history</h1>
+        </div>
+        <div className="lists-container">
+          <ListCard props={operations} typeData="operations" />
+        </div>
+      </div>
+      <Footer color="pink" size="70px" />
     </div>
-  )
-  
+  );
 }
 export default OperationsHistory;
