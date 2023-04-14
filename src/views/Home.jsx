@@ -4,15 +4,14 @@ import Footer from '../components/Footer';
 import Slider from '../components/Slider';
 //import steps from '../assets/images/steps.mp4';
 // import steps3D from '../assets/images/steps3D.mp4';
-import step0 from '../assets/images/step0.mp4';
-import step2 from '../assets/images/step2.mp4';
-import step1 from '../assets/images/step1.mp4';
+import step0 from '../assets/images/step-0-l.mp4';
+import step2 from '../assets/images/step-2-l.mp4';
+import step1 from '../assets/images/step-1-l.mp4';
 
 export default function Home() {
   return (
     <div className="home">
-      <Navbar color="blue" />
-      
+      <Navbar backGround="true" color="blue" />
       <div className="video-container">
         <Slider steps={[step0, step1, step2]} />
         {/* <video loop autoPlay muted playsInline>
