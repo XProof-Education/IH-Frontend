@@ -18,7 +18,6 @@ root.render(
       </AuthProviderWrapper>
   </Router>
 );
-
 if (process.env.REACT_APP_NODE_ENV === 'production') {
   serviceWorker.register();
 } else {
