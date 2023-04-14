@@ -227,18 +227,27 @@ a{
 }
 
 /* ---------------- HOME ------------------ */
-
+.home {
+  width: 100vw;
+  height: 100vh;
+}
 .video-container {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  align-items: center;
-  height: calc(100vh - 9.5rem);
+  align-items: center; */
+  /* height: calc(100vh - 140px); */
+  position: fixed;
+  top: 85px;
+  bottom: 70px;
+  width: 100vw;
+  overflow: hidden;
+  
 }
 
-.video-container video {
+/* .video-container video {
   max-width: 100%;
   max-height: 100%;
-}
+} */
 
 /* ---------------- FORMS ------------------ */
 

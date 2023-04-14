@@ -118,8 +118,8 @@ const ExerciseDetail = () => {
             <div className="exercise-student-list">
               {assignations && assignations.map(elem => (
                 <div key={elem._id} onClick={() => handleSeeStudentCompletion(elem)}>
-                  <p>{elem.studentId.name} {elem.studentId.lastName}</p>
                   {elem.isCompleted ? <p>completed {seeCompletions.includes(elem._id) ? 'Hide' : 'Show'}</p> : <p>pending</p>}
+                  <p>{elem.studentId.name} {elem.studentId.lastName}</p>
                   {elem.isCompleted && seeCompletions.includes(elem._id) && <OperationCard operation={elem.completion} isCompletion={true} />}
                 </div>
               ))}
