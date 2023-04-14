@@ -49,37 +49,39 @@ export default function Signup() {
     <div className="container">
       <Navbar color="yellow" backGround="true" />
       <div className='form-main-container'>
-        <div className='form-title'>
-          <h1 className="title-style-blue">Sign up</h1>
-        </div>
-        <div className='form-container'>
-          <form className='form' onSubmit={handleSubmit}>
-            <div className='input-label'>
-              <input required type="text" name="name" value={user.name} onChange={handleChange} placeholder="name" />
-            </div>
-            <div className='input-label'>
-              <input required type="text" name="lastName" value={user.lastName} onChange={handleChange} placeholder="lastname" />
-            </div>
-            <div className='input-label'>
-              <input required type="email" name="email" value={user.email} onChange={handleChange} placeholder="email" />
-            </div>
-            <div className='input-label'>
-              <input required type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="password" />
-            </div>
-            <div className='input-label'>
-              <input required type="password" name="passwordControl" value={passwordControl} onChange={(e) => setPasswordControl(e.target.value)} placeholder="repeat password" />
-            </div>
-            <div className='input-label'>
-              <select name="role" value={user.role} onChange={handleChange}>
-                <option value='student'>student</option>
-                <option value='teacher'>teacher</option>
-              </select>
-            </div>
-            {errorMessage && <Error error={errorMessage} />}
-            <div className='buttons-container'>
-              <Button color='pink' type="submit">Register</Button>
-            </div>
-          </form>
+        <div className="form-main-div">
+          <div className='form-title'>
+            <h1 className="title-style-blue">Sign up</h1>
+          </div>
+          <div className='form-container'>
+            <form className='form' onSubmit={handleSubmit}>
+              <div className='input-label'>
+                <input required type="text" name="name" value={user.name} onChange={handleChange} placeholder="name" />
+              </div>
+              <div className='input-label'>
+                <input required type="text" name="lastName" value={user.lastName} onChange={handleChange} placeholder="lastname" />
+              </div>
+              <div className='input-label'>
+                <input required type="email" name="email" value={user.email} onChange={handleChange} placeholder="email" />
+              </div>
+              <div className='input-label'>
+                <input required type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="password" />
+              </div>
+              <div className='input-label'>
+                <input required type="password" name="passwordControl" value={passwordControl} onChange={(e) => setPasswordControl(e.target.value)} placeholder="repeat password" />
+              </div>
+              <div className='input-label'>
+                <select name="role" value={user.role} onChange={handleChange}>
+                  <option value='student'>student</option>
+                  <option value='teacher'>teacher</option>
+                </select>
+              </div>
+              {errorMessage && <Error error={errorMessage} />}
+              <div className='buttons-container'>
+                <Button color='pink' type="submit">Register</Button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>

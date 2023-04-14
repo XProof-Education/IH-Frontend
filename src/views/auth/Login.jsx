@@ -55,23 +55,25 @@ export default function Login() {
     <div className="container">
       <Navbar color="blue" backGround="true" />
       <div className="form-main-container">
-        <div className='form-title'>
-          <h1 className="title-style-pink">Login </h1>
-        </div>
-        <div className='form-container'>
-          <form className='form' onSubmit={handleSubmit}>
-            <div className='input-label'>
-              <input required type="email" name="email" value={user.email} onChange={handleChange} placeholder="email" />
-            </div>
-            <div className='input-label'>
-              <input required type="password" name="password" value={user.password} onChange={handleChange} placeholder="password" />
-            </div>
-            {errorMessage && <Error error={errorMessage} />}
-            <div className='buttons-container'>
-              <Button type="submit" color='yellow'>Log in </Button>
-              <Link to="/signup"><Button type="submit" color='violet'>Sign up</Button></Link>
-            </div>
-          </form>
+        <div className="form-main-div">
+          <div className='form-title'>
+            <h1 className="title-style-pink">Login </h1>
+          </div>
+          <div className='form-container'>
+            <form className='form' onSubmit={handleSubmit}>
+              <div className='input-label'>
+                <input required type="email" name="email" value={user.email} onChange={handleChange} placeholder="email" />
+              </div>
+              <div className='input-label'>
+                <input required type="password" name="password" value={user.password} onChange={handleChange} placeholder="password" />
+              </div>
+              {errorMessage && <Error error={errorMessage} />}
+              <div className='buttons-container'>
+                <Button type="submit" color='yellow'>Log in </Button>
+                <Link to="/signup"><Button type="submit" color='violet'>Sign up</Button></Link>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>

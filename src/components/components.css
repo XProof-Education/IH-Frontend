@@ -67,13 +67,12 @@ div.loading-div {
 /*--------------------INSTRUCTIONS-------------------------*/
 
 section.section-carousel{
-  /* height: 100%; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: auto;
   overflow: hidden;
+  height: auto;
 }
 
 video {
@@ -124,6 +123,7 @@ border-color: var(--primary--black);
 display: flex;
 justify-content: center;
 align-items: center;
+z-index: 3;
 
 }
 
