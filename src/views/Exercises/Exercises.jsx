@@ -12,6 +12,7 @@ import Button from '../../components/Button';
 const Exercises = () => {
   const { user } = useAuth();
   const [exercises, setExercises] = useState([]);
+  const [completedExercises, setCompletedExercises] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const getExercises = async () => {
@@ -21,8 +22,11 @@ const Exercises = () => {
       const response = await exercisesService.getAllExercises();
         setExercises(response.teacherExercisesData);
       } else {
-        const response = await exerciseAssignationsService.getAllAssignations();
-        setExercises(response.findAssignation)
+        const { findAssignation } = await exerciseAssignationsService.getAllAssignations();
+        const incompletedAssignations = findAssignation.filter(elem => !elem.isCompleted);
+        setExercises(incompletedAssignations);
+        const completedAssignations = findAssignation.filter(elem => elem.isCompleted);
+        setCompletedExercises(completedAssignations);
         }
       setLoading(false);
     } catch (error) {
@@ -47,9 +51,15 @@ const Exercises = () => {
         </div>}
         {loading && <div className="loading-div"><Loading /></div>}
         {!loading && exercises &&
-          <div className="lists-container">
+        <>
+          <div className="upper-container">
             <ListCard props={exercises} typeData={user.role === 'teacher' ? "exercises" : "studentExercises"} />
           </div>
+          <h2 className='title-style-blue'>Completed</h2>
+          <div className="lists-container">
+            <ListCard props={completedExercises} typeData={user.role === 'teacher' ? "exercises" : "studentExercises"} />
+          </div>
+        </>
         }
       </div>
       <Footer color="pink" size="70px" />

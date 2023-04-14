@@ -353,6 +353,10 @@ div.lists-container {
   height: 100%;
 }
 
+div.upper-container {
+  padding-bottom: 3rem;
+}
+
 div div.title-div {
   display: flex; 
   justify-content: center;
