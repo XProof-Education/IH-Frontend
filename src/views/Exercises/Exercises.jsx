@@ -55,7 +55,7 @@ const Exercises = () => {
           <div className="upper-container">
             <ListCard props={exercises} typeData={user.role === 'teacher' ? "exercises" : "studentExercises"} />
           </div>
-          <h2 className='title-style-blue'>Completed</h2>
+          {user.role === 'student' && <h2 className='title-style-blue'>Completed</h2>}
           <div className="lists-container">
             <ListCard props={completedExercises} typeData={user.role === 'teacher' ? "exercises" : "studentExercises"} />
           </div>
