@@ -19,7 +19,7 @@ root.render(
   </Router>
 );
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.REACT_APP_NODE_ENV === 'production') {
   serviceWorker.register();
 } else {
   serviceWorker.unregister();
