@@ -1,17 +1,20 @@
 /*--------------------- PROFFILE CARD --------------------*/
 
 div.profile-card-container {
-  display: flex;
-  flex-direction: column;
   text-align: center;
+  width: 100%;
+  height: calc(100vh - 11.1rem);
+  overflow-y: hidden;
 }
 
 div.profile-card {
   border-bottom: 1px solid var(--primary--black);
-  padding: 6rem 0rem 4.6rem 0;
   position: relative;
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: calc(100% / 3);
+  overflow-y: hidden;
 }
 
 .profile-card-half-dot {
@@ -21,7 +24,10 @@ div.profile-card {
 }
 
 .section-link {
-  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 3rem;
   z-index: 1;
 }
 

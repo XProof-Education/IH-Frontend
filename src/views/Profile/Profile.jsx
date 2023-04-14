@@ -9,7 +9,7 @@ import Footer from "../../components/Footer";
 const Profile = () => {
   const { user, isLoading } = useAuth();
   return (
-    <div>
+    <div className="profile-container">
       {isLoading && <Loading/>}
       <Navbar content="profile" backGround="true" />
       {user.role === 'student'

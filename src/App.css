@@ -168,10 +168,11 @@ table {
 body {
   height: 100vh;
   width: 100vw;
+  background-color: var(--primary-white);
 }
 
 .App {
-  min-height: 100vh;
+  height: 100vh;
   width: 100vw;
   background-color: var(--primary-white);
 }
@@ -249,10 +250,19 @@ a{
   max-height: 100%;
 } */
 
+/* ---------------- PROFILE ------------------ */
+
+div.profile-container {
+  width: 100vw;
+  height: calc(100% - 5.8rem);
+  overflow-y: hidden;
+  /* padding-bottom: 5.7rem; */
+}
+
 /* ---------------- FORMS ------------------ */
 
 div.container{
-  height: 100vh;
+  max-height: 100vh;
   overflow-y: auto;
 }
 
