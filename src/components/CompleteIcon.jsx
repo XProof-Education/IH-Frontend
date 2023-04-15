@@ -15,7 +15,7 @@ const CompleteIcon = (props) => {
   return (
     <svg width={props.size} height={props.size} viewBox="0 0 121 121" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="60.5" cy="60.5" r="60.5" fill={color} />
-      <path d="M27 65.1429L46.4286 84.5714L95 36" stroke="#FBFBFB" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M27 65.1429L46.4286 84.5714L95 36" stroke="#FBFBFB" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }

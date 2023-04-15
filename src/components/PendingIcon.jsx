@@ -15,8 +15,8 @@ const PendingIcon = (props) => {
   return (
     <svg width={props.size} height={props.size} viewBox="0 0 121 121" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="60.5" cy="60.5" r="60.5" fill={color} />
-      <path d="M60.6226 34.6489V59.6224H85.596" stroke="#FBFBFB" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
-      <path d="M60.6225 101.245C83.6097 101.245 102.245 82.6097 102.245 59.6225C102.245 36.635 83.6097 18 60.6225 18C37.635 18 19 36.635 19 59.6225C19 82.6097 37.635 101.245 60.6225 101.245Z" stroke="#FBFBFB" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M60.6226 34.6489V59.6224H85.596" stroke="#FBFBFB" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M60.6225 101.245C83.6097 101.245 102.245 82.6097 102.245 59.6225C102.245 36.635 83.6097 18 60.6225 18C37.635 18 19 36.635 19 59.6225C19 82.6097 37.635 101.245 60.6225 101.245Z" stroke="#FBFBFB" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }

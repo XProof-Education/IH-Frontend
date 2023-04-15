@@ -52,7 +52,7 @@ const Exercises = () => {
         {loading && <div className="loading-div"><Loading /></div>}
         {!loading && exercises &&
         <>
-          <div className="upper-container">
+          <div className="lists-container upper-container">
             <ListCard props={exercises} typeData={user.role === 'teacher' ? "exercises" : "studentExercises"} />
           </div>
           {user.role === 'student' && <h2 className='title-style-blue'>Completed</h2>}

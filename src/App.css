@@ -511,6 +511,33 @@ div.exercise-student-list {
   margin-bottom: 3rem;
 }
 
+div.exercise-status {
+  display: flex;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+div.exercise-status-student-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+div.student-complete-truly {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+div.show-hide {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+}
+
+
 /* ---------------- DETAIL VIEW OPERATION------------------ */
 
 div.container-detail-operation {

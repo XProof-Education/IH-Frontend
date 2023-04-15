@@ -49,6 +49,7 @@ div.profile-card {
 div.single-item-list-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1.3rem;
 }
 
