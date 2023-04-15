@@ -34,11 +34,11 @@ const Navbar = (props) => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       setIsScrolled(scrollTop > 0);
-    };
+    }
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
-    };
+    }
   }, []);
 
   const navClassName = `nav ${isScrolled ? 'nav-fixed' : ''}`;
@@ -47,17 +47,17 @@ const Navbar = (props) => {
     <div>
       {props.content === "editProfile"
         ? <nav className={`${props.backGround ? "nav nav-background" : "nav-background-transparent"} ${navClassName}`}>
-            <img src={backIcon} onClick={() => navigate(backUrl)} alt="back"/>
+          <img src={backIcon} onClick={() => navigate(backUrl)} alt="back" />
           <div className="logo">
             {user.color !== "false" ? <HalfDotColor color={user.color} size="40" text={user.name} /> : <ProfileIcon />}
           </div>
-          </nav>
-        :<nav className={`${props.backGround ? "nav nav-background" : "nav-background-transparent"} ${navClassName}`}>
+        </nav>
+        : <nav className={`${props.backGround ? "nav nav-background" : "nav-background-transparent"} ${navClassName}`}>
           {menuVisible ? <img src={cancelIcon} alt="cancel" className="burguer-btn" onClick={toggleMenu} /> :
             <img src={burguerIcon} alt="burguer" className="burguer-btn" onClick={toggleMenu} />}
           <div className="logo">
             {props.content === "profile" && user.color !== false
-              ? user.color !=="false" ? <Link to={'/edit-profile'}><HalfDotColor color={user.color} size="40" text={user.name}/></Link> : <ProfileIcon />
+              ? user.color !== "false" ? <Link to={'/edit-profile'}><HalfDotColor color={user.color} size="40" text={user.name} /></Link> : <ProfileIcon />
               : <Logo color={props.color} />}
           </div>
           <div className={menuVisible ? "menu-visible" : ""}>
@@ -67,7 +67,6 @@ const Navbar = (props) => {
           </div>
         </nav>}
     </div>
-  )
-  
+  );
 }
 export default Navbar;
