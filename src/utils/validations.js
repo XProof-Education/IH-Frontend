@@ -33,6 +33,13 @@ const validation = (value, typeOfValue) => {
     } else {
       return true;
     }
+  } else if (typeOfValue === 'message') {
+    const messageRegex = /^[a-zA-ZáéíóúüÁÉÍÓÚÜ0-9\s\p{Diacritic}'¡!?¿.,;:=()%&/""]{1,200}$/u;
+    if (messageRegex.test(value)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 };
 

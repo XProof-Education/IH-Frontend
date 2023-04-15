@@ -242,7 +242,6 @@ a{
   bottom: 70px; */
   width: 100vw;
   overflow: hidden;
-  
 }
 
 /* .video-container video {
@@ -690,4 +689,16 @@ a.main-site {
   color: var(--primary-violet);
   font-family: raisonne;
   font-size: 1.5rem;
+}
+
+/*-------------------CONTACT VIEW---------------------*/
+
+div.sent-successfully {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.sent-successfully h2 {
+  color: var(--primary-blue);
 }

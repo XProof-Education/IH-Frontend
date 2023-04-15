@@ -153,53 +153,54 @@ const EditProfile = () => {
     <div className="container">
       <Navbar color="#FF6230" content="editProfile" backGround="true" />
       <div className="form-main-container">
-        <div className='form-title'>
-          <h1>Edit your Profile </h1>
+        <div className="form-main-div">
+          <div className='form-title'>
+            <h1>Edit your Profile </h1>
+          </div>
+          <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={true}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
+          {loading && <Loading />}
+          {!loading && userInfo &&
+            <div className='form-container'>
+              <form className='form' onSubmit={handleSubmit}>
+                <div className='input-label'>
+                  <input style={inputStyleName} type="text" name="name" value={userInfo.name} onChange={handleChange} required />
+                </div>
+                <div className='input-label'>
+                  <input style={inputStylelastName} type="text" name="lastName" value={userInfo.lastName} onChange={handleChange} required />
+                </div>
+                <div className='input-label'>
+                  <input style={inputStyleEmail} type="email" name="email" value={userInfo.email} onChange={handleChange} required />
+                </div>
+                <div className='input-label'>
+                  <select name="color" value={userInfo.color} onChange={handleChange} required>
+                    <option>Choose your profile color</option>
+                    <option value="blue">Blue</option>
+                    <option value="pink">Pink</option>
+                    <option value="yellow">Yellow</option>
+                  </select>
+                </div>
+                <div className='buttons-container'>
+                  <Button type="submit" color="blue">Edit</Button>
+                  <Button color="pink" action={handleDelete}>Delete</Button>
+                </div>
+              </form>
+            </div>}
+          {errorMessage && <Error error={errorMessage} />}
         </div>
-        <ToastContainer
-          position="top-center"
-          autoClose={5000}
-          hideProgressBar={true}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
-        {loading && <Loading />}
-        {!loading && userInfo &&
-          <div className='form-container'>
-            <form className='form' onSubmit={handleSubmit}>
-              <div className='input-label'>
-                <input style={inputStyleName} type="text" name="name" value={userInfo.name} onChange={handleChange} required />
-              </div>
-              <div className='input-label'>
-                <input style={inputStylelastName} type="text" name="lastName" value={userInfo.lastName} onChange={handleChange} required />
-              </div>
-              <div className='input-label'>
-                <input style={inputStyleEmail} type="email" name="email" value={userInfo.email} onChange={handleChange} required />
-              </div>
-              <div className='input-label'>
-                <select name="color" value={userInfo.color} onChange={handleChange} required>
-                  <option>Choose your profile color</option>
-                  <option value="blue">Blue</option>
-                  <option value="pink">Pink</option>
-                  <option value="yellow">Yellow</option>
-                </select>
-              </div>
-              <div className='buttons-container'>
-                <Button type="submit" color="blue">Edit</Button>
-                <Button color="pink" action={handleDelete}>Delete</Button>
-              </div>
-            </form>
-          </div>}
-        {errorMessage && <Error error={errorMessage} />}
-        <Footer color="pink" size="70px" />
       </div>
+      <Footer color="pink" size="70px" />
     </div>
-    
   );
 }
 

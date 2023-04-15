@@ -33,7 +33,6 @@ const ExerciseDetail = () => {
         const studentAssignation = assignations.filter(elem => elem.studentId._id === user._id)
         setSingleStudentAssignation(studentAssignation[0]);
       }
-      // console.log(assignations);
     } catch (error) {
       console.error(error);
     }
