@@ -157,6 +157,8 @@ table {
   --primary-violet: #420ED0;
   --primary-white: #fbfbfb;
   --primary-black: #131313;
+  --navbar: 5.3rem;
+  --footer: 5.8rem;
 }
 
 * {
@@ -233,13 +235,9 @@ a{
   height: 100%;
 }
 .video-container {
-  /* display: flex;
-  flex-direction: column;
-  align-items: center; */
-  height: calc(100% - 5.3rem);
-  /* position: fixed;
-  top: 85px;
-  bottom: 70px; */
+  height: calc(100% - var(--navbar) - var(--footer));
+  position: fixed;
+  top: var(--navbar);
   width: 100vw;
   overflow: hidden;
 }
@@ -253,9 +251,8 @@ a{
 
 div.profile-container {
   width: 100vw;
-  height: calc(100% - 5.8rem);
+  height: 100%;
   overflow-y: hidden;
-  /* padding-bottom: 5.7rem; */
 }
 
 /* ---------------- FORMS ------------------ */
@@ -478,13 +475,8 @@ div.assign-students-div {
 /* ---------------- DETAIL VIEWS ------------------ */
 
 div.container-exercise-detail {
-<<<<<<< Updated upstream
   padding-bottom: 5rem;
   margin: 10px 0;
-=======
-  padding-bottom: 7rem;
-  
->>>>>>> Stashed changes
 }
 
 div.img-container {
