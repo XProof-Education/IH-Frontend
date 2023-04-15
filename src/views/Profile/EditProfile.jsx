@@ -152,7 +152,7 @@ const EditProfile = () => {
   return (
     <div className="container">
       <Navbar color="#FF6230" content="editProfile" backGround="true" />
-      <div className="form-main-container">
+      <div className="form-main-container main-container">
         <div className="form-main-div">
           <div className='form-title'>
             <h1>Edit your Profile </h1>

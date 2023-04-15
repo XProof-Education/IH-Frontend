@@ -54,7 +54,7 @@ export default function Login() {
   return (
     <div className="container">
       <Navbar color="blue" backGround="true" />
-      <div className="form-main-container">
+      <div className="form-main-container main-container">
         <div className="form-main-div">
           <div className='form-title'>
             <h1 className="title-style-pink">Login </h1>

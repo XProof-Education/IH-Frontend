@@ -5,7 +5,7 @@ import Dot from "../Dot";
 
 const ProfileCard = ({ sections }) => {
   return (
-    <div className="profile-card-container">
+    <div className="main-container profile-card-container">
       {sections.map((section, i) => {
         return (
           <div className="profile-card" key={i}>

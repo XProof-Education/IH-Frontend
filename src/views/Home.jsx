@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div className="home">
       <Navbar backGround="true" color="blue" />
-      <div className="video-container">
+      <div className="main-container">
         <Slider steps={[step0, step1, step2, step3, step4]} />
       </div>
       <Footer color="yellow" size="70px" />

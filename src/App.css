@@ -229,18 +229,27 @@ a{
   font-size: 2rem;
 }
 
+.main-container {
+  height: calc(100% - var(--navbar) - var(--footer));
+  position: fixed;
+  top: var(--navbar);
+  width: 100%;
+  overflow: hidden;
+}
+
 /* ---------------- HOME ------------------ */
 .home {
   width: 100vw;
   height: 100%;
 }
-.video-container {
+
+/* .video-container {
   height: calc(100% - var(--navbar) - var(--footer));
   position: fixed;
   top: var(--navbar);
   width: 100vw;
   overflow: hidden;
-}
+} */
 
 /* .video-container video {
   max-width: 100%;
@@ -263,11 +272,9 @@ div.container{
   overflow-y: hidden;
 }
 
-div.form-main-container{
+div.form-main-container {
   display: flex;
   justify-content: center;
-  height: calc(100% - 5.3rem);
-  width: 100%;
 }
 
 div.form-main-div {
