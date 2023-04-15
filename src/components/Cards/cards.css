@@ -1,9 +1,22 @@
+:root {
+  --primary-yellow: #F7CF5C;
+  --primary-blue: #61D4F7;
+  --primary-pink: #E7327B;
+  --primary-violet: #420ED0;
+  --primary-white: #fbfbfb;
+  --primary-black: #131313;
+  --navbar: 5.3rem;
+  --footer: 5.8rem;
+}
+
 /*--------------------- PROFFILE CARD --------------------*/
 
 div.profile-card-container {
   text-align: center;
   width: 100%;
-  height: calc(100vh - 11.1rem);
+  height: calc(100% - var(--navbar) - var(--footer));
+  position: fixed;
+  top: var(--navbar);
   overflow-y: hidden;
 }
 

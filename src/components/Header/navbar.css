@@ -80,7 +80,7 @@ nav {
   width: 30%;
   height: 100%;
   background-color: var(--primary-white);
-  position: absolute;
+  position: fixed;
   top: 0;
   left: -100%;
   z-index: 4;
