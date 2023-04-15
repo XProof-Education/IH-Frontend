@@ -24,8 +24,6 @@ export default async function takePhoto() {
     } catch (error) {
         if (error.name === 'AbortError') {
             console.log('Camera closed by aborting');
-        } else {
-            console.log('Camera closed empty');
-        }
+        } 
     }  
 };

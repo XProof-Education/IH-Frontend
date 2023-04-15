@@ -4,9 +4,12 @@ import loadPhotos from '../../utils/camera/loadPhoto';
 import deletePhoto from '../../utils/camera/deletePhoto';
 import takePhoto from '../../utils/camera/takePhoto';
 import Loading from '../Loading';
+import { useAuth } from '../../hooks/useAuth';
+import Button from '../Button';
 
 function Camera(props) {
     const navigate = useNavigate();
+    const { isLoggedIn } = useAuth();
     const [loading, setLoading] = useState(true);
 
     const cleanStorage = async () => {
@@ -44,7 +47,11 @@ function Camera(props) {
     useEffect(() => {
         cleanStorage();
         setLoading(false);
-        handleTakePhoto();
+        if (isLoggedIn) {
+            handleTakePhoto();
+        } else {
+            navigate('/login');
+        }
         // eslint-disable-next-line
     }, []);
 
@@ -52,7 +59,7 @@ function Camera(props) {
         <div className="camera-view">
             {loading ? <Loading /> : <div className='upload-camera-file'>
                 <p>Looks like I have no access to the camera. Click here to upload a picture.</p>
-                <button onClick={handleTakePhoto}>Upload</button>
+                <Button color='blue' action={handleTakePhoto}>Upload</Button>
             </div>}
         </div>
      );
