@@ -62,7 +62,7 @@ const Navbar = (props) => {
           </div>
           <div className={menuVisible ? "menu-visible" : ""}>
             {!isLoggedIn && <DropdownMenu links={["Sign Up", "Log in", "Contact"]} />}
-            {isLoggedIn && <DropdownMenu links={["Profile", "Log out", "Contact"]} />}
+            {isLoggedIn && props.content !== "profile" && <DropdownMenu links={["Profile", "Log out", "Contact"]} />}
             {isLoggedIn && props.content === "profile" && <DropdownMenu links={["Home", "Log out", "Contact"]} />}
           </div>
         </nav>}
