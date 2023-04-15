@@ -1,0 +1,24 @@
+import React from "react";
+
+const PendingIcon = (props) => {
+  let color = ""
+  if (props.color === "yellow") {
+    color = '#F7CF5C'
+  } else if (props.color === 'pink') {
+    color = '#E7327B'
+  } else if (props.color === 'violet') {
+    color = '#420ED0' 
+  } else if (props.color === 'blue') {
+    color = '#61D4F7' 
+  }
+  
+  return (
+    <svg width={props.size} height={props.size} viewBox="0 0 121 121" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="60.5" cy="60.5" r="60.5" fill={color} />
+      <path d="M60.6226 34.6489V59.6224H85.596" stroke="#FBFBFB" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M60.6225 101.245C83.6097 101.245 102.245 82.6097 102.245 59.6225C102.245 36.635 83.6097 18 60.6225 18C37.635 18 19 36.635 19 59.6225C19 82.6097 37.635 101.245 60.6225 101.245Z" stroke="#FBFBFB" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  );
+}
+
+export default PendingIcon;
