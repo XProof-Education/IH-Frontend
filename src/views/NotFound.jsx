@@ -16,3 +16,5 @@ import Footer from '../components/Footer';
     </div>
   );
 }
+
+export default NotFound;
