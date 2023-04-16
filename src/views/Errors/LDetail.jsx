@@ -10,7 +10,7 @@ import filterOperations from '../../utils/filterOperationsByTime';
 import Percentage from '../../components/Percentage';
 import Footer from '../../components/Footer';
 
-function LDetail() {
+const LDetail = () => {
   const { l } = useParams();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);

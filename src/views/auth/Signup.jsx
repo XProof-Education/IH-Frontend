@@ -5,7 +5,7 @@ import Navbar from '../../components/Header/Navbar';
 import Button from '../../components/Button';
 import Error from '../../components/Error';
 
-export default function Signup() {
+const Signup = () => {
   const [user, setUser] = useState({
     name: '',
     lastName: '',
@@ -87,3 +87,5 @@ export default function Signup() {
     </div>
   );
 }
+
+export default Signup;

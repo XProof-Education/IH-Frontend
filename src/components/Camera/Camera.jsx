@@ -7,7 +7,7 @@ import Loading from '../Loading';
 import { useAuth } from '../../hooks/useAuth';
 import Button from '../Button';
 
-function Camera(props) {
+const Camera = (props) => {
     const navigate = useNavigate();
     const { isLoggedIn } = useAuth();
     const [loading, setLoading] = useState(true);

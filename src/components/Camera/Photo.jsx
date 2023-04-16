@@ -12,7 +12,7 @@ import Latex from 'react-latex';
 import { Link } from 'react-router-dom';
 import '../components.css'
 
-function Photo(props) {
+const Photo = (props) => {
     const navigate = useNavigate();
     const {exerciseId} = useParams();
     const [imageUrl, setImageUrl] = useState(null);

@@ -9,7 +9,7 @@ import Loading from './Loading';
 import './components.css'
 
 
-function Feedback({ operation, imageUrl }) {
+const Feedback = ({ operation, imageUrl }) => {
     const [isCorrect, setIsCorrect] = useState(undefined);
     const [clouredOperation, setColouredOperation] = useState(undefined);
     const [prompt, setPrompt] = useState(undefined);

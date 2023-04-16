@@ -43,7 +43,7 @@ function App() {
         <Route path="/edit/:exerciseId" element={<IsPrivate><EditExercise /></IsPrivate>} />
         <Route path="/private" element={<IsPrivate><PrivateView /></IsPrivate>} />
         <Route path="/error" element={<ErrorPage />} />
-        <Route path='/camera' element={<Camera forwardUrl='/camera/result' backwardUrl='/'/>} />
+        <Route path='/camera' element={<Camera forwardUrl='/camera/result' backwardUrl='/' />} />
         <Route path='/camera/result' element={<Photo />} />
         <Route path='/contact' element={<Contact />} />
         <Route path="*" element={<NotFound />} />

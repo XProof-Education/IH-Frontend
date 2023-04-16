@@ -3,7 +3,7 @@ import './components.css';
 import leftArrow from '../assets/images/left-arrow.png'
 import rightArrow from '../assets/images/right-arrow.png'
 
-function Slider({ steps }) {
+const Slider = ({ steps }) => {
   const [indexStep, setIndexStep] = useState(0);
   const [step, setStep] = useState(steps[indexStep]);
   

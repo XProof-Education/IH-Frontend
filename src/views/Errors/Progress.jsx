@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import filterOperations from '../../utils/filterOperationsByTime';
 import Percentage from '../../components/Percentage';
 
-function Progress() {
+const Progress = () => {
   const [operations, setOperations] = useState([]);
   const [statistics, setStatistics] = useState(undefined);
   const [lArray, setLArray] = useState([]);

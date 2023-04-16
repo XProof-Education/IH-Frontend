@@ -8,7 +8,7 @@ import Navbar from '../../components/Header/Navbar';
 import Button from '../../components/Button';
 import Error from '../../components/Error';
 
-export default function Login() {
+const Login = () => {
   const { storeToken, authenticateUser, isLoggedIn } = useAuth(); 
   const [user, setUser] = useState({
     email: '',
@@ -79,3 +79,5 @@ export default function Login() {
     </div>
   );
 }
+
+export default Login;

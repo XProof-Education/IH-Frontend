@@ -8,7 +8,7 @@ import step2 from '../assets/images/step-2-l.mp4';
 import step3 from '../assets/images/step-3-l.mp4';
 import step4 from '../assets/images/step-4-l.mp4';
 
-export default function Home() {
+const Home = () => {
   return (
     <div className="home">
       <Navbar backGround="true" color="blue" />
@@ -18,4 +18,6 @@ export default function Home() {
       <Footer color="yellow" size="70px" />
     </div>
   );
-}
+ }
+
+export default Home

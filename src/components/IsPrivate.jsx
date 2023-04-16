@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
-function IsPrivate({ children }) {
+const IsPrivate = ({ children }) => {
 
   const { isLoggedIn, isLoading } = useAuth();
 

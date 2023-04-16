@@ -8,7 +8,7 @@ import Button from '../../components/Button';
 import Footer from '../../components/Footer';
 import filterOperations from '../../utils/filterOperationsByTime';
 
-function ErrorDetail() {
+const ErrorDetail = () => {
   const { l, error } = useParams();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
