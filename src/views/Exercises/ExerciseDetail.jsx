@@ -8,7 +8,7 @@ import operationsService from '../../services/operationsService';
 import Button from '../../components/Button';
 import Footer from '../../components/Footer';
 import Camera from '../../components/Camera/Camera';
-import Photo from '../../components/Camera/Photo';
+import SubmitPhoto from '../../components/Camera/SubmitPhoto';
 import handleOperation from '../../utils/handleOperation';
 import OperationCard from '../../components/Cards/OperationCard';
 import CompleteIcon from '../../components/Icons/CompleteIcon';
@@ -159,7 +159,7 @@ const ExerciseDetail = () => {
           </div>
         )}
         {camera && <Camera backwardUrl={`/exercises/${exercise._id}`} atCloseAction={closeCamera} atTakePhoto={showPhoto}></Camera>}
-        {photo && <Photo isSubmittingExercise={true} handleSubmitExercise={handleSubmitExercise} handleInvalid={openCamera}></Photo>}
+        {photo && <SubmitPhoto handleSubmitExercise={handleSubmitExercise} handleInvalid={openCamera}></SubmitPhoto>}
         </div>
         <Footer color="yellow" size="70px" />
     </div>
