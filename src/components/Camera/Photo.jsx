@@ -95,7 +95,7 @@ function Photo(props) {
                 <p>There was a problem reading this photo.</p>
                 <Button color="pink"><Link to={props.isSubmittingExercise ? `/exercises/${exerciseId}` : '/camera'}>Try again</Link></Button>
             </div>}
-            {operation && !validatedPhoto && <div className={props.isSubmittingExercise ? "mathpix-result height-auto" : "mathpix-result"}>
+            {operation && !validatedPhoto && <div className={props.isSubmittingExercise ? "mathpix-result height-auto no-margin" : "mathpix-result"}>
                 <h2>Have I properly read the exercise?</h2>
                 {operation.map((elem, idx) => {
                     return (

@@ -107,7 +107,7 @@ const ExerciseDetail = () => {
           <img src={exercise.exerciseFile} alt="exercise" />
           {(user.role === 'teacher' || (user.role === 'student' && singleStudentAssignation.isCompleted)) && exercise.solutionFile && (
             <>
-              <p>Solution:</p>
+              <h2 className="title-style-yellow">Solution</h2>
               <img src={exercise.solutionFile} alt="exercise solution" />
             </>
           )}
@@ -148,14 +148,20 @@ const ExerciseDetail = () => {
         )}
         {user.role === 'student' && !photo && (
           <div>
-            {!singleStudentAssignation.isCompleted && <Button color="blue" action={openCamera}>Upload exercise</Button>}
-            {singleStudentAssignation.isCompleted && <p>Completed</p>}
+            {!singleStudentAssignation.isCompleted &&
+              <div className='student-completed-exercise-button'>
+                <Button color="blue" action={openCamera}>Upload exercise</Button>
+              </div>}
+            {singleStudentAssignation.isCompleted &&
+              <div className="student-completed-exercise-icon">
+                <CompleteIcon color="blue" size="30px"/> <p>Completed</p>
+              </div>}
           </div>
         )}
         {camera && <Camera backwardUrl={`/exercises/${exercise._id}`} atCloseAction={closeCamera} atTakePhoto={showPhoto}></Camera>}
         {photo && <Photo isSubmittingExercise={true} handleSubmitExercise={handleSubmitExercise} handleInvalid={openCamera}></Photo>}
+        </div>
         <Footer color="yellow" size="70px" />
-      </div>
     </div>
   );
 }

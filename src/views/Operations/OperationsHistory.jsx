@@ -25,7 +25,7 @@ const OperationsHistory = () => {
     <div className="container-all-elements">
       <Navbar color="#FF6230" content="editProfile" backGround="true" backUrl="/profile" />
       <div className="all-elements-content">
-        <div className="title-div">
+        <div className="title-div center-title">
           <h1 className="title-style-violet">My Operations history</h1>
         </div>
         <div className="lists-container">
