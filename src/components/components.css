@@ -72,12 +72,12 @@ section.section-carousel{
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  height: auto;
+  height: 100%;
 }
 
 video {
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 100%;
   overflow: hidden;
 }
 
