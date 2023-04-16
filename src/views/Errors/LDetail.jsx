@@ -68,9 +68,9 @@ function LDetail() {
   }, [operations, l]);
 
   return (
-    <div>
+    <div className='view'>
       <Navbar color="#FF6230" content="editProfile" backGround="true" />
-      <div className="container-detail">
+      <div className="infinite-container">
         <div className="detail-errors-container">
           <div className="title-div-error">
             <h1 className="title-style-blue">{title}</h1>

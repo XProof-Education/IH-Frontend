@@ -173,12 +173,8 @@ body {
   background-color: var(--primary-white);
 } 
 
-#root {
-  height: 100%;
-}
-
 .App {
-  height: 100%;
+  height: 100vh;
   width: 100vw;
   background-color: var(--primary-white);
 }
@@ -233,6 +229,11 @@ a{
   font-size: 2rem;
 }
 
+.view {
+  width: 100vw;
+  height: 100%;
+} 
+
 .main-container {
   height: calc(100% - var(--navbar) - var(--footer));
   position: fixed;
@@ -241,11 +242,17 @@ a{
   overflow: hidden;
 }
 
+.infinite-container {
+  width: 100%;
+  padding: 0 2rem calc(var(--footer) + 0.8rem) 2rem;
+  overflow: scroll;
+}
+
 /* ---------------- HOME ------------------ */
-.home {
+/* .home {
   width: 100vw;
   height: 100%;
-}
+} */
 
 /* .video-container {
   height: calc(100% - var(--navbar) - var(--footer));
@@ -262,19 +269,19 @@ a{
 
 /* ---------------- PROFILE ------------------ */
 
-div.profile-container {
+/* div.profile-container {
   width: 100vw;
   height: 100%;
   overflow-y: hidden;
-}
+} */
 
 /* ---------------- FORMS ------------------ */
 
-div.container{
+/* div.container{
   width: 100%;
   height: 100%;
   overflow-y: hidden;
-}
+} */
 
 div.form-main-container {
   display: flex;
@@ -369,23 +376,19 @@ div.button-container {
 
 /* ---------------- ALL EXERCISES & OPERATIONS ------------------ */
 
-div.container-all-elements {
-  /* padding-bottom: 5.8rem; */
-  /* height: 100vh; */
+/* div.container-all-elements {
+  padding-bottom: 5.8rem;
+  height: 100vh;
   width: 100vw;
   box-sizing: border-box;
-}
+} */
 
-div.all-elements-content {
-width: 100%;
-padding: 0 2rem 0 2rem;
-}
 
 div.lists-container {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 1.5rem 0 7rem 0;
+  padding: 1.5rem 0 0 0;
   height: 100%;
 }
 
@@ -405,10 +408,10 @@ div div.title-div {
 
 /*-----------NEW EXERCISE & EDIT EXERCISE --------------*/
 
-div.exercise-create-container {
+/* div.exercise-create-container {
   height: 100%;
   width: 100vw;
-}
+} */
 
 div.exercise-new-container {
   padding: 0 2rem 10rem 2rem;
@@ -416,10 +419,10 @@ div.exercise-new-container {
   overflow-y: hidden;
 }
 
-div.exercise-edit-container {
+/* div.exercise-edit-container {
   height: 100%;
   padding: 0 2rem 8rem 2rem;
-}
+} */
 
 div.form-exercise-container {
   display: flex;
@@ -490,11 +493,11 @@ div.assign-students-div {
 
 /* ---------------- DETAIL VIEWS ------------------ */
 
-div.container-exercise-detail {
+/* div.container-exercise-detail {
   padding: 0 2rem 10rem 2rem;
   height: auto;
   overflow-y: hidden;
-}
+} */
 
 div.img-container {
   margin: 1rem 0;
@@ -518,9 +521,9 @@ div.not-found-div p {
   color: var(--primary-pink);
 }
 
-div.exercise-student-list {
+/* div.exercise-student-list {
   margin-bottom: 3rem;
-}
+} */
 
 div.exercise-status {
   display: flex;
@@ -562,18 +565,18 @@ div.student-completed-exercise-icon {
 
 /* ---------------- DETAIL VIEW OPERATION------------------ */
 
-div.container-detail-operation {
+/* div.container-detail-operation {
   padding-bottom: 5.8rem;
   height: 100vh;
   width: 100vw; 
-}
+} */
 
 /* ---------------- PROGRESS VIEW ------------------ */
 
-div.progress-content {
+/* div.progress-content {
   padding-bottom: 5.8rem;
   background-color: var(--primary-white);
-}
+} */
 
 div.progress-input-div {
   display: flex;
@@ -623,7 +626,7 @@ div.l-cards {
   align-items: flex-start;
   width: 100%;
   gap: 1rem;
-  padding: 1rem 1rem 4rem 1rem;
+  padding: 1rem 1rem 0 1rem;
   flex-wrap: wrap;
 }
 
@@ -644,21 +647,18 @@ div.l-card-feedback {
 
 
 /* ---------------- ERRORS DETAIL VIEW ------------------ */
-
+/*
 div.container-detail {
   overflow: scroll;
   height: 90vh;
   padding-bottom: 5rem;
-}
+}*/
 
 div.detail-errors-container {
-  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  margin: 0 1.5rem;
-  gap: 1rem;
+  padding-top: 1rem;
 }
 
 div.title-div-error {
@@ -677,6 +677,9 @@ div.error-card {
   gap: 2rem;
   padding: 0 1rem 1rem 1rem;
 }
+.error-time-filter {
+  margin-bottom: .3rem;
+}
 
 div.percentage-link-div {
   display: flex;
@@ -686,9 +689,9 @@ div.percentage-link-div {
 
 /* ---------------- ERROR DETAIL VIEW ------------------ */
 
-div.container-error-detail {
+/* div.container-error-detail {
   padding: 2rem 1rem 5rem 1rem;
-}
+} */
 
 div.operation-card {
   display: flex;

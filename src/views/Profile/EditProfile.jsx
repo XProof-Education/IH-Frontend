@@ -150,7 +150,7 @@ const EditProfile = () => {
   };
 
   return (
-    <div className="container">
+    <div className="view">
       <Navbar color="#FF6230" content="editProfile" backGround="true" />
       <div className="form-main-container main-container">
         <div className="form-main-div">

@@ -150,9 +150,9 @@ const EditExercise = () => {
   },[query, isAssigning]);
 
   return (
-    <div className="exercise-create-container">
+    <div className="view">
       <Navbar color="#FF6230" content="editProfile" backGround="true" />
-      <div className="exercise-edit-container">
+      <div className="infinite-container">
         <div className="form-title">
           <h1 className="title-style-pink">Edit Exercise</h1>
         </div>

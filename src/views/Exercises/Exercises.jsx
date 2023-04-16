@@ -40,9 +40,9 @@ const Exercises = () => {
   }, [])
 
   return (
-    <div className="container-all-elements">
+    <div className="view">
       <Navbar color="#FF6230" content="editProfile" backGround="true" backUrl="/profile" />
-      <div className="all-elements-content">
+      <div className="infinite-container">
         <div className="title-div">
           <h1 className="title-style-yellow">My Exercises</h1>
         </div>
@@ -56,9 +56,9 @@ const Exercises = () => {
             <ListCard props={exercises} typeData={user.role === 'teacher' ? "exercises" : "studentExercises"} />
           </div>
           {user.role === 'student' && <h2 className='title-style-blue'>Completed</h2>}
-          <div className="lists-container">
+          {user.role === 'student' && <div className="lists-container">
             <ListCard props={completedExercises} typeData={user.role === 'teacher' ? "exercises" : "studentExercises"} />
-          </div>
+          </div>}
         </>
         }
       </div>

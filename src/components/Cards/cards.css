@@ -70,25 +70,21 @@ img.img-list {
 /*--------------------- OPERATION CARD --------------------*/
 
 div.operation-detail-container {
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-left: 1px solid var(--primary-blue);
   border-right: 1px solid var(--primary-blue);
-  margin: 0 1.5rem;
 }
 
 div.operation-detail-container-red {
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-left: 1px solid var(--primary-pink);
   border-right: 1px solid var(--primary-pink);
-  margin: 0 1.5rem;
 }
 
 div.equation {

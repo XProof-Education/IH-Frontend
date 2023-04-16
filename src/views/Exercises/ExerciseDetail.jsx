@@ -97,9 +97,9 @@ const ExerciseDetail = () => {
   }, [photo]);
 
   return (
-    <div className='container-all-elements'>
+    <div className='view'>
       <Navbar color="#FF6230" content="editProfile" backGround="true" />
-      <div className="container-exercise-detail">
+      <div className="infinite-container">
         <div className="title-div">
           <h1 className="title-style-blue">Single exercise</h1>
         </div>
@@ -118,7 +118,7 @@ const ExerciseDetail = () => {
               <Link to={`/edit/${exerciseId}`}><Button color="yellow"> Edit </Button></Link>
               <Button color="pink" action={handleDelete}> Delete </Button>
             </div>
-            <div className="exercise-student-list">
+            <div>
               {assignations && assignations.map(elem => (
                 <div key={elem._id}>
                   <div className="exercise-status" onClick={() => handleSeeStudentCompletion(elem)}>

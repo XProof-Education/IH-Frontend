@@ -54,9 +54,11 @@ const OperationDetail = (props) => {
   }
 
   return (
-    <div className="container-detail-operation">
+    <div className="view">
       <Navbar color="#FF6230" content="editProfile" backGround="true" />
-        <OperationCard operation={operation} handleDelete={handleDelete} />
+        <div className="infinite-container">
+          <OperationCard operation={operation} handleDelete={handleDelete} />
+        </div>
       <Footer color="blue" size="70px" />
     </div>
   );

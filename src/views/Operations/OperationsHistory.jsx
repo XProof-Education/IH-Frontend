@@ -22,9 +22,9 @@ const OperationsHistory = () => {
   }, []);
 
   return (
-    <div className="container-all-elements">
+    <div className="view">
       <Navbar color="#FF6230" content="editProfile" backGround="true" backUrl="/profile" />
-      <div className="all-elements-content">
+      <div className="infinite-container">
         <div className="title-div center-title">
           <h1 className="title-style-violet">My Operations history</h1>
         </div>

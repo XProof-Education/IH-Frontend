@@ -53,12 +53,12 @@ function ErrorDetail() {
     }
   }, [operations, l, error]);
   return (
-    <div>
+    <div className='view'>
       <Navbar color="#FF6230" content="editProfile" backGround="true" />
-      <div className="container-error-detail">
+      <div className="infinite-container">
         <div className="detail-errors-container">
-          <p>Viewing {timeFilterText[timeFilter]}</p>
-          <h3>{title}</h3>
+          <h3 className='error-time-filter'>Viewing {timeFilterText[timeFilter]}</h3>
+          <h4>{title}</h4>
           {filteredOperations && filteredOperations.map(operation => {
             return (
               <div className="operation-card" key={operation._id}>

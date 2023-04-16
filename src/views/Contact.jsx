@@ -106,7 +106,7 @@ const Contact = () => {
   };
  
   return (
-    <div className="container">
+    <div className="view">
       <Navbar color="yellow" />
       <div className="form-main-container main-container">
         <div className="form-main-div">
