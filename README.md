@@ -2,7 +2,7 @@
 
 ## Description
 
-This application is called XXX. It is used for 
+XProof simplifies the experience of auto-correcting equations first grade taking a photo, keeping track of your strengths and flows. Xproof allows you to register as a teacher or a student. With the role of a teacher, you can assign exercises to the students, and they can upload the solution of the exercise through a photo.
 
 > Add a picture (logo, design, actual screen, gif, etc, whichever you prefer.)
 ![](picture.png)
@@ -30,6 +30,9 @@ npm run start
 - User can sign up and create a new account
 - User can login
 - User can log out
+- User can edit his/her profile
+- User can take a photo
+
 
 ### Backlog
 
