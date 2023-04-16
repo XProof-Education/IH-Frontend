@@ -4,7 +4,6 @@
 
 XProof simplifies the experience of auto-correcting equations first grade taking a photo, keeping track of your strengths and flows. Xproof allows you to register as a teacher or a student. With the role of a teacher, you can assign exercises to the students, and they can upload the solution of the exercise through a photo.
 
-> Add a picture (logo, design, actual screen, gif, etc, whichever you prefer.)
 ![](/src/assets/images/xproof-mockups.png)
 
 ---
