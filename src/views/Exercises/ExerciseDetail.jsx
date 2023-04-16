@@ -120,28 +120,28 @@ const ExerciseDetail = () => {
             </div>
             <div className="exercise-student-list">
               {assignations && assignations.map(elem => (
-                <>
-                <div className="exercise-status" key={elem._id} onClick={() => handleSeeStudentCompletion(elem)}>
-                  {elem.isCompleted
-                    ? <div className="student-complete-truly">
-                        <div className="exercise-status-student-info">
-                          <CompleteIcon color="blue" size="30px" />
-                          <p>{elem.studentId.name} {elem.studentId.lastName}</p>
-                        </div>
-                        <div> {seeCompletions.includes(elem._id)
-                          ? <div className="show-hide">
-                            <ArrowDownIcon color="blue" width="15px" height="10px" />
-                            <p>Hide</p>
+                <div key={elem._id}>
+                  <div className="exercise-status" onClick={() => handleSeeStudentCompletion(elem)}>
+                    {elem.isCompleted
+                      ? <div className="student-complete-truly">
+                          <div className="exercise-status-student-info">
+                            <CompleteIcon color="blue" size="30px" />
+                            <p>{elem.studentId.name} {elem.studentId.lastName}</p>
                           </div>
-                          : <div className="show-hide"><ArrowRightIcon color="blue" width="10px" height="15px" />
-                            <p>Show</p>
-                          </div>}
+                          <div> {seeCompletions.includes(elem._id)
+                            ? <div className="show-hide">
+                              <ArrowDownIcon color="blue" width="15px" height="10px" />
+                              <p>Hide</p>
+                            </div>
+                            : <div className="show-hide"><ArrowRightIcon color="blue" width="10px" height="15px" />
+                              <p>Show</p>
+                            </div>}
+                          </div>
                         </div>
-                      </div>
-                    : <div className="exercise-status-student-info"> <PendingIcon color="yellow" size="30px" /> <p>{elem.studentId.name} {elem.studentId.lastName}</p></div>}
-                  </div>
-                {elem.isCompleted && seeCompletions.includes(elem._id) && <OperationCard operation={elem.completion} isCompletion={true} />}
-              </>
+                      : <div className="exercise-status-student-info"> <PendingIcon color="yellow" size="30px" /> <p>{elem.studentId.name} {elem.studentId.lastName}</p></div>}
+                    </div>
+                  {elem.isCompleted && seeCompletions.includes(elem._id) && <OperationCard operation={elem.completion} isCompletion={true} />}
+                </div>
               ))}
             </div>
           </>

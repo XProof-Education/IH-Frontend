@@ -220,6 +220,10 @@ div.feedback-title {
 div.feedback-title h2 {
   padding: 0 0 1.5rem 0;
 }
+.equation-latex {
+  display: flex;
+  justify-content: center;
+}
 
 div.equation-feedback {
   margin-top: 1rem;
