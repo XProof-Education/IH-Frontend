@@ -7,7 +7,7 @@ import lToFeedback from '../../utils/progress/lToFeedback';
 import { Link, useLocation } from 'react-router-dom';
 import Button from '../../components/Button';
 import filterOperations from '../../utils/filterOperationsByTime';
-import Percentage from '../../components/Percentage';
+import Percentage from '../../components/Icons/Percentage';
 import Footer from '../../components/Footer';
 
 function LDetail() {

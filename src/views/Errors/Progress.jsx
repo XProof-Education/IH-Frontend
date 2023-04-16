@@ -6,7 +6,7 @@ import { getErrorStatistics } from '../../utils/progress/getErrorStatistics';
 import Button from '../../components/Button';
 import { Link } from 'react-router-dom';
 import filterOperations from '../../utils/filterOperationsByTime';
-import Percentage from '../../components/Percentage';
+import Percentage from '../../components/Icons/Percentage';
 
 function Progress() {
   const [operations, setOperations] = useState([]);

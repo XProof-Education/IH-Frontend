@@ -11,10 +11,10 @@ import Camera from '../../components/Camera/Camera';
 import Photo from '../../components/Camera/Photo';
 import handleOperation from '../../utils/handleOperation';
 import OperationCard from '../../components/Cards/OperationCard';
-import CompleteIcon from '../../components/CompleteIcon';
-import PendingIcon from '../../components/PendingIcon';
-import ArrowDownIcon from '../../components/ArrowDownIcon';
-import ArrowRightIcon from '../../components/ArrowRightIcon';
+import CompleteIcon from '../../components/Icons/CompleteIcon';
+import PendingIcon from '../../components/Icons/PendingIcon';
+import ArrowDownIcon from '../../components/Icons/ArrowDownIcon';
+import ArrowRightIcon from '../../components/Icons/ArrowRightIcon';
 
 const ExerciseDetail = () => {
   const { user } = useAuth();

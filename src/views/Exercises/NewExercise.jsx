@@ -5,10 +5,10 @@ import userService from '../../services/userService';
 import Navbar from "../../components/Header/Navbar";
 import exerciseAssignationsService from '../../services/exerciseAssignationsService';
 import Button from '../../components/Button';
-import UploadIcon from '../../components/UploadIcon';
+import UploadIcon from '../../components/Icons/UploadIcon';
 import Footer from '../../components/Footer';
-import AddIcon from '../../components/AddIcon';
-import DeleteIcon from '../../components/DeleteIcon';
+import AddIcon from '../../components/Icons/AddIcon';
+import DeleteIcon from '../../components/Icons/DeleteIcon';
 import Error from '../../components/Error';
 
 const NewExercise = () => {

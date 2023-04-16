@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import './cards.css';
-import Dot from "../Dot";
+import Dot from "../Icons/Dot";
 
 const ProfileCard = ({ sections }) => {
   return (
