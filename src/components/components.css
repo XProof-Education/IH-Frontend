@@ -229,6 +229,10 @@ div.equation-feedback {
   margin-top: 1rem;
 }
 
+div.operation-feedback {
+  text-align: center;
+}
+
 div.loading-feedback {
   display: flex;
   flex-direction: column;

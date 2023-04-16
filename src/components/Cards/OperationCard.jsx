@@ -28,9 +28,6 @@ const OperationCard = (props) => {
               </div>
             ))}
           </div>
-          {/* <div className="equation-latex">
-            {latex && <Latex>{latex}</Latex>}
-          </div> */}
           {operation.isCorrect
             ? <div className='operation-feedback'>
               <p>This operation is correct. Good job!</p>
