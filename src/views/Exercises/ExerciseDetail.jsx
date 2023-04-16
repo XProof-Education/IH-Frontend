@@ -97,7 +97,7 @@ const ExerciseDetail = () => {
   }, [photo]);
 
   return (
-    <div>
+    <div className='container-all-elements'>
       <Navbar color="#FF6230" content="editProfile" backGround="true" />
       <div className="container-exercise-detail">
         <div className="title-div">

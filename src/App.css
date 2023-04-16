@@ -171,10 +171,14 @@ body {
   height: 100vh;
   width: 100vw;
   background-color: var(--primary-white);
+} 
+
+#root {
+  height: 100%;
 }
 
 .App {
-  /* height: 100vh; */
+  height: 100%;
   width: 100vw;
   background-color: var(--primary-white);
 }
@@ -366,8 +370,8 @@ div.button-container {
 /* ---------------- ALL EXERCISES & OPERATIONS ------------------ */
 
 div.container-all-elements {
-  padding-bottom: 5.8rem;
-  height: 100vh;
+  /* padding-bottom: 5.8rem; */
+  /* height: 100vh; */
   width: 100vw;
   box-sizing: border-box;
 }
@@ -407,8 +411,9 @@ div.exercise-create-container {
 }
 
 div.exercise-new-container {
-  height: 100%;
-  padding: 0 2rem 8rem 2rem;
+  padding: 0 2rem 10rem 2rem;
+  height: auto;
+  overflow-y: hidden;
 }
 
 div.exercise-edit-container {
@@ -486,7 +491,9 @@ div.assign-students-div {
 /* ---------------- DETAIL VIEWS ------------------ */
 
 div.container-exercise-detail {
-  padding: 0 2rem 7rem 2rem;
+  padding: 0 2rem 10rem 2rem;
+  height: auto;
+  overflow-y: hidden;
 }
 
 div.img-container {
