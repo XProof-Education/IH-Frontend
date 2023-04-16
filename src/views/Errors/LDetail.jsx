@@ -7,7 +7,7 @@ import lToFeedback from '../../utils/progress/lToFeedback';
 import { Link, useLocation } from 'react-router-dom';
 import Button from '../../components/Button';
 import filterOperations from '../../utils/filterOperationsByTime';
-import Percentage from '../../components/Percentage';
+import Percentage from '../../components/Icons/Percentage';
 import Footer from '../../components/Footer';
 
 const LDetail = () => {
@@ -68,9 +68,9 @@ const LDetail = () => {
   }, [operations, l]);
 
   return (
-    <div>
+    <div className='view'>
       <Navbar color="#FF6230" content="editProfile" backGround="true" />
-      <div className="container-detail">
+      <div className="infinite-container">
         <div className="detail-errors-container">
           <div className="title-div-error">
             <h1 className="title-style-blue">{title}</h1>

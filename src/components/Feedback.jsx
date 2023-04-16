@@ -48,7 +48,7 @@ const Feedback = ({ operation, imageUrl }) => {
     }, [isCorrect, clouredOperation, prompt, getFeedback]);
 
     return (
-        <div className="feedback-div">
+        <div className="infinite-container">
             {!setColouredOperation &&
                 <div className="loading-feedback-div">
                     <Loading />

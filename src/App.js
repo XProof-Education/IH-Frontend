@@ -6,7 +6,6 @@ import ErrorPage from './views/ErrorPage';
 import NotFound from './views/NotFound';
 import Signup from './views/auth/Signup';
 import Login from './views/auth/Login';
-import PrivateView from './views/PrivateView';
 import IsPrivate from './components/IsPrivate';
 import Profile from './views/Profile/Profile';
 import EditProfile from './views/Profile/EditProfile';
@@ -41,7 +40,6 @@ function App() {
         <Route path="/exercises/:exerciseId" element={<IsPrivate><ExerciseDetail /></IsPrivate>} />
         <Route path="/new-exercise" element={<IsPrivate><NewExercise /></IsPrivate>} />
         <Route path="/edit/:exerciseId" element={<IsPrivate><EditExercise /></IsPrivate>} />
-        <Route path="/private" element={<IsPrivate><PrivateView /></IsPrivate>} />
         <Route path="/error" element={<ErrorPage />} />
         <Route path='/camera' element={<Camera forwardUrl='/camera/result' backwardUrl='/' />} />
         <Route path='/camera/result' element={<Photo />} />

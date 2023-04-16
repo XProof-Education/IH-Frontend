@@ -9,8 +9,8 @@ import Footer from "../../components/Footer";
 const Profile = () => {
   const { user, isLoading } = useAuth();
   return (
-    <div className="profile-container">
-      {isLoading && <Loading />}
+    <div className="view">
+      {isLoading && <Loading/>}
       <Navbar content="profile" backGround="true" />
       {user.role === 'student'
         ? <ProfileCard sections={[{ title: "my equations history", url: '/operations-history', color: 'yellow' }, { title: "my progress", url: "/profile/progress", color: 'blue' }, { title: "assigned exercises", url: "/exercises", color: 'violet' }]} />

@@ -1,5 +1,4 @@
 /*------------------- COLORS ----------------------*/
-
 :root {
   --primary-yellow: #F7CF5C;
   --primary-pink: #E7327B;
@@ -72,12 +71,12 @@ section.section-carousel{
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  height: auto;
+  height: 100%;
 }
 
 video {
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 100%;
   overflow: hidden;
 }
 
@@ -129,14 +128,13 @@ z-index: 3;
 
 /* ---------------- PHOTO ------------------ */
 
-div.photo-view {
+/* div.photo-view {
   height: 100vh;
   width: 100vw;
   padding-bottom: 6rem;
-}
+} */
 
 div.loading-mathpix {
-  height: 90%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -144,7 +142,6 @@ div.loading-mathpix {
 }
 
 div.mathpix-error {
-  height: 90%;
   flex-direction: column;
   display: flex;
   justify-content: center;
@@ -152,12 +149,11 @@ div.mathpix-error {
 }
 
 div.mathpix-result {
-  height: 100%;
+  padding-top: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 2rem;
   text-align: center;
   border-right: 1px solid var(--primary-black);
   border-left: 1px solid var(--primary-black);
@@ -165,7 +161,7 @@ div.mathpix-result {
 
 .height-auto {
   height: auto !important;
-}
+} 
 
 .no-padding-bottom {
   padding-bottom: 0rem !important;
@@ -174,7 +170,6 @@ div.mathpix-result {
 
 .no-margin{
   margin: 0 !important;
-
 }
 
 /* ---------------- FEEDBACK ------------------ */
@@ -187,33 +182,31 @@ div.loading-feedback-div {
   align-items: center;
 }
 
-div.feedback-div {
+/* div.feedback-div {
   height: 100vh;
   width: 100vw;
   padding-bottom: 6rem;
-}
+} */
 
 div.feedback-container {
-  height: 90%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 2rem;
-  padding: 0 1rem;
+  padding-top: 1rem;
   text-align: center;
   border-right: 1px solid var(--primary-blue);
   border-left: 1px solid var(--primary-blue);
 }
 
 div.feedback-container-mistake {
-  height: 90%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 2rem;
-  padding: 0 1rem;
+  padding-top: 1rem;
+  /* margin: 0 2rem;
+  padding: 0 1rem; */
   text-align: center;
   border-right: 1px solid var(--primary-pink);
   border-left: 1px solid var(--primary-pink);

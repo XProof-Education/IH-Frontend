@@ -3,12 +3,12 @@ import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import './navbar.css';
 import DropdownMenu from './DropdownMenu';
-import Logo from '../Logo';
-import ProfileIcon from '../ProfileIcon';
+import Logo from '../Icons/Logo';
+import ProfileIcon from '../Icons/ProfileIcon';
 import burguerIcon from '../../assets//images/burguer-icon.png';
 import cancelIcon from '../../assets//images/cancel-icon.png';
 import backIcon from '../../assets/images/back.png'
-import HalfDotColor from '../HalfDot';
+import HalfDotColor from '../Icons/HalfDot';
 
 const Navbar = (props) => {
   const { isLoggedIn, user} = useContext(AuthContext);

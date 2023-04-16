@@ -10,7 +10,7 @@ import step4 from '../assets/images/step-4-l.mp4';
 
 const Home = () => {
   return (
-    <div className="home">
+    <div className="view">
       <Navbar backGround="true" color="blue" />
       <div className="main-container">
         <Slider steps={[step0, step1, step2, step3, step4]} />

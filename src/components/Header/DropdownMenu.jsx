@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from '../../context/AuthContext';
-import HalfDotColor from "../HalfDot";
+import HalfDotColor from "../Icons/HalfDot";
 
 const DropdownMenu = (props) => {
   const { logOutUser } = useContext(AuthContext);

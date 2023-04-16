@@ -8,13 +8,13 @@ import operationsService from '../../services/operationsService';
 import Button from '../../components/Button';
 import Footer from '../../components/Footer';
 import Camera from '../../components/Camera/Camera';
-import Photo from '../../components/Camera/Photo';
+import SubmitPhoto from '../../components/Camera/SubmitPhoto';
 import handleOperation from '../../utils/handleOperation';
 import OperationCard from '../../components/Cards/OperationCard';
-import CompleteIcon from '../../components/CompleteIcon';
-import PendingIcon from '../../components/PendingIcon';
-import ArrowDownIcon from '../../components/ArrowDownIcon';
-import ArrowRightIcon from '../../components/ArrowRightIcon';
+import CompleteIcon from '../../components/Icons/CompleteIcon';
+import PendingIcon from '../../components/Icons/PendingIcon';
+import ArrowDownIcon from '../../components/Icons/ArrowDownIcon';
+import ArrowRightIcon from '../../components/Icons/ArrowRightIcon';
 
 const ExerciseDetail = () => {
   const { user } = useAuth();
@@ -97,9 +97,9 @@ const ExerciseDetail = () => {
   }, [photo]);
 
   return (
-    <div>
+    <div className='view'>
       <Navbar color="#FF6230" content="editProfile" backGround="true" />
-      <div className="container-exercise-detail">
+      <div className="infinite-container">
         <div className="title-div">
           <h1 className="title-style-blue">Single exercise</h1>
         </div>
@@ -118,7 +118,7 @@ const ExerciseDetail = () => {
               <Link to={`/edit/${exerciseId}`}><Button color="yellow"> Edit </Button></Link>
               <Button color="pink" action={handleDelete}> Delete </Button>
             </div>
-            <div className="exercise-student-list">
+            <div>
               {assignations && assignations.map(elem => (
                 <div key={elem._id}>
                   <div className="exercise-status" onClick={() => handleSeeStudentCompletion(elem)}>
@@ -159,7 +159,7 @@ const ExerciseDetail = () => {
           </div>
         )}
         {camera && <Camera backwardUrl={`/exercises/${exercise._id}`} atCloseAction={closeCamera} atTakePhoto={showPhoto}></Camera>}
-        {photo && <Photo isSubmittingExercise={true} handleSubmitExercise={handleSubmitExercise} handleInvalid={openCamera}></Photo>}
+        {photo && <SubmitPhoto handleSubmitExercise={handleSubmitExercise} handleInvalid={openCamera}></SubmitPhoto>}
         </div>
         <Footer color="yellow" size="70px" />
     </div>

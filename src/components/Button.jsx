@@ -1,5 +1,5 @@
 import './components.css';
-import HalfDotColor from './HalfDot';
+import HalfDotColor from './Icons/HalfDot';
 
 const Button = (props) => {
   return (

@@ -1,4 +1,4 @@
-import CameraIcon from "./CameraIcon";
+import CameraIcon from "./Icons/CameraIcon";
 
 const Footer = (props) => {
   return (
