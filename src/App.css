@@ -248,40 +248,7 @@ a{
   overflow: scroll;
 }
 
-/* ---------------- HOME ------------------ */
-/* .home {
-  width: 100vw;
-  height: 100%;
-} */
-
-/* .video-container {
-  height: calc(100% - var(--navbar) - var(--footer));
-  position: fixed;
-  top: var(--navbar);
-  width: 100vw;
-  overflow: hidden;
-} */
-
-/* .video-container video {
-  max-width: 100%;
-  max-height: 100%;
-} */
-
-/* ---------------- PROFILE ------------------ */
-
-/* div.profile-container {
-  width: 100vw;
-  height: 100%;
-  overflow-y: hidden;
-} */
-
 /* ---------------- FORMS ------------------ */
-
-/* div.container{
-  width: 100%;
-  height: 100%;
-  overflow-y: hidden;
-} */
 
 div.form-main-container {
   display: flex;
@@ -375,15 +342,6 @@ div.button-container {
 }
 
 /* ---------------- ALL EXERCISES & OPERATIONS ------------------ */
-
-/* div.container-all-elements {
-  padding-bottom: 5.8rem;
-  height: 100vh;
-  width: 100vw;
-  box-sizing: border-box;
-} */
-
-
 div.lists-container {
   display: flex;
   justify-content: center;
@@ -407,22 +365,11 @@ div div.title-div {
 }
 
 /*-----------NEW EXERCISE & EDIT EXERCISE --------------*/
-
-/* div.exercise-create-container {
-  height: 100%;
-  width: 100vw;
-} */
-
 div.exercise-new-container {
   padding: 0 2rem 10rem 2rem;
   height: auto;
   overflow-y: hidden;
 }
-
-/* div.exercise-edit-container {
-  height: 100%;
-  padding: 0 2rem 8rem 2rem;
-} */
 
 div.form-exercise-container {
   display: flex;
@@ -492,13 +439,6 @@ div.assign-students-div {
 }
 
 /* ---------------- DETAIL VIEWS ------------------ */
-
-/* div.container-exercise-detail {
-  padding: 0 2rem 10rem 2rem;
-  height: auto;
-  overflow-y: hidden;
-} */
-
 div.img-container {
   margin: 1rem 0;
   display: flex;
@@ -520,10 +460,6 @@ div.not-found-div {
 div.not-found-div p {
   color: var(--primary-pink);
 }
-
-/* div.exercise-student-list {
-  margin-bottom: 3rem;
-} */
 
 div.exercise-status {
   display: flex;
@@ -561,22 +497,7 @@ div.student-completed-exercise-icon {
   align-items: center;
   gap: 0.5rem;
 }
-
-
-/* ---------------- DETAIL VIEW OPERATION------------------ */
-
-/* div.container-detail-operation {
-  padding-bottom: 5.8rem;
-  height: 100vh;
-  width: 100vw; 
-} */
-
 /* ---------------- PROGRESS VIEW ------------------ */
-
-/* div.progress-content {
-  padding-bottom: 5.8rem;
-  background-color: var(--primary-white);
-} */
 
 div.progress-input-div {
   display: flex;
@@ -647,13 +568,6 @@ div.l-card-feedback {
 
 
 /* ---------------- ERRORS DETAIL VIEW ------------------ */
-/*
-div.container-detail {
-  overflow: scroll;
-  height: 90vh;
-  padding-bottom: 5rem;
-}*/
-
 div.detail-errors-container {
   display: flex;
   flex-direction: column;
@@ -688,11 +602,6 @@ div.percentage-link-div {
 }
 
 /* ---------------- ERROR DETAIL VIEW ------------------ */
-
-/* div.container-error-detail {
-  padding: 2rem 1rem 5rem 1rem;
-} */
-
 div.operation-card {
   display: flex;
   flex-direction: column;
@@ -718,17 +627,10 @@ div.operation-card-img img {
 
 /* ---------------- NOT FOUND VIEW ------------------ */
 
-div.not-found-container {
-  padding-bottom: 5.8rem;
-  height: 100vh;
-  width: 100vw;
-}
-
 div.not-found-message-div {
-  height: 90%;
+  padding: 0 30px;
   display: flex;
   justify-content: center;
-  padding: 0 2rem;
   align-items: center;
 }
 

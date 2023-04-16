@@ -52,7 +52,7 @@ export default function Login() {
   }, [isLoggedIn])
 
   return (
-    <div className="container">
+    <div className="view">
       <Navbar color="blue" backGround="true" />
       <div className="form-main-container main-container">
         <div className="form-main-div">
