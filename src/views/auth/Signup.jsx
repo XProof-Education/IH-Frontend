@@ -48,7 +48,7 @@ const Signup = () => {
   return (
     <div className="view">
       <Navbar color="yellow" backGround="true" />
-      <div className='form-main-container main-container'>
+      <div className='form-main-container infinite-container'>
         <div className="form-main-div">
           <div className='form-title'>
             <h1 className="title-style-blue">Sign up</h1>
