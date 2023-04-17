@@ -54,9 +54,11 @@ There are two types of user: Teacher & Student
 
 ## Useful links
 
-- [Presentation slides]()
+- [Presentation slides](https://my.visme.co/view/q6o0dy89-xproof#s1)
 - [Backend repository](https://github.com/XProof-IH/XProof-Backend)
 - [Backend deploy](https://xproof.fly.dev/api/v1/)
+- [Figma Workflow](https://www.figma.com/file/Cx3lzUmJIULKI4TrCrzbvK/XProof-flow-%26-design?node-id=767%3A470&t=H68F9AXOemFuAHX6-1)
+- [Figma Prototype](https://www.figma.com/file/gDa89MEgnjQleDMyFxnDSg/XProof?node-id=0%3A1&t=hrxQ1UR2C6ll07qm-1)
 - [Deployed app](https://xproof-ih.netlify.app/)
 
 
