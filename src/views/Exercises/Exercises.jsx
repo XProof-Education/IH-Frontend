@@ -50,12 +50,13 @@ const Exercises = () => {
           <Button color="yellow"><Link to={'/new-exercise'}>Create new exercise</Link></Button>
         </div>}
         {loading && <div className="loading-div"><Loading /></div>}
+        {!loading && exercises.length === 0 && <div className="title-div"><h2>No exercises to see yet</h2></div>}
         {!loading && exercises &&
         <>
           <div className="lists-container upper-container">
             <ListCard props={exercises} typeData={user.role === 'teacher' ? "exercises" : "studentExercises"} />
           </div>
-          {user.role === 'student' && <h2 className='title-style-blue'>Completed</h2>}
+          {user.role === 'student' &&  exercises.length !== 0 && <h2 className='title-style-blue'>Completed</h2>}
           {user.role === 'student' && <div className="lists-container">
             <ListCard props={completedExercises} typeData={user.role === 'teacher' ? "exercises" : "studentExercises"} />
           </div>}
