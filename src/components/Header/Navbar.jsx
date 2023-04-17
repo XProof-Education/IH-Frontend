@@ -44,7 +44,7 @@ const Navbar = (props) => {
   const navClassName = `nav ${isScrolled ? 'nav-fixed' : ''}`;
 
   return (
-    <div>
+    <div className='navbar-container'>
       {props.content === "editProfile"
         ? <nav className={`${props.backGround ? "nav nav-background" : "nav-background-transparent"} ${navClassName}`}>
           <img src={backIcon} onClick={() => navigate(backUrl)} alt="back" />

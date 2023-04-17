@@ -7,15 +7,27 @@ import './cards.css';
 const OperationCard = (props) => {
   const { operation, handleDelete, isCompletion } = props;
   const [lines, setLines] = useState([]);
+  const [divClassName, setDivClassName] = useState(undefined);
 
   useEffect(() => {
     if (operation && operation.mathLatexSimplified) {
       setLines(operation.mathLatexSimplified.split('\\\\'));
     }
+    let divClass = '';
+    if (operation && operation.isCorrect) {
+      divClass += 'operation-detail-container';
+    } else {
+      divClass += 'operation-detail-container-red'
+    }
+    if (isCompletion) {
+      divClass += ' completion-height';
+    }
+    setDivClassName(divClass);
+    // eslint-disable-next-line
   }, [operation]);
 
   return (
-    <div className={operation && operation.isCorrect ? "operation-detail-container" : "operation-detail-container-red"}>
+    <div className={operation && divClassName}>
       {!isCompletion && <div className="title-div">
         <h1 className="title-style-yellow">Operation detail</h1>
       </div>}

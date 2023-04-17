@@ -12,7 +12,8 @@
   --primary-violet: #420ED0;
   --primary-white: #fbfbfb;
   --primary-black: #131313;
-
+  --navbar: 5.3rem;
+  --footer: 5.8rem;
 }
 
 /* ---------------- Navbar and burguer menu ------------------ */
@@ -24,6 +25,10 @@ nav {
   align-items: center;
   padding: 1em;
   border-bottom: 1px solid var(--primary-black);
+}
+
+.navbar-container {
+  height: var(--navbar);
 }
 
 .nav-fixed {

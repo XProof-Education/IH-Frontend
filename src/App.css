@@ -246,6 +246,7 @@ a{
   width: 100%;
   padding: 0 2rem calc(var(--footer) + 0.8rem) 2rem;
   overflow: scroll;
+  min-height: calc(100% - var(--footer));
 }
 
 /* ---------------- FORMS ------------------ */
@@ -615,6 +616,7 @@ div.operation-card-img {
   height: 10rem;
   border: 1px solid var(--primary-pink);
   overflow: hidden;
+  border-radius: 5px;
 }
 
 div.operation-card-img img {

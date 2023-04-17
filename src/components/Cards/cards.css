@@ -76,6 +76,7 @@ div.operation-detail-container {
   align-items: center;
   border-left: 1px solid var(--primary-blue);
   border-right: 1px solid var(--primary-blue);
+  height: calc(100vh - var(--navbar) - var(--footer));
 }
 
 div.operation-detail-container-red {
@@ -85,6 +86,11 @@ div.operation-detail-container-red {
   align-items: center;
   border-left: 1px solid var(--primary-pink);
   border-right: 1px solid var(--primary-pink);
+  height: calc(100vh - var(--navbar) - var(--footer));
+}
+
+div.completion-height {
+  height: auto;
 }
 
 div.equation {
