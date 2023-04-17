@@ -35,7 +35,6 @@ const Feedback = ({ operation, imageUrl }) => {
 
     useEffect(() => {
         const result = handleOperation(operation);
-        // const result = operation;
         setIsCorrect(result.isCorrect);
         setColouredOperation(result.operation);
         setPrompt(result.prompt);

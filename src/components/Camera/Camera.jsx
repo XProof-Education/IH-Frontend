@@ -37,7 +37,6 @@ const Camera = (props) => {
                     props.atCloseAction();
                 }
                 navigate(props.backwardUrl);
-                // handleTakePhoto();
             }
         } catch (error) {
             console.error(error);

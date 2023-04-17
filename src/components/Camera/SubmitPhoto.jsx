@@ -8,7 +8,7 @@ import uploadToMathpix from '../../utils/uploadToMathpix';
 import Latex from 'react-latex';
 import '../components.css'
 
-function SubmitPhoto(props) {
+const SubmitPhoto = (props) => {
   const navigate = useNavigate();
   const [imageUrl, setImageUrl] = useState(null);
   const [operation, setOperation] = useState(null);

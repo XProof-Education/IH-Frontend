@@ -128,12 +128,6 @@ z-index: 3;
 
 /* ---------------- PHOTO ------------------ */
 
-/* div.photo-view {
-  height: 100vh;
-  width: 100vw;
-  padding-bottom: 6rem;
-} */
-
 div.loading-mathpix {
   display: flex;
   flex-direction: column;
@@ -181,12 +175,6 @@ div.loading-feedback-div {
   justify-content: center;
   align-items: center;
 }
-
-/* div.feedback-div {
-  height: 100vh;
-  width: 100vw;
-  padding-bottom: 6rem;
-} */
 
 div.feedback-container {
   display: flex;
