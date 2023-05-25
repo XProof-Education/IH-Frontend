@@ -1,49 +1,49 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import authService from '../../services/authService';
+// import React, { useEffect, useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
+// import authService from '../../services/authService';
 import Navbar from '../../components/Header/Navbar';
-import Button from '../../components/Button';
-import Error from '../../components/Error';
+// import Button from '../../components/Button';
+// import Error from '../../components/Error';
 
 const Signup = () => {
-  const [user, setUser] = useState({
-    name: '',
-    lastName: '',
-    email: '',
-    role: 'student'
-  })
-  const [password, setPassword] = useState('');
-  const [passwordControl, setPasswordControl] = useState('');
-  const [errorMessage, setErrorMessage] = useState(null);
-  const navigate = useNavigate();
+  // const [user, setUser] = useState({
+  //   name: '',
+  //   lastName: '',
+  //   email: '',
+  //   role: 'student'
+  // })
+  // const [password, setPassword] = useState('');
+  // const [passwordControl, setPasswordControl] = useState('');
+  // const [errorMessage, setErrorMessage] = useState(null);
+  // const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    setUser(prev => {
-      return {
-        ...prev,
-        [e.target.name]: e.target.value
-      }
-    })
-  }
+  // const handleChange = (e) => {
+  //   setUser(prev => {
+  //     return {
+  //       ...prev,
+  //       [e.target.name]: e.target.value
+  //     }
+  //   })
+  // }
 
-  useEffect(() => {
-    if (password !== passwordControl) {
-      setErrorMessage("Passwords don't match")
-    } else {
-      setErrorMessage(undefined)
-    }
-  }, [passwordControl, password])
+  // useEffect(() => {
+  //   if (password !== passwordControl) {
+  //     setErrorMessage("Passwords don't match")
+  //   } else {
+  //     setErrorMessage(undefined)
+  //   }
+  // }, [passwordControl, password])
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await authService.signup({ name: user.name, lastName: user.lastName, email: user.email, password, role: user.role });
-      navigate('/login');
-    } catch (error) {
-      console.error(error)
-      setErrorMessage('Unable to create user account')
-    }
-  }
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     await authService.signup({ name: user.name, lastName: user.lastName, email: user.email, password, role: user.role });
+  //     navigate('/login');
+  //   } catch (error) {
+  //     console.error(error)
+  //     setErrorMessage('Unable to create user account')
+  //   }
+  // }
 
   return (
     <div className="view">
@@ -54,7 +54,7 @@ const Signup = () => {
             <h1 className="title-style-blue">Sign up</h1>
           </div>
           <div className='form-container'>
-            <form className='form' onSubmit={handleSubmit}>
+            {/* <form className='form' onSubmit={handleSubmit}>
               <div className='input-label'>
                 <input required type="text" name="name" value={user.name} onChange={handleChange} placeholder="name" />
               </div>
@@ -80,7 +80,8 @@ const Signup = () => {
               <div className='buttons-container'>
                 <Button color='pink' type="submit">Register</Button>
               </div>
-            </form>
+            </form> */}
+            <p>Request access at info@xproof.io</p>
           </div>
         </div>
       </div>
